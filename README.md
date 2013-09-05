@@ -6,8 +6,8 @@ Project #1 - Bouncing Ball in Box
 DESCRIPTION
 	A simulation of a ball bouncing in a box
 	
-	-- Model & Vector/Utility by Dr. House.
-	-- Model modified to create a hollow cylinder
+	Model & Vector/Utility by Dr. House.
+	Model modified to create a hollow cylinder
 	
 	Usage: ballbox [parameter_file]
 	
