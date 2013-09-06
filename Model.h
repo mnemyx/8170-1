@@ -5,7 +5,7 @@
   Provides for construction of cuboid, cylinder and cone shapes tiled by triangles
   
   BIHE Computer Graphics    Donald H. House     6/22/06
-  Modified - Gina Guerrero - Fall 2013 to create an isosphere
+  Modified - Gina Guerrero - Fall 2013 
 */
 
 #ifndef _MODEL_H_
@@ -19,20 +19,19 @@
 class Model{
 private:
   Vector3d vertices[MAXVERTICES];   // vertex coordinates
-  int nvertices;		    // count of the number of vertices
+  int nvertices;		    		// count of the number of vertices
   int triangles[MAXTRIANGLES][3];   // 3 vertex indices for each triangle
   Vector3d normals[MAXTRIANGLES];   // unit normal vector for each triangle
-  int ntriangles;		    // count of the number of triangles
-  Vector3d overtices[MAXVERTICES];  // original set of vertices for isosphere
-  int onvertices;
+  int ntriangles;		    		// count of the number of triangles
+  Vector3d overtices[MAXVERTICES];  // original set of vertices for the isohedron
+  int onvertices;					// count of the number of original verices for the isohedron
   
-  Vector3d minXYZ;
-  Vector3d maxXYZ;
+  State ModState;					// state of the model...?
+
+  void Clean();			    		// bookkeeping, remove all vertices and triangles
   
-  void Clean();			    // bookkeeping, remove all vertices and triangles
-  
-  int AddVertex(const Vector3d &v); // insert a simple vertex into vertex table
-  int AddOVertex(const Vector3d &v); // insert a simple vertex into vertex table
+  int AddVertex(const Vector3d &v); 	 	// insert a simple vertex into vertex table
+  int AddOVertex(const Vector3d &v); 		// insert a simple vertex into vertex table
   int AddTriangle(int v0, int v1, int v2);  // insert a triangle, and its normal
   void Subdivide(int triangleIndex, int depth, float radius, Vector3d center);
   
@@ -46,6 +45,9 @@ public:
   // Make a cuboid model
   void BuildCuboid(float width = 1.0, float height = 1.0, float depth = 1.0, double x = 0, double y = 0, double z = 0);
   
+  // Make a plane
+  void BuildPlane(Vector3d p0, Vector3d, p1, Vector3d p2, Vector3d p3);  // COUNTER CLOCKWISE STARTING FROM BOTTOM LEFT POINT
+  
   // Make a cylinder model
   void BuildCylinder(float radius = 0.5, float height = 1.0);
   
@@ -54,9 +56,6 @@ public:
   
   // draw the current model in wireframe or shaded
   void Draw(int wireframe = 1);
-  
-  Vector3d GetMin();
-  Vector3d GetMax();
   
 };
 

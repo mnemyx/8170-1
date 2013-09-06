@@ -5,7 +5,7 @@
   Provides for construction of cuboid, cylinder and cone shapes tiled by triangles
   
   BIHE Computer Graphics    Donald H. House     6/22/06
-  Modified - Gina Guerrero - Fall 2013 to create an isosphere
+  Modified - Gina Guerrero - Fall 2013 
 */
 
 #include "Model.h"
@@ -24,9 +24,6 @@ using namespace std;
 //
 void Model::Clean(){
   nvertices = ntriangles = onvertices = 0;
-  minXYZ.set(0,0,0);
-  maxXYZ.set(0,0,0);
-  
 }
 
 //
@@ -189,27 +186,17 @@ void Model::BuildSphere(float r, int depth, double x, double y, double z) {
             case(2): vector.set(-t * jsign, 0, 1 * isign); break;
           }
 	  
+	  // remember the original points for the isohedron
 	  AddOVertex(vector);
 	  
-	  // puts the point in the unit circle & multiplies it to radius?
+	  // puts the point in the unit circle & multiplies it to radius
 	  vector = vector.normalize();
-	  // before normalization, etc
-
 	  vector = vector * r;
 	  
 	  // need to consider the center...
 	  vector = vector + center;
 	  
-	  // set the min/max
-	  if(vector.x < minXYZ.x) minXYZ.set(vector.x, minXYZ.y, minXYZ.z);
-	  if(vector.y < minXYZ.y) minXYZ.set(minXYZ.x, vector.y, minXYZ.z);
-	  if(vector.z < minXYZ.z) minXYZ.set(minXYZ.x, minXYZ.y, vector.z);
-	  
-	  if(vector.x > maxXYZ.x) maxXYZ.set(vector.x, maxXYZ.y, maxXYZ.z);
-	  if(vector.y > maxXYZ.y) maxXYZ.set(maxXYZ.x, vector.y, maxXYZ.z);
-	  if(vector.z > maxXYZ.z) maxXYZ.set(maxXYZ.x, maxXYZ.y, vector.z);
-	  
-          v[j++] = AddVertex(vector);
+	  v[j++] = AddVertex(vector);
    }
    
      
@@ -228,7 +215,7 @@ void Model::BuildSphere(float r, int depth, double x, double y, double z) {
 void Model::BuildCuboid(float width, float height, float depth, double x, double y, double z){
   int v[8];
   Vector3d vector;
-  Vector3d center;
+  Vector3d center(x,y,z);
   int i;
   int isign, jsign, ksign;
   int vlist[36] = {0, 2, 3,     0, 3, 1,    // back
@@ -246,25 +233,42 @@ void Model::BuildCuboid(float width, float height, float depth, double x, double
   for(ksign = -1; ksign <= 1; ksign += 2)
     for(jsign = -1; jsign <= 1; jsign += 2)
       for(isign = -1; isign <= 1; isign += 2){
-	vector.set(isign * width / 2, jsign * height / 2, ksign * depth / 2);
-	vector = vector + center;
-	
-	// set the min/max
-	if(vector.x < minXYZ.x) minXYZ.set(vector.x, minXYZ.y, minXYZ.z);
-	if(vector.y < minXYZ.y) minXYZ.set(minXYZ.x, vector.y, minXYZ.z);
-	if(vector.z < minXYZ.z) minXYZ.set(minXYZ.x, minXYZ.y, vector.z);
-	  
-	if(vector.x > maxXYZ.x) maxXYZ.set(vector.x, maxXYZ.y, maxXYZ.z);
-	if(vector.y > maxXYZ.y) maxXYZ.set(maxXYZ.x, vector.y, maxXYZ.z);
-	if(vector.z > maxXYZ.z) maxXYZ.set(maxXYZ.x, maxXYZ.y, vector.z);
-	
-	v[i++] = AddVertex(vector);
+		vector.set(isign * width / 2, jsign * height / 2, ksign * depth / 2);
+	    vector = vector + center;
+
+	    v[i++] = AddVertex(vector);
       }
 	
   // construct the 12 triangles that make the 6 faces
   for(i = 0; i < 36; i += 3)
     AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
 }
+
+
+//
+// Make a plane
+// Added 9/2013 - Proj 1 - GBG
+//
+void Model::BuildPlane(Vector3d p0, Vector3d, p1, Vector3d p2, Vector3d p3){
+  int v[4];
+  Vector3d vector;
+  int i;
+  int vlist[6] = {0, 1, 2,     0, 2, 3};   // 2 triangles
+		   
+  // delete any old data that may have been built previously
+  Clean();
+
+  // construct the 4 vertices 
+  v[0] = AddVertex(p0);
+  v[1] = AddVertex(p1);
+  v[2] = AddVertex(p2);
+  v[3] = AddVertex(p3);
+  
+  // construct the 12 triangles that make the 6 faces
+  for(i = 0; i < 6; i += 3)
+    AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
+}
+
 
 //
 // Make a cylinder model
@@ -369,9 +373,3 @@ void Model::Draw(int wireframe){
     glEnd();
   }
 }
-
-
-Vector3d Model::GetMin() { return minXYZ; }
-Vector3d Model::GetMax() { return maxXYZ; }
-
-

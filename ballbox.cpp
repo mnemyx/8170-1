@@ -140,18 +140,8 @@ static double WinHeight = WINDOW_HEIGHT;
 
 static char *ParamFilename = NULL;
 
-static int Throw = false;
-static int Trace = true;
-static int WeightMatters = 0;
-static int HaveWind = false;
-static int Floor = false;
-
 static int MiddleButton = false;
 static Vector2d LastMouse(0, 0);
-
-static Vector3d Wind;
-static Vector3d G(0, -9.86, 0);
-static double Viscosity;
 
 static double TimeStep;
 static double DispTime;

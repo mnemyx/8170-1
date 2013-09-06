@@ -1,10 +1,10 @@
-/*
+/***************************************************
   State.h
   
   Header file for State Class
   
   CPSC8170 - Proj 1   GBG   8/2013
-*/
+****************************************************/
 
 #ifndef _STATE_H_
 #define _STATE_H_
@@ -20,33 +20,36 @@
 #endif
 
 #define MAXSTEPS	10000
-#define SPDEPTH		3
-
 
 class State{
   private:
     
-    Vector3d Velocity;
-    Vector3d V0;
-    Vector3d Acceleration;
+    Vector3d Velocity;		// object's velocity
+    Vector3d V0;			// object's initial velocity
+    Vector3d Acceleration;	// object's acceleration
     
-    Vector3d Center;
-    double Mass;
-    float Radius;
+    Vector3d Center;		// for particles...really. i should consider changing these...
+    double Mass;			// for particles...really. i should consider changing these...
+    float Radius;			// for particles...really. i should consider changing these...
     
-    int Start;
-    int Stopped;
-    int Step;
-    int Resting;
+    int Start;				// is the object started
+    int Stopped;			// is the object stopped
+    int Step;				// is...stepping?
+    int Resting;			// is the object resting...
+	int Throw;				// do I need need? is the object thrown
+    int Trace;				// i'll probably keep this - trace the object's path
+    int HaveWind;			// uhhhh i dont know - do we have wind?
     
-    double CoeffofRestitution;
-    double CoeffofFriction;
-    Vector3d EPS;
+    double CoeffofRestitution;		// the object's coefficient of restitution
+    double CoeffofFriction;			// the object's coefficient of friction
+    float EPS;					// the "fudge factor"
+	
+	Vector3d Wind;			// the wind vector
+    Vector3d G;				// gravity vector...
+    double Viscosity;		// i forgot what the viscosity is for...
     
-    int Collision[MAXSTEPS];
-    Vector3d OldCenter[MAXSTEPS];
-    
-    Model Particle;
+    int Collision[MAXSTEPS];		// keeping track of the collisions
+    Vector3d OldCenter[MAXSTEPS];	// keeping track of the object's old centers (for collision sake)
     
   public:
     // Constructor
@@ -73,7 +76,6 @@ class State{
     void SetCoeffR(double cor);
     void SetCoeffF(double cof);
     void SetEPS(Vector3d eps);
-    void SetResting(double timestep, float miny);
     void SetResting(int type);
     void UpdateObj(int current, int indx = 0);
     void AddCollision(int collision, int indx);
@@ -92,12 +94,15 @@ class State{
     int IsResting();
     double GetCoeffR();
     double GetCoeffF();
-    Vector3d GetEPS();
+	Vector3d GetG();
+	double GetViscosity();
+	Vector3d GetWind();
+	int HaveWind();
+    float GetEPS();
     int Collided(int i = 0);
-    
-    // Functions
-    void DrawParticle(int wireframe = 0);
    
+   // Functions  ||  Rule of thumb: if the calculations relies *mostly* on state variables, place in state.  If it relies 2 entities; then...should probably NOT put it here.
+   void CalcAcceleration();
 };
 
 #endif

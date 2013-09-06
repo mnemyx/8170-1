@@ -1,21 +1,16 @@
-/*
+/*****************************************************
   State.cpp
   
   Source file for State Class
   
   CPSC8170 - Proj 1   GBG   8/2013
-*/
+******************************************************/
 
 #include "State.h"
 
 #include <cstdlib>
 #include <cstdio>
-
-#ifdef __APPLE__
-#  include <GLUT/glut.h>
-#else
-#  include <GL/glut.h>
-#endif
+#include <math.h>
 
 using namespace std;
 
@@ -23,25 +18,6 @@ using namespace std;
 // Constructor
 //
 State::State() {
-  Velocity.set(0,0,0);
-  V0.set(0,0,0);
-  Acceleration.set(0,0,0);
-  
-  Center.set(0, 0, 0);
-  Mass = 5;
-  Radius = 5.0;
-  
-  Start = true;
-  Stopped = true;
-  Step = true;
-  Resting = true;
-  
-  CoeffofRestitution = .4;
-  CoeffofFriction = .3;
-  
-  EPS.set(0.5, 0.5, 0.5);
-  
-  Particle.BuildSphere();
 }
 
 
@@ -84,10 +60,6 @@ void State::AddOldCenter(Vector3d cold, int indx) {
   OldCenter[indx].set(cold);
 }
 
-void State::SetResting(double timestep, float miny) {
-  Resting = Abs(timestep * Velocity.y) < EPS.y && Abs(Center.y - (Radius + miny)) < EPS.y;
-}
-
 void State::SetResting(int type) { Resting = type; }
 
 //
@@ -103,17 +75,25 @@ int State::IsStarted() { return Start; }
 int State::IsStopped() { return Stopped; }
 int State::IsStep() { return Step; }
 int State::IsResting() { return Resting;}
+Vector3d State::GetG() { return G; }
+double State::GetViscosity() { return Viscosity; }
+Vector3d State::GetWind() { return Wind; }
+int State::HaveWind() return HaveWind; }
 double State::GetCoeffR() { return CoeffofRestitution; }
 double State::GetCoeffF() { return CoeffofFriction; }
-Vector3d State::GetEPS() { return EPS; }
+float State::GetEPS() { return EPS; }
 
 int State::Collided(int indx) { return Collision[indx]; }
 
 //
 // Functions
 //
-void State::DrawParticle(int wireframe) {
-  Particle.Draw(wireframe);
+// Find Acceleration
+void CalcAcceleration() {
+	Acceleration = G;
+	
+	if(HaveWind) 
+		Acceleration = Acceleration + Viscosity * (Wind - Velocity) / Mass;
+	else
+		Acceleration = Acceleration - Viscosity * Velocity / Mass
 }
-
-
