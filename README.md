@@ -17,7 +17,7 @@ DESCRIPTION
 	A simulation of a ball bouncing in a box
 
 	Model & Vector/Utility by Dr. House.
-	Model modified to create a hollow cylinder
+	Model Class modified to create an isosphere & plane
 
 	Usage: ballbox [parameter_file]
 	
