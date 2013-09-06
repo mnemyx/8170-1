@@ -19,8 +19,8 @@ else
   endif
 endif
 
-HFILES 	= Matrix.${H} Vector.${H} Utility.${H} Model.${H} State.${H}
-OFILES 	= Matrix.o Vector.o Utility.o Model.o State.o
+HFILES 	= Matrix.${H} Vector.${H} Utility.${H} Model.${H} State.${H} Entity.${H}
+OFILES 	= Matrix.o Vector.o Utility.o Model.o State.o Entity.o
 PROJECT = ballbox
 
 ${PROJECT}:	${PROJECT}.o $(OFILES)
@@ -28,6 +28,9 @@ ${PROJECT}:	${PROJECT}.o $(OFILES)
 
 ${PROJECT}.o: ${PROJECT}.${C} $(HFILES)
 	${CC} $(CFLAGS) -c ${PROJECT}.${C}
+
+State.o: Entity.${C} Entity.${H}
+	${CC} ${CFLAGS} -c ${INCFLAGS} Entity.${C}
 	
 State.o: State.${C} State.${H}
 	${CC} ${CFLAGS} -c ${INCFLAGS} State.${C}
