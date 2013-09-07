@@ -276,7 +276,7 @@ void Model::BuildPlane(float l, float h, int orientation, double x, double y, do
   Vector3d center(x,y,z);
   int i;
   int isign, jsign;
-  int vlist[6] = {0, 1, 2,     0, 2, 3};   // 2 triangles
+  int vlist[6] = {0, 1, 2,     1, 2, 3};   // 2 triangles
   
   // delete any old data that may have been built previously
   Clean();
@@ -287,14 +287,16 @@ void Model::BuildPlane(float l, float h, int orientation, double x, double y, do
 	  for(isign = -1; isign <= 1; isign += 2){
 		switch(orientation) {
 			case(FRONTBACK):
-				vector.set(isign * width / 2, jsign * height / 2, 0); break;
+				vector.set(isign * l / 2, jsign * h / 2, 0); break;
 			case(SIDES): 
-				vector.set(0, isign * width / 2, jsign * height / 2); break;
+				vector.set(0, isign * l / 2, jsign * h / 2); break;
 			case(TOPBOTTOM):
-				vector.set(isign * width / 2, 0, jsign * height / 2); break;
+				vector.set(isign * l / 2, 0, jsign * h / 2); break;
 		}
 		
 		vector = vector + center;
+		vector.print();
+		cout<<endl;
 		v[i++] = AddVertex(vector);
 	  }
 	

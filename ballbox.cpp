@@ -230,20 +230,17 @@ void GetShading(int wireframe) {
 // Draw the moving objects
 //
 void DrawMovingObj(int wireframe) {
-  Particle.Draw(wireframe)
+  Particle.UpdateModel();
+  Particle.Draw(wireframe);
 }
 
 //
 // Draw the non moving objects
 //
 void DrawNonMovingObj(int wireframe) {
-  GetShading(wireframe);
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  
   int i;
   for ( i = 0; i < 6; i++ ) {
-	  Cube[0].Draw(wireframe);
+	  Cube[i].Draw(wireframe);
   }
 }
 
@@ -261,8 +258,8 @@ void DrawScene(int collision){
   else
     glColor3f(RGBYELLOW);
   
-  DrawMovingObj(true);
-  DrawNonMovingObj(false);
+  DrawMovingObj(false);
+  DrawNonMovingObj(true);
   glutSwapBuffers();
 
   if(NSteps < MAXSTEPS){
@@ -304,7 +301,7 @@ void Simulate(){
   // then cancel the velocity in the direction of the normal and...uhm...set the ball down on the plane...?
   for (i = 0; i < 6; i++) {
 	  if(Cube[i].Rest() && Cube[i].AccelOnPlane(Particle.Acceleration())) {
-		  Particle.AdjustAVC(Cube[i].PlaneNormal, Cube[i].PlaneVertex);
+		  Particle.AdjustAVC(Cube[i].PlaneNormal(), Cube[i].PlaneVertex());
 	  } 
 	  else Cube[i].Rest(false);
   }
@@ -322,7 +319,7 @@ void Simulate(){
 		  Cube[i].VelOnPlane(Particle.Velocity()) &&
 		  Cube[i].CenOnPlane(Particle.Radius())) {
 			  // have collision. get fraction of timestep at this collision will occur.
-			  f = Cube[i].PlaneBallColl(Particle.Center, newvelocity, newball, Particle.Radius());
+			  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 			  
 			  // compute the velocity & position of the ball at the collision time
 			  newvelocity = Particle.CalcVelocity(TimeStep, f, true);
@@ -330,7 +327,7 @@ void Simulate(){
 			  
 			  // reflect the velocity from the floor & scale the vertical component...
 			  Particle.Velocity(newvelocity);
-			  Particle.ScaleVel(Cube[i].GetCollidedN());  // stores this into Particle->Velocity
+			  Particle.ScaleVel(Cube[i].PlaneNormal());  // stores this into Particle->Velocity
 			  Particle.Center(newball);
 			  
 			  // draw the scene because we collided (change so that plane lights up instead)
@@ -537,7 +534,7 @@ void LoadParameters(char *filename){
   Vector3d gravity;
   
   Vector3d plane1, plane2, plane3, plane4, plane5, plane6;
-  Vector3d pcen1, pcen2, pcen3, pcen4, pcen5, pcen6;
+  Vector3d plcen1, plcen2, plcen3, plcen4, plcen5, plcen6;
   double peps1, peps2, peps3, peps4, peps5, peps6;
 	
   if((paramfile = fopen(filename, "r")) == NULL){
@@ -553,7 +550,7 @@ void LoadParameters(char *filename){
 	&(wind.x), &(wind.y), &(wind.z), &(gravity.x), &(gravity.y), &(gravity.z),
 	&(plane1.x), &(plane1.y), &(plane1.z), &(plcen1.x), &(plcen1.y), &(plcen1.z), &peps1, 
 	&(plane2.x), &(plane2.y), &(plane2.z), &(plcen2.x), &(plcen2.y), &(plcen2.z), &peps2, 
-	&(plane.x), &(plane3.y), &(plane3.z), &(plcen3.x), &(plcen3.y), &(plcen3.z), &peps3, 
+	&(plane3.x), &(plane3.y), &(plane3.z), &(plcen3.x), &(plcen3.y), &(plcen3.z), &peps3, 
 	&(plane4.x), &(plane4.y), &(plane4.z), &(plcen4.x), &(plcen4.y), &(plcen4.z), &peps4, 
 	&(plane5.x), &(plane5.y), &(plane5.z), &(plcen5.x), &(plcen5.y), &(plcen5.z), &peps5, 
 	&(plane6.x), &(plane6.y), &(plane6.z), &(plcen6.x), &(plcen6.y), &(plcen6.z), &peps6) != 60){
@@ -562,13 +559,13 @@ void LoadParameters(char *filename){
     exit(1);
   }
 
-  Particle.State(bvelocity, bcenter, bmass, bradius, coeffr, coefff, beps, viscosity, wind, gravity);
-  Cube[0].State(plane1, pcen1, peps1);
-  Cube[1].State(plane2, pcen2, peps2);
-  Cube[2].State(plane3, pcen3, peps3);
-  Cube[3].State(plane4, pcen4, peps4);
-  Cube[4].State(plane5, pcen5, peps5);
-  Cube[5].State(plane6, pcen6, peps6);
+  Particle.InitState(bvelocity, bcenter, bmass, bradius, coeffr, coefff, beps, viscosity, wind, gravity);
+  Cube[0].InitState(plane1, plcen1, peps1);
+  Cube[1].InitState(plane2, plcen2, peps2);
+  Cube[2].InitState(plane3, plcen3, peps3);
+  Cube[3].InitState(plane4, plcen4, peps4);
+  Cube[4].InitState(plane5, plcen5, peps5);
+  Cube[5].InitState(plane6, plcen6, peps6);
   
   TimeStepsPerDisplay = Max(1, int(DispTime / TimeStep + 0.5));
   TimerDelay = int(0.5 * TimeStep * 1000);
@@ -667,7 +664,6 @@ void RestartBall(){
   
   NTimeSteps = -1;
   glutIdleFunc(NULL);
-  Obj.SetCenter(0, 0, 0);
   Time = 0;
   
   Particle.Center(Particle.InitialCenter());

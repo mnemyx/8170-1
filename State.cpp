@@ -39,7 +39,7 @@ State::State() {
 	EPS = 0.1;
 	
 	Wind.set(0,0,0);
-	Gravity.set(0, -9.86, 0);
+	G.set(0, -9.86, 0);
 	Viscosity = 0;
 }
 
@@ -71,7 +71,7 @@ void State::SetTrace(int trace) { Trace = trace; }
 void State::SetCoeffR(double cor) { CoeffofRestitution = cor; }
 void State::SetCoeffF(double cof) { CoeffofFriction = cof; }
 void State::SetEPS(float eps) { EPS = eps; }
-void State::SetGravity(Vector3d g) { Gravity = g; }
+void State::SetGravity(Vector3d g) { G = g; }
 void State::SetWind(Vector3d w) { Wind = w; }
 void State::SetViscosity(double viscosity) { Viscosity = viscosity; }
 
@@ -92,7 +92,7 @@ void State::SetT(double t) { T = t; }
 //
 Vector3d State::GetVelocity() { return Velocity; }
 Vector3d State::GetInitialVelocity() { return V0; }
-Vector3d State::GetinitialCenter() { return C0; }
+Vector3d State::GetInitialCenter() { return C0; }
 Vector3d State::GetAcceleration() { return Acceleration; }
 Vector3d State::GetCenter() { return Center;}
 double State::GetMass() { return Mass; }
@@ -101,14 +101,14 @@ int State::IsStarted() { return Start; }
 int State::IsStopped() { return Stopped; }
 int State::IsStep() { return Step; }
 int State::IsResting() { return Resting;}
-void State::IsTrace() { return Trace; }
+int State::IsTrace() { return Trace; }
 Vector3d State::GetG() { return G; }
 double State::GetViscosity() { return Viscosity; }
 Vector3d State::GetWind() { return Wind; }
 double State::GetCoeffR() { return CoeffofRestitution; }
 double State::GetCoeffF() { return CoeffofFriction; }
 float State::GetEPS() { return EPS; }
-Vector3d State::GetColiddedN() { return CollidedN; }
+Vector3d State::GetCollidedN() { return CollidedN; }
 int State::Collided(int indx) { return Collision[indx]; }
 double State::GetT() { return T; }
 
@@ -120,10 +120,9 @@ double State::GetT() { return T; }
 void State::CalcAcceleration() {
 	Acceleration = G;
 	
-	if(HaveWind) 
-		Acceleration = Acceleration + Viscosity * (Wind - Velocity) / Mass;
-	else
-		Acceleration = Acceleration - Viscosity * Velocity / Mass
+	Acceleration = Acceleration + Viscosity * (Wind - Velocity) / Mass;
+	
+	// no wind: Acceleration = Acceleration - Viscosity * Velocity / Mass
 }
 
 // Find New Velocity -- but don't store it!
@@ -161,7 +160,7 @@ void State::ScaleVelocity(Vector3d pnormal) {
 // use for particles
 Vector3d State::CalcNewPosition(double timestep) {
 	//   newball = Ball + f * TimeStep * Velocity;
-	return Center + f * timestep * Velocity;
+	return Center + timestep * Velocity;
 }
 
 // Find New Position w/ time fraction
@@ -184,10 +183,14 @@ void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
 	// then subtract from the acceleration...
 
 	Vector3d vn, an, nc;
+	Vector3d subr(Radius, Radius, Radius);
 	
 	vn = (Velocity * pnormal) * pnormal;
 	an = (Acceleration * pnormal) * pnormal;
-	nc = (Radius * (pnormal * Velocity) / pnormal) - pvertex;
+	// wrong: nc = (Radius * (pnormal * Velocity) / pnormal) - pvertex;
+	// since I have t, aka the distance to the collision point from center - the radius, make that point
+	// a point on the sphere and then subtract the radius from it to get the center...
+	nc = (Center + Radius * vn) - subr;  // im not sure if this will work; or if i'm supposed to be using Velocity and not the adjusted velocity
 	
     Velocity = Velocity - vn;
 	Acceleration = Acceleration - an;

@@ -21,7 +21,7 @@
 #define TOPBOTTOM		2
 
 class Model{
-private:
+protected:
   Vector3d vertices[MAXVERTICES];   // vertex coordinates
   int nvertices;		    		// count of the number of vertices
   int triangles[MAXTRIANGLES][3];   // 3 vertex indices for each triangle
@@ -48,7 +48,7 @@ public:
   void BuildCuboid(float width = 1.0, float height = 1.0, float depth = 1.0, double x = 0, double y = 0, double z = 0);
   
   // Make a plane
-  void BuildPlane(float length = 1.0, float width = 1.0, float depth = 1.0, double x = 0, double y = 0, double z = 0);  
+  void BuildPlane(float length = 1.0, float width = 1.0, int orientation = 1, double x = 0, double y = 0, double z = 0);  
   
   // Make a cylinder model
   void BuildCylinder(float radius = 0.5, float height = 1.0);

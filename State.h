@@ -84,7 +84,7 @@ class State{
     void SetEPS(float eps);
     void SetResting(int type);
     void AddCollision(int collision, int indx);
-    void AddOldCenter(Vector3d cold, int indx);
+    void AddOldCenter(int indx);
 	void SetCollidedN(Vector3d vn);
 	void SetT(double t);
 	void SetGravity(Vector3d g);
@@ -112,7 +112,7 @@ class State{
     float GetEPS();
     int Collided(int i = 0);
 	Vector3d GetCollidedN();
-	void GetT();
+	double GetT();
    
    // Functions  ||  Rule of thumb: if the calculations relies *mostly* on state variables, place in state.  If it relies 2 entities; then...should probably NOT put it here.
    void CalcAcceleration();

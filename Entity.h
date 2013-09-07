@@ -31,14 +31,15 @@ class Entity : public Model {		// entity is a model that has a state...
 	void Trace(int type);
 	void Velocity(Vector3d newv);
 	void Center(Vector3d newc);	
-	void State(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, double eps, double viscosity, Vector3d wind, Vector3d gravity);
-	void State(Vector3d plane, Vector3d cen, double eps);
+	void InitState(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, double eps, double viscosity, Vector3d wind, Vector3d gravity);
+	void InitState(Vector3d plane, Vector3d cen, double eps);
 	
 	// Getters
 	Vector3d InitialCenter();
 	Vector3d InitialVelocity();
 	Vector3d Center();
 	Vector3d Velocity();
+	Vector3d Acceleration();
 	double Radius();
 	int Rest();
 	int Stopped();
@@ -53,16 +54,17 @@ class Entity : public Model {		// entity is a model that has a state...
 	double PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius);
 	void RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius, double timeStep);
 	int AccelOnPlane(Vector3d bAccel);
-	int VelOnPlane(Vecto3d bVelocity);
-	int CenOnPlane(Vector3d bCenter);
+	int VelOnPlane(Vector3d bVelocity);
+	int CenOnPlane(float radius);
 	void AddOCenter(int nsteps);
-	void AddOCollision(int collision, int nteps);
+	void AddOCollision(int collision, int nsteps);
 	
 	/* called by moving objects */
+	void UpdateModel();
 	void Accel();
 	void AdjustAVC(Vector3d pnormal, Vector3d pvertex);
 	Vector3d CalcVelocity(double timestep, double f, int atCollision);
-	Vector3d CalcVelocity(double timestep, double f);
+	Vector3d CalcVelocity(double timestep);
 	Vector3d CalcCenter(double timestep, double f, int atCollision);
 	Vector3d CalcCenter(double timestep);
 	void ScaleVel(Vector3d pnormal);
