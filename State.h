@@ -78,14 +78,18 @@ class State{
     void SetStart(int start);
     void SetStopped(int stop);
     void SetStep(int step);
+	void SetTrace(int trace);
     void SetCoeffR(double cor);
     void SetCoeffF(double cof);
-    void SetEPS(Vector3d eps);
+    void SetEPS(float eps);
     void SetResting(int type);
     void AddCollision(int collision, int indx);
     void AddOldCenter(Vector3d cold, int indx);
 	void SetCollidedN(Vector3d vn);
 	void SetT(double t);
+	void SetGravity(Vector3d g);
+	void SetWind(Vector3d w);
+	void SetViscosity(double viscosity);
     
     // Getters
     Vector3d GetVelocity();
@@ -99,6 +103,7 @@ class State{
     int IsStopped();
     int IsStep();
     int IsResting();
+	int IsTrace();
     double GetCoeffR();
     double GetCoeffF();
 	Vector3d GetG();

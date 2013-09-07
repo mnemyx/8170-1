@@ -28,8 +28,11 @@ class Entity : class Model {		// entity is a model that has a state...
 	void Stopped(int type);
 	void Start(int type);
 	void Step(int type);
+	void Trace(int type);
 	void Velocity(Vector3d newv);
 	void Center(Vector3d newc);	
+	void State(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, double eps, double viscosity, Vector3d wind, Vector3d gravity);
+	void State(Vector3d plane, Vector3d cen, double eps);
 	
 	// Getters
 	Vector3d InitialCenter();
@@ -41,6 +44,7 @@ class Entity : class Model {		// entity is a model that has a state...
 	int Stopped();
 	int Start();
 	int Step();
+	int Trace();
 	Vector3d PlaneNormal();
 	Vector3d PlaneVertex(int indx = 0);
 

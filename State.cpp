@@ -17,7 +17,30 @@ using namespace std;
 //
 // Constructor
 //
-State::State(char *filename) {
+State::State() {
+	
+	Velocity.set(0,0,0);
+	Acceleration.set(0,0,0);
+	V0.set(0,0,0);
+	
+	Center.set(0,0,0);
+	C0.set(0,0,0);
+	Mass = 0;
+	Radius = 0;
+	
+	Start = true;
+	Stopped = true;
+	Step = true;
+	Resting = false;
+	Trace = false;
+	
+	CoeffofRestitution = 0;
+	CoeffofFriction = 0;
+	EPS = 0.1;
+	
+	Wind.set(0,0,0);
+	Gravity.set(0, -9.86, 0);
+	Viscosity = 0;
 }
 
 
@@ -44,9 +67,13 @@ void State::SetRadius(float r) { Radius = r; }
 void State::SetStart(int start) { Start = start; }
 void State::SetStopped(int stop) { Stopped = stop; }
 void State::SetStep(int step) { Step = step; }
+void State::SetTrace(int trace) { Trace = trace; }
 void State::SetCoeffR(double cor) { CoeffofRestitution = cor; }
 void State::SetCoeffF(double cof) { CoeffofFriction = cof; }
-void State::SetEPS(Vector3d eps) { EPS = eps; }
+void State::SetEPS(float eps) { EPS = eps; }
+void State::SetGravity(Vector3d g) { Gravity = g; }
+void State::SetWind(Vector3d w) { Wind = w; }
+void State::SetViscosity(double viscosity) { Viscosity = viscosity; }
 
 void State::AddCollision(int collision, int indx) {
   Collision[indx] = collision;
@@ -74,6 +101,7 @@ int State::IsStarted() { return Start; }
 int State::IsStopped() { return Stopped; }
 int State::IsStep() { return Step; }
 int State::IsResting() { return Resting;}
+void State::IsTrace() { return Trace; }
 Vector3d State::GetG() { return G; }
 double State::GetViscosity() { return Viscosity; }
 Vector3d State::GetWind() { return Wind; }

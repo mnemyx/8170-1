@@ -27,9 +27,31 @@ void Entity::Rest(int type) { EntState.SetResting(type); }
 void Entity::Start(int start) { EntState.SetStart(star); }
 void Entity::Stopped(int stop) { EntState.SetStopped(stop); } 
 void Entity::Step(int step) { EntState.SetStep(step); }
+void Entity::Trace(int trace) { EntState.SetTrace(trace); }
 void Entity::Center(Vector3d newc) { EntState.SetCenter(newc); }	
 void Entity::Velocity(Vector3d newv) { EntState.SetVelocity(newv); }
-
+void Entity::State(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, double eps, double viscosity, Vector3d wind, Vector3d gravity) {
+	BuildSphere(radius, 3, cen.x, cen.y, cen.z);
+	EntState.SetInitialVelocity(vel);
+	EntState.SetCenter(cen);
+	EntState.SetInitialCenter(cen);
+	EntState.SetMass(mass);
+	EntState.SetRadius(radius);
+	EntState.SetCoeffR(coeffr);
+	EntState.SetCoeffF(coefff);
+	EntState.SetEPS(eps);
+	EntState.SetViscosity(viscosity);
+	EntState.SetWind(wind);
+	EntState.SetGravity(gravity);
+}
+void Entity::State(Vector3d plane, Vector3d cen, double eps) {
+	BuildPlane(plane.x, plane.y, plane.z, cen.x, cen.y, cen.z);
+	EntState.SetEPS(eps);
+	EntState.SetCenter(cen);
+	EntState.SetInitialCenter(cen);
+}
+	
+	
 // 
 // Getters
 //
@@ -44,8 +66,9 @@ int Entity::Stopped() { return EntState.IsStopped(); }
 Vector3d Entity::PlaneNormal() { return EntState.GetCollidedN(); }
 Vector3d Entity::PlaneVertex(int indx) { return vertices[indx]; }
 int Entity::Start() { return EntState.IsStarted(); }
-int Entity::Stopped() { return EntState.IsStopped(stop); } 
-int Entity::Step() { return EntState.IsStep(step); }
+int Entity::Stopped() { return EntState.IsStopped(); } 
+int Entity::Step() { return EntState.IsStep(); }
+int Entity::Trace() { return EntState.IsTrace(); }
 
 
 //

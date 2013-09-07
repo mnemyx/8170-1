@@ -529,11 +529,17 @@ void drawDisplay(){
 void LoadParameters(char *filename){
   
   FILE *paramfile;
-  double m;
-  double r;
-  Vector3d v0;
-  double cor, cof;
-
+  
+  Vector3d bvelocity;
+  Vector3d bcenter;
+  double bmass, bradius, coeffr, coefff, beps, viscosity;
+  Vector3d wind;
+  Vector3d gravity;
+  
+  Vector3d plane1, plane2, plane3, plane4, plane5, plane6;
+  Vector3d pcen1, pcen2, pcen3, pcen4, pcen5, pcen6;
+  double peps1, peps2, peps3, peps4, peps5, peps6;
+	
   if((paramfile = fopen(filename, "r")) == NULL){
     fprintf(stderr, "error opening parameter file %s\n", filename);
     exit(1);
@@ -541,20 +547,28 @@ void LoadParameters(char *filename){
 
   ParamFilename = filename;
 
-  if(fscanf(paramfile, "%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
-	    &m, &r, &(v0.x), &(v0.y), &(v0.z), &Viscosity, &cor, &cof,
-	    &TimeStep, &DispTime, &(Wind.x), &(Wind.y), &(Wind.z)) != 13){
+ if(fscanf(paramfile, "%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
+	&(bvelocity.x), &(bvelocity.y), &(bvelocity.z), &(bcenter.x), &(bcenter.y), &(bcenter.z), 
+	&bmass, &bradius, &coeffr, &coefff, &beps, &viscosity, 
+	&(wind.x), &(wind.y), &(wind.z), &(gravity.x), &(gravity.y), &(gravity.z),
+	&(plane1.x), &(plane1.y), &(plane1.z), &(plcen1.x), &(plcen1.y), &(plcen1.z), &peps1, 
+	&(plane2.x), &(plane2.y), &(plane2.z), &(plcen2.x), &(plcen2.y), &(plcen2.z), &peps2, 
+	&(plane.x), &(plane3.y), &(plane3.z), &(plcen3.x), &(plcen3.y), &(plcen3.z), &peps3, 
+	&(plane4.x), &(plane4.y), &(plane4.z), &(plcen4.x), &(plcen4.y), &(plcen4.z), &peps4, 
+	&(plane5.x), &(plane5.y), &(plane5.z), &(plcen5.x), &(plcen5.y), &(plcen5.z), &peps5, 
+	&(plane6.x), &(plane6.y), &(plane6.z), &(plcen6.x), &(plcen6.y), &(plcen6.z), &peps6) != 60){
     fprintf(stderr, "error reading parameter file %s\n", filename);
     fclose(paramfile);
     exit(1);
   }
 
-  Obj.SetRadius(r);
-  Obj.SetCenter(Cube.GetMax().x - r, Cube.GetMax().y - r, 0);
-  Obj.SetMass(m);
-  Obj.SetInitialVelocity(v0);
-  Obj.SetCoeffR(cor);
-  Obj.SetCoeffF(cof);
+  Particle.State(bvelocity, bcenter, bmass, bradius, coeffr, coefff, beps, viscosity, wind, gravity);
+  Cube[0].State(plane1, pcen1, peps1);
+  Cube[1].State(plane2, pcen2, peps2);
+  Cube[2].State(plane3, pcen3, peps3);
+  Cube[3].State(plane4, pcen4, peps4);
+  Cube[4].State(plane5, pcen5, peps5);
+  Cube[5].State(plane6, pcen6, peps6);
   
   TimeStepsPerDisplay = Max(1, int(DispTime / TimeStep + 0.5));
   TimerDelay = int(0.5 * TimeStep * 1000);
@@ -647,15 +661,17 @@ void InitSimulation(int argc, char* argv[]){
 void RestartBall(){
 
   LoadParameters(ParamFilename); // reload parameters in case changed
-
-  Obj.SetStart(true);
-  Obj.SetStopped(true);
+  
+  Particle.Start(true);
+  Particle.Stopped(true);
+  
   NTimeSteps = -1;
   glutIdleFunc(NULL);
   Obj.SetCenter(0, 0, 0);
   Time = 0;
   
-  Obj.SetVelocity(Obj.GetInitialVelocity());
+  Particle.Center(Particle.InitialCenter());
+  Particle.Velocity(Particle.InitialVelocity());
     
   DrawScene(0);
 }
@@ -668,71 +684,26 @@ void HandleMenu(int index){
   switch(index){
 
   case MenuContinuous:
-    if(Obj.IsStep()){
-      Obj.SetStep(false);
+    if(Particle.Step()){
+      Particle.Step(false);
       glutChangeToMenuEntry(index, "Step", index);
     }
     else{
-      Obj.SetStep(true);
+      Particle.Step(true);
       glutChangeToMenuEntry(index, "Continuous", index);
     }  
-    break;
-
-  case MenuThrow:
-    if(Throw){
-      Throw = false;
-      glutChangeToMenuEntry(index, "Throw", index);
-    }
-    else{
-      Throw = true;
-      glutChangeToMenuEntry(index, "Drop", index);
-    }  
+    break;  
     
-    break;
-
   case MenuTrace:
-    if(Trace){
-      Trace = false;
+    if(Particle.Trace()){
+      Particle.Trace(false);
       glutChangeToMenuEntry(index, "Trace", index);
     }
     else{
-      Trace = true;
+      Particle.Trace(true);
       glutChangeToMenuEntry(index, "No Trace", index);
     }  
     
-    break;
-
-  case MenuWeight:
-    switch(WeightMatters){
-    case NOAIR:
-      WeightMatters = LIGHT;
-      glutChangeToMenuEntry(index, "Medium", index);
-      break;
-    case LIGHT:
-      WeightMatters = MEDIUM;
-      glutChangeToMenuEntry(index, "Heavy", index);
-      break;
-    case MEDIUM:
-      WeightMatters = HEAVY;
-      glutChangeToMenuEntry(index, "No Air", index);
-      break;
-    case HEAVY:
-      WeightMatters = NOAIR;
-      glutChangeToMenuEntry(index, "Light", index);
-      break;
-    }
-    break;
-
-  case MenuWind:
-    if(HaveWind){
-      HaveWind = false;
-      Wind.set(0, 0);
-      glutChangeToMenuEntry(index, "Wind", index);
-    }
-    else{
-      HaveWind = true;
-      glutChangeToMenuEntry(index, "No Wind", index);
-    }  
     break;
 
   case MenuReset:
@@ -759,11 +730,7 @@ void MakeMenu(){
   int id = glutCreateMenu(HandleMenu);
 
   glutAddMenuEntry("Continuous", MenuContinuous);
-  glutAddMenuEntry("Throw", MenuThrow);
   glutAddMenuEntry("No Trace", MenuTrace);
-  glutAddMenuEntry("Light", MenuWeight);
-  glutAddMenuEntry("Wind", MenuWind);
-  glutAddMenuEntry("Floor", MenuFloor);
   glutAddMenuEntry("Reset", MenuReset);
   glutAddMenuEntry("Clean", MenuClean);
   glutAddMenuEntry("Quit", MenuQuit);

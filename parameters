@@ -1,40 +1,47 @@
-Ball
 40	20	0
 0	0	0
 90
 10
-0
-0
-0
-0
-0
 0.5
 0.3
 0.1
 60	-10		10
 0	-9.86	0
 10
-FPlane
 150		150		0
 0	0	75
 0.1
-BaPlane
 150		150		0
 0		0		-75
 0.1
-RPlane
 150		150		1
 75		0		0
 0.1
-LPlane
-150		150		0
+150		150		1
 -75		0		0
 0.1
-TPlane
 150		150		2
 0		75		75
 0.1
-BoPlane
 150		150		2
 0		-75		75
 0.1
+
+format
+===========================================
+ball
+velocity.x	velocity.y	velocity.z
+center.x	center.y	center.z
+mass
+radius
+coefficient of restitution
+coefficient of friction
+EPS
+wind.x		wind.y		wind.z
+gravity.x	gravity.y	gravity.z
+visocity
+
+plane (x6 for a cube)
+length		width		orientation (0 = frontback; 1 = sides; 2 = topbottom)
+center.x	center.y	center.z
+EPS
