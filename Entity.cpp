@@ -22,7 +22,9 @@ Entity::Entity(){
 // 
 // Getters
 //
-
+Vector3d Entity::Center() { return State.GetCenter(); }
+Vector3d Entity::Velocity() { return State.GetVelocity; }
+double Entity::Radius() { return State.GetRadius(); }
 
 //
 // Functions
@@ -74,7 +76,20 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
-	EntState->SetResting(Abs(timeStep * vN) < EntState->GetEPS() && Abs(mt - bRadius) < EntState->GetEPS());
-	EntState->SetCollidedN(vN);
+	EntState.SetResting(Abs(timeStep * vN) < EntState.GetEPS() && Abs(mt - bRadius) < EntState.GetEPS());
+	EntState.SetCollidedN(vN);
 }
 
+// For tracing, if we keep that feature
+void Entity::AddOCenter(int nsteps) {
+	EntState.AddOldCenter(nsteps);
+}
+
+void Entity::AddOCollision(int collision, int nteps){
+	EntState.AddCollision(int collision, int nsteps)
+}
+
+// acceleration
+void Entity::Accel() {
+	State.CalcAcceleration();
+}

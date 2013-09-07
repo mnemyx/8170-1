@@ -45,19 +45,12 @@ void State::SetCoeffR(double cor) { CoeffofRestitution = cor; }
 void State::SetCoeffF(double cof) { CoeffofFriction = cof; }
 void State::SetEPS(Vector3d eps) { EPS = eps; }
 
-void State::UpdateObj(int current, int indx) {
-  if(current) 
-    Particle.BuildSphere(Radius, SPDEPTH, Center.x, Center.y, Center.z);
-  else 
-    Particle.BuildSphere(Radius, SPDEPTH, OldCenter[indx].x, OldCenter[indx].y, OldCenter[indx].z);
-}
-
 void State::AddCollision(int collision, int indx) {
   Collision[indx] = collision;
 }
 
-void State::AddOldCenter(Vector3d cold, int indx) {
-  OldCenter[indx].set(cold);
+void State::AddOldCenter(int indx) {
+  OldCenter[indx].set(Center);
 }
 
 void State::SetResting(int type) { Resting = type; }

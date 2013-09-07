@@ -26,10 +26,16 @@ class Entity : class Model {		// entity is a model that has a state...
 	// Setters
 	
 	// Getters
-	
+	Vector3d Center();
+	Vector3d Velocity();
+	double Radius();
+
 	// Functions
 	float PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius);
 	void RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius, double timeStep);
+	void AddOCenter(int nsteps);
+	void AddOCollision(int collision, int nteps);
+	void Accel();
 };
 
 #endif

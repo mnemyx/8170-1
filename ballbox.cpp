@@ -5,7 +5,7 @@
 *********************************************************/
 
 #include "Vector.h"
-#include "State.h"
+#include "Entity.h"
 
 #include <cstdlib>
 #include <cstdio>
@@ -152,8 +152,10 @@ static int NSteps = 0;
 static int NTimeSteps = -1;
 static double Time = 0;
 
-State Obj;
-Model Cube;
+Entity Particle;
+Entity Cube[6];
+
+
 
 //************************** GOD I NEED TO CLEAN THIS UP PLEASE *************************//
 
@@ -227,9 +229,8 @@ void GetShading(int wireframe) {
 //
 // Draw the moving objects
 //
-void DrawMovingObj(int wireframe, int isCurrent, int indx) {
-  Obj.UpdateObj(isCurrent, indx);
-  Obj.DrawParticle(wireframe);
+void DrawMovingObj(int wireframe) {
+  Particle.Draw(wireframe)
 }
 
 //
@@ -239,8 +240,11 @@ void DrawNonMovingObj(int wireframe) {
   GetShading(wireframe);
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  Cube.BuildCuboid(115, 115, 120, 0, 0, 0);
-  Cube.Draw(wireframe);
+  
+  int i;
+  for ( i = 0; i < 6; i++ ) {
+	  Cube[0].Draw(wireframe);
+  }
 }
 
 //
@@ -252,19 +256,18 @@ void DrawScene(int collision){
 
   glClear(GL_COLOR_BUFFER_BIT);
 
-
   if(collision)
     glColor3f(RGBRED);
   else
     glColor3f(RGBYELLOW);
   
-  DrawMovingObj(Wireframe, true, 0);
-  DrawNonMovingObj(Wireframe);
+  DrawMovingObj(true);
+  DrawNonMovingObj(false);
   glutSwapBuffers();
 
   if(NSteps < MAXSTEPS){
-    Obj.AddOldCenter(Obj.GetCenter(), NSteps);
-    Obj.AddCollision(collision, NSteps);
+	Particle.AddOCenter(NSteps);
+	Particle.AddOCollision(collision, NSteps);
     NSteps++;
   }
   else{
@@ -274,16 +277,6 @@ void DrawScene(int collision){
   }
 }
 
-//
-//  Compute acceleration on the moving object
-//
-Vector3d Accel(){
-
-  Vector3d acceleration;
-  acceleration = G + Viscosity * (Wind - Obj.GetVelocity()) / Obj.GetMass();
-  
-  return acceleration;
-}
 
 ///
 //  Run a single time step in the simulation
@@ -292,14 +285,16 @@ void Simulate(){
 
   Vector3d acceleration;
   Vector3d newvelocity, newball;
-  int resting;
-
-  if(Obj.IsStopped())
+  
+  // don't do anything if our moving object isn't, well, moving.
+  if(Particle.IsStopped())
     return;
 
-  // ball in resting contact if its vertical velocity is nearly zero, and the ball's
-  // height is the floor height
-  Obj.SetResting(TimeStep, Cube.GetMin().y);
+  // set the ball's resting...for all the planes...
+  int i;
+  for (i = 0; i < 6; i++) {
+	  Cube[i].RestingOnPlane(Particle.Center(), Particle.Velocity(), Particle.Radius(), TimeStep);
+  }
 
   // get the new acceleration
   acceleration = Accel();

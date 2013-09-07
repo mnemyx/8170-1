@@ -79,7 +79,6 @@ class State{
     void SetCoeffF(double cof);
     void SetEPS(Vector3d eps);
     void SetResting(int type);
-    void UpdateObj(int current, int indx = 0);
     void AddCollision(int collision, int indx);
     void AddOldCenter(Vector3d cold, int indx);
 	void SetCollidedN(Vector3d vn);
