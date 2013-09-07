@@ -41,14 +41,10 @@ using namespace std;
 #define MAXSTEPS	10000
 
 #define MenuContinuous	1
-#define MenuThrow	2
-#define MenuTrace	3
-#define MenuWeight	4
-#define MenuWind	5
-#define MenuFloor	6
-#define MenuReset	7
-#define MenuClean	8
-#define MenuQuit	9
+#define MenuTrace	2
+#define MenuReset	3
+#define MenuClean	4
+#define MenuQuit	5
 
 #define NOAIR		0
 #define LIGHT		1
@@ -331,17 +327,23 @@ void Simulate(){
   i = 0;
   // while loop should wrap around here, to determine if we're still under the time stamp.
   //while ( tn < Time + TimeStep) {
+  
 	for (i = 0; i < 6; i++ ){  
+		f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
+			  cout << "f: " << f << endl;
 	  // if ball not in resting contact, check for collision in the timestep
-	  if (!Cube[i].Rest() && 
-		  Cube[i].VelOnPlane(Particle.Velocity()) &&
-		  Cube[i].CenOnPlane(Particle.Radius())) {
+	  if (!Cube[i].Rest() && f >= 0 && f < 1
+		  //Cube[i].VelOnPlane(Particle.Velocity()) && Cube[i].CenOnPlane(Particle.Radius())
+		  ) {
+			  cout << "Im not resting and I uh, collided" << endl;
 			  // have collision. get fraction of timestep at this collision will occur.
-			  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 			  
 			  // compute the velocity & position of the ball at the collision time
 			  newvelocity = Particle.CalcVelocity(TimeStep, f, true);
 			  newball = Particle.CalcCenter(TimeStep, f, true);
+			  cout << "vel collision: ";
+				newvelocity.print(); cout << endl;
+			  cout << "pos collision: "; newball.print(); cout << endl;
 			  
 			  // reflect the velocity from the floor & scale the vertical component...
 			  Particle.Velocity(newvelocity);
