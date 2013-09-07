@@ -282,67 +282,75 @@ void DrawScene(int collision){
 //  Run a single time step in the simulation
 //
 void Simulate(){
-
+  int i;
   Vector3d acceleration;
   Vector3d newvelocity, newball;
+  double tn = 0;
+  double f;
   
   // don't do anything if our moving object isn't, well, moving.
-  if(Particle.IsStopped())
+  if(Particle.Stopped())
     return;
 
   // set the ball's resting...for all the planes...
-  int i;
   for (i = 0; i < 6; i++) {
 	  Cube[i].RestingOnPlane(Particle.Center(), Particle.Velocity(), Particle.Radius(), TimeStep);
   }
 
   // get the new acceleration
-  acceleration = Accel();
+  Particle.Accel();
 
-  // if ball in resting contact, and its acceleration is zero or down, then
-  // cancel the vertical velocity and acceleration and place the ball exactly
-  // on the floor. Clear resting contact if acceleration is up.
-  if(Obj.IsResting() && acceleration.y < Obj.GetEPS().y){
-    Obj.SetVY(0.0);
-    Obj.SetCY(Obj.GetRadius() + Cube.GetMin().y);
-    acceleration.y = 0;
+  // if ball in resting contact, and its acceleration is zero or down in the direction of the plane...
+  // then cancel the velocity in the direction of the normal and...uhm...set the ball down on the plane...?
+  for (i = 0; i < 6; i++) {
+	  if(Cube[i].Rest() && Cube[i].AccelOnPlane(Particle.Acceleration())) {
+		  Particle.AdjustAVC(Cube[i].PlaneNormal, Cube[i].PlaneVertex);
+	  } 
+	  else Cube[i].Rest(false);
   }
-  else
-    Obj.SetResting(false);
-
-  // evil Euler integration to get velocity and position at next timestep
-  newvelocity = Obj.GetVelocity() + TimeStep * acceleration;
-  newball = Obj.GetCenter() + TimeStep * Obj.GetVelocity();
-
   
-  // if ball not in resting contact, and the floor is turned on, check for
-  // collision with the floor in the timestep
-  if(!Obj.IsResting() && 
-     newball.y - Obj.GetRadius() <= Cube.GetMin().y && 
-     Obj.GetCenter().y - Obj.GetRadius() > Cube.GetMin().y){
-     
-    // have collision, get fraction of timestep at which collision will occur
-    double f = (Cube.GetMin().y - (Obj.GetCenter().y - Obj.GetRadius())) / (newball.y - Obj.GetCenter().y);
-    
-    // and compute the velocity and position of the ball at collision time
-    newvelocity = Obj.GetVelocity() + f * TimeStep * acceleration;
-    newball = Obj.GetCenter() + f * TimeStep * Obj.GetVelocity();
+  
+  // evil Euler integration to get velocity and position at next timestep
+  newvelocity = Particle.CalcVelocity(TimeStep); 
+  newball = Particle.CalcCenter(TimeStep);
 
-    // reflect the velocity from the floor, and scale the vertical component
-    // by the coefficient of restitution
-    Obj.SetVelocity(newvelocity);
-    Obj.SetVY(Obj.GetVelocity().y * -Obj.GetCoeffR());
-    
-    // draw the collision point for reference
-    Obj.SetCenter(newball);
-    DrawScene(1);
-
-    // now finish by integrating over remainder of the timestep
-    acceleration = Accel();
-    newvelocity = Obj.GetVelocity() + (1 - f) * TimeStep * acceleration;
-    newball = newball + (1 - f) * TimeStep * Obj.GetVelocity();
+  // while loop should wrap around here, to determine if we're still under the time stamp.
+  while ( Time < Time + TimeStep) {
+	  // if ball not in resting contact, check for collision in the timestep
+	  for (i = 0; i < 6; i++) {
+		  if (!Cube[i].Rest() && 
+			  Cube[i].VelOnPlane(Particle.Velocity()) &&
+			  Cube[i].CenOnPlane(Particle.Radius())) {
+				  // have collision. get fraction of timestep at this collision will occur.
+				  f = Cube[i].PlaneBallColl(Particle.Center, Particle.Velocity, newball, Particle.Radius());
+				  
+				  // compute the velocity & position of the ball at the collision time
+				  newvelocity = Particle.CalcVelocity(TimeStep, f, true);
+				  newball = Particle.CalcVelocity(TimeStep, f, true);
+				  
+				  // reflect the velocity from the floor & scale the vertical component...
+				  Particle.Velocity(newvelocity);
+				  Particle.ScaleVel(Cube[i].GetCollidedN());  // stores this into Particle->Velocity
+				  Particle.Center(newball);
+				  
+				  // draw the scene because we collided (change so that plane lights up instead)
+				  DrawScene(1);
+				  
+				  // finish intergrating over the remainder of the time step...
+			  }
+	  }
   }
+  
+	  
+		
 
+		// now finish by integrating over remainder of the timestep
+		acceleration = Accel();
+		newvelocity = Obj.GetVelocity() + (1 - f) * TimeStep * acceleration;
+		newball = newball + (1 - f) * TimeStep * Obj.GetVelocity();
+	  }
+  }
+  
   // advance the timestep and set the velocity and position to their new values
   Time += TimeStep;
   NTimeSteps++;

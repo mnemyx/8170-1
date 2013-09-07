@@ -24,18 +24,36 @@ class Entity : class Model {		// entity is a model that has a state...
     Entity();
     
 	// Setters
+	void Rest(int type);
+	void Velocity(Vector3d newv);
 	
 	// Getters
 	Vector3d Center();
 	Vector3d Velocity();
 	double Radius();
+	int Rest();
+	int Stopped();
+	Vector3d PlaneNormal();
+	Vector3d PlaneVertex(int indx = 0);
 
 	// Functions
-	float PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius);
+	/* called by nonmoving objects */
+	double PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius);
 	void RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius, double timeStep);
+	int AccelOnPlane(Vector3d bAccel);
+	int VelOnPlane(Vecto3d bVelocity);
+	int CenOnPlane(Vector3d bCenter);
 	void AddOCenter(int nsteps);
 	void AddOCollision(int collision, int nteps);
+	
+	/* called by moving objects */
 	void Accel();
+	void AdjustAVC(Vector3d pnormal, Vector3d pvertex);
+	Vector3d CalcVelocity(double timestep, double f, int atCollision);
+	Vector3d CalcVelocity(double timestep, double f);
+	Vector3d CalcCenter(double timestep, double f, int atCollision);
+	Vector3d CalcCenter(double timestep);
+	void ScaleVel(Vector3d pnormal);
 };
 
 #endif

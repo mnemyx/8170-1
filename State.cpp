@@ -54,8 +54,8 @@ void State::AddOldCenter(int indx) {
 }
 
 void State::SetResting(int type) { Resting = type; }
-
 void State::SetCollidedN(Vector3d vn) { CollidedN = vn; }
+void State::SetT(double t) { T = t; }
 
 //
 // Getters
@@ -79,11 +79,13 @@ double State::GetCoeffF() { return CoeffofFriction; }
 float State::GetEPS() { return EPS; }
 Vector3d State::GetColiddedN() { return CollidedN; }
 int State::Collided(int indx) { return Collision[indx]; }
+double State::GetT() { return T; }
 
 //
 // Functions
 //
 // Find Acceleration
+// use for particles
 void State::CalcAcceleration() {
 	Acceleration = G;
 	
@@ -93,14 +95,15 @@ void State::CalcAcceleration() {
 		Acceleration = Acceleration - Viscosity * Velocity / Mass
 }
 
-
 // Find New Velocity -- but don't store it!
+// use for particles
 Vector3d State::CalcNewVelocity(double timestep) {
 	//   newvelocity = Velocity + TimeStep * acceleration;
 	return Velocity + timestep * Acceleration;
 }
 
 // Find New Velocity w/ time fraction
+// use for particles
 Vector3d State::CalcNewVelocity(double timestep, double f, int atCollision) {
 	// if at: newvelocity = Velocity + f * TimeStep * acceleration;
 	// else: newvelocity = Velocity + (1 - f) * TimeStep * acceleration;
@@ -111,6 +114,7 @@ Vector3d State::CalcNewVelocity(double timestep, double f, int atCollision) {
 }
 
 // Scale the velocity w/ coefficients of friction & restition - DO STORE IT.
+// user for particles
 void State::ScaleVelocity(Vector3d pnormal) {
 	Vector3d vn, vt;
 	
@@ -123,17 +127,38 @@ void State::ScaleVelocity(Vector3d pnormal) {
 }
 
 // Find New Position -- but don't store it either!
+// use for particles
 Vector3d State::CalcNewPosition(double timestep) {
 	//   newball = Ball + f * TimeStep * Velocity;
 	return Center + f * timestep * Velocity;
 }
 
-// Find New Velocity w/ time fraction
-Vector3d State::CalcNewVelocity(double timestep, double f, int atCollision) {
+// Find New Position w/ time fraction
+// use for particles
+Vector3d State::CalcNewPosition(double timestep, double f, int atCollision) {
 	// if at: newball = Ball + f * TimeStep * Velocity;
 	// else: newball = newball + (1 - f) * TimeStep * Velocity;
 	if (atCollision) 
 		return Center + f * timestep * Velocity;
 	else
 		return Center + (1 - f) * timestep * Velocity;
+}
+
+// Adjust the acceleration, velocity, and position of the particle
+// use for particles
+void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
+	// reverse the direction of the vector i want to subtract...so...bVelocity - vNorm?
+	// then set the new center so that...radius = t....& solve for bCenter?
+	// bCenter	= vertex - t * (vN * bvel) / vn 
+	// then subtract from the acceleration...
+
+	Vector3d vn, an, nc;
+	
+	vn = (Velocity * pnormal) * pnormal;
+	an = (Acceleration * pnormal) * pnormal;
+	nc = (Radius * (pnormal * Velocity) / pnormal) - pvertex;
+	
+    Velocity = Velocity - vn;
+	Acceleration = Acceleration - an;
+	Center = nc;
 }

@@ -51,6 +51,7 @@ class State{
     int Collision[MAXSTEPS];		// keeping track of the collisions
     Vector3d OldCenter[MAXSTEPS];	// keeping track of the object's old centers (for collision sake & tracing)
 	Vector3d CollidedN;				// normal that was collided with...need to clean this up...
+	double T;						// distance from the hit..
 
     
   public:
@@ -82,6 +83,7 @@ class State{
     void AddCollision(int collision, int indx);
     void AddOldCenter(Vector3d cold, int indx);
 	void SetCollidedN(Vector3d vn);
+	void SetT(double t);
     
     // Getters
     Vector3d GetVelocity();
@@ -103,6 +105,7 @@ class State{
     float GetEPS();
     int Collided(int i = 0);
 	Vector3d GetCollidedN();
+	void GetT();
    
    // Functions  ||  Rule of thumb: if the calculations relies *mostly* on state variables, place in state.  If it relies 2 entities; then...should probably NOT put it here.
    void CalcAcceleration();
@@ -111,6 +114,7 @@ class State{
    void ScaleVelocity(Vector3d pnormal);
    Vector3d CalcNewPosition(double timestep);
    Vector3d CalcNewPosition(double timestep, double timefraction, int atCollision);
+   void AdjustAccVelPos(Vector3d prnormal, Vector3d pvertex);
 };
 
 #endif
