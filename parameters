@@ -32,6 +32,8 @@
 0		-60		0
 0.1
 
+1		1
+
 format
 ===========================================
 ball
@@ -50,3 +52,5 @@ plane (x6 for a cube)
 length		width		orientation (0 = frontback; 1 = sides; 2 = topbottom)
 center.x	center.y	center.z
 EPS
+
+timestep	disptime
