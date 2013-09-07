@@ -16,6 +16,10 @@
 #define MAXVERTICES   10000		  // shapes limited to 1000 vertices
 #define MAXTRIANGLES  (MAXVERTICES / 3)
 
+#define FRONTBACK		0
+#define SIDES			1
+#define TOPBOTTOM		2
+
 class Model{
 private:
   Vector3d vertices[MAXVERTICES];   // vertex coordinates

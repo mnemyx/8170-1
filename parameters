@@ -14,28 +14,27 @@ Ball
 60	-10		10
 0	-9.86	0
 10
+FPlane
+150		150		0
+0	0	75
+0.1
+BaPlane
+150		150		0
+0		0		-75
+0.1
+RPlane
+150		150		1
+75		0		0
+0.1
 LPlane
--75		-75		75
-
-Vector3d Velocity;		// object's velocity
-    Vector3d V0;			// object's initial velocity
-    Vector3d Acceleration;	// object's acceleration
-    
-    Vector3d Center;		// for particles...really. i should consider changing these...
-	Vector3d C0;
-    double Mass;			// for particles...really. i should consider changing these...
-    float Radius;			// for particles...really. i should consider changing these...
-    
-    int Start;				// is the object started
-    int Stopped;			// is the object stopped
-    int Step;				// is...stepping?
-    int Resting;			// is the object resting...
-    int Trace;				// i'll probably keep this - trace the object's path
-    
-    double CoeffofRestitution;		// the object's coefficient of restitution
-    double CoeffofFriction;			// the object's coefficient of friction
-    float EPS;					// the "fudge factor"
-	
-	Vector3d Wind;			// the wind vector
-    Vector3d G;				// gravity vector...
-    double Viscosity;		// i forgot what the viscosity is for...
+150		150		0
+-75		0		0
+0.1
+TPlane
+150		150		2
+0		75		75
+0.1
+BoPlane
+150		150		2
+0		-75		75
+0.1

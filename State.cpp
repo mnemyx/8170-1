@@ -117,7 +117,7 @@ Vector3d State::CalcNewVelocity(double timestep, double f, int atCollision) {
 }
 
 // Scale the velocity w/ coefficients of friction & restition - DO STORE IT.
-// user for particles
+// use for particles
 void State::ScaleVelocity(Vector3d pnormal) {
 	Vector3d vn, vt;
 	

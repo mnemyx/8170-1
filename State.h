@@ -45,7 +45,7 @@ class State{
 	
 	Vector3d Wind;			// the wind vector
     Vector3d G;				// gravity vector...
-    double Viscosity;		// i forgot what the viscosity is for...
+    double Viscosity;		// viscosity
     
     int Collision[MAXSTEPS];		// keeping track of the collisions
     Vector3d OldCenter[MAXSTEPS];	// keeping track of the object's old centers (for collision sake & tracing)

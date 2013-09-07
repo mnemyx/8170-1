@@ -270,8 +270,7 @@ void Model::BuildPlane(Vector3d p0, Vector3d, p1, Vector3d p2, Vector3d p3){
     AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
 }
 ******************/
-
-void Model::BuildPlane(float l, float h, float d, double x, double y, double z) {
+void Model::BuildPlane(float l, float h, int orientation, double x, double y, double z) {
   int v[4];
   Vector3d vector;
   Vector3d center(x,y,z);
@@ -286,14 +285,21 @@ void Model::BuildPlane(float l, float h, float d, double x, double y, double z) 
   i = 0;
 	for(jsign = -1; jsign <= 1; jsign += 2)
 	  for(isign = -1; isign <= 1; isign += 2){
-		vector.set(isign * width / 2, jsign * height / 2, d);
+		switch(orientation) {
+			case(FRONTBACK):
+				vector.set(isign * width / 2, jsign * height / 2, 0); break;
+			case(SIDES): 
+				vector.set(0, isign * width / 2, jsign * height / 2); break;
+			case(TOPBOTTOM):
+				vector.set(isign * width / 2, 0, jsign * height / 2); break;
+		}
+		
 		vector = vector + center;
-
 		v[i++] = AddVertex(vector);
 	  }
 	
   // construct the 12 triangles that make the 6 faces
-  for(i = 0; i < 36; i += 3)
+  for(i = 0; i < 6; i += 3)
     AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
 }
 
