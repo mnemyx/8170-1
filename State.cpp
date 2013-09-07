@@ -17,7 +17,7 @@ using namespace std;
 //
 // Constructor
 //
-State::State() {
+State::State(char *filename) {
 }
 
 
@@ -30,9 +30,12 @@ void State::SetVY(float y) { Velocity.y = y; }
 void State::SetVZ(float z) { Velocity.z = z; }
 void State::SetVelocity(float x, float y, float z) { Velocity.set(x, y, z); }
 void State::SetInitialVelocity(Vector3d v0) { V0 = v0; }
+void State::SetInitialVelocity(float x, float y, float z) { V0.set(x, y, z); }
 void State::SetAcceleration(Vector3d a) { Acceleration = a; }
 void State::SetCenter(Vector3d c) { Center = c ;}
 void State::SetCenter(float x, float y, float z) { Center.set(x, y, z); }
+void State::SetInitialCenter(Vector3d c0) { C0 = c0; }
+void State::SetInitialCenter(float x, float y, float z) { C0.set(x, y, z); }
 void State::SetCX(float x) { Center.x = x; }
 void State::SetCY(float y) { Center.y = y; }
 void State::SetCZ(float z) { Center.z = z; }
@@ -62,6 +65,7 @@ void State::SetT(double t) { T = t; }
 //
 Vector3d State::GetVelocity() { return Velocity; }
 Vector3d State::GetInitialVelocity() { return V0; }
+Vector3d State::GetinitialCenter() { return C0; }
 Vector3d State::GetAcceleration() { return Acceleration; }
 Vector3d State::GetCenter() { return Center;}
 double State::GetMass() { return Mass; }
@@ -73,7 +77,6 @@ int State::IsResting() { return Resting;}
 Vector3d State::GetG() { return G; }
 double State::GetViscosity() { return Viscosity; }
 Vector3d State::GetWind() { return Wind; }
-int State::HaveWind() return HaveWind; }
 double State::GetCoeffR() { return CoeffofRestitution; }
 double State::GetCoeffF() { return CoeffofFriction; }
 float State::GetEPS() { return EPS; }

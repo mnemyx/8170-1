@@ -24,11 +24,17 @@ Entity::Entity(){
 // Setters
 //
 void Entity::Rest(int type) { EntState.SetResting(type); }
+void Entity::Start(int start) { EntState.SetStart(star); }
+void Entity::Stopped(int stop) { EntState.SetStopped(stop); } 
+void Entity::Step(int step) { EntState.SetStep(step); }
+void Entity::Center(Vector3d newc) { EntState.SetCenter(newc); }	
 void Entity::Velocity(Vector3d newv) { EntState.SetVelocity(newv); }
 
 // 
 // Getters
 //
+Vector3d Entity::Vector3d InitialCenter( return EntState.GetInitialCenter(); }
+Vector3d Entity::Vector3d InitialVelocity() { return EntState.GetInitialVelocity(); }
 Vector3d Entity::Center() { return EntState.GetCenter(); }
 Vector3d Entity::Velocity() { return EntState.GetVelocity(); }
 Vector3d Entity::Acceleration() { return EntState.GetAcceleration(); }
@@ -37,6 +43,10 @@ int Entity::Rest() { return EntState.IsResting(); }
 int Entity::Stopped() { return EntState.IsStopped(); }
 Vector3d Entity::PlaneNormal() { return EntState.GetCollidedN(); }
 Vector3d Entity::PlaneVertex(int indx) { return vertices[indx]; }
+int Entity::Start() { return EntState.IsStarted(); }
+int Entity::Stopped() { return EntState.IsStopped(stop); } 
+int Entity::Step() { return EntState.IsStep(step); }
+
 
 //
 // Functions

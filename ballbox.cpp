@@ -313,50 +313,49 @@ void Simulate(){
   // evil Euler integration to get velocity and position at next timestep
   newvelocity = Particle.CalcVelocity(TimeStep); 
   newball = Particle.CalcCenter(TimeStep);
-
+  
+  i = 0;
   // while loop should wrap around here, to determine if we're still under the time stamp.
-  while ( Time < Time + TimeStep) {
+  while ( tn < Time + TimeStep) {
 	  // if ball not in resting contact, check for collision in the timestep
-	  for (i = 0; i < 6; i++) {
-		  if (!Cube[i].Rest() && 
-			  Cube[i].VelOnPlane(Particle.Velocity()) &&
-			  Cube[i].CenOnPlane(Particle.Radius())) {
-				  // have collision. get fraction of timestep at this collision will occur.
-				  f = Cube[i].PlaneBallColl(Particle.Center, Particle.Velocity, newball, Particle.Radius());
-				  
-				  // compute the velocity & position of the ball at the collision time
-				  newvelocity = Particle.CalcVelocity(TimeStep, f, true);
-				  newball = Particle.CalcVelocity(TimeStep, f, true);
-				  
-				  // reflect the velocity from the floor & scale the vertical component...
-				  Particle.Velocity(newvelocity);
-				  Particle.ScaleVel(Cube[i].GetCollidedN());  // stores this into Particle->Velocity
-				  Particle.Center(newball);
-				  
-				  // draw the scene because we collided (change so that plane lights up instead)
-				  DrawScene(1);
-				  
-				  // finish intergrating over the remainder of the time step...
-			  }
-	  }
+	  if (!Cube[i].Rest() && 
+		  Cube[i].VelOnPlane(Particle.Velocity()) &&
+		  Cube[i].CenOnPlane(Particle.Radius())) {
+			  // have collision. get fraction of timestep at this collision will occur.
+			  f = Cube[i].PlaneBallColl(Particle.Center, newvelocity, newball, Particle.Radius());
+			  
+			  // compute the velocity & position of the ball at the collision time
+			  newvelocity = Particle.CalcVelocity(TimeStep, f, true);
+			  newball = Particle.CalcCenter(TimeStep, f, true);
+			  
+			  // reflect the velocity from the floor & scale the vertical component...
+			  Particle.Velocity(newvelocity);
+			  Particle.ScaleVel(Cube[i].GetCollidedN());  // stores this into Particle->Velocity
+			  Particle.Center(newball);
+			  
+			  // draw the scene because we collided (change so that plane lights up instead)
+			  DrawScene(1);
+			  
+			  // finish intergrating over the remainder of the time step...
+			  Particle.Accel();
+			  newvelocity = Particle.CalcVelocity(TimeStep, f, false);
+			  newball = Particle.CalcCenter(TimeStep, f, false);
+			  
+			  // advance the temp timestep/i
+			  if ( i < 6 ) i++;
+			  else i = 0;
+			  
+			  tn = Time + TimeStep * f;
+		}
   }
-  
-	  
-		
-
-		// now finish by integrating over remainder of the timestep
-		acceleration = Accel();
-		newvelocity = Obj.GetVelocity() + (1 - f) * TimeStep * acceleration;
-		newball = newball + (1 - f) * TimeStep * Obj.GetVelocity();
-	  }
-  }
-  
-  // advance the timestep and set the velocity and position to their new values
+    
+  // advance the real timestep and set the velocity and position to their new values
   Time += TimeStep;
   NTimeSteps++;
-  Obj.SetVelocity(newvelocity);
-  Obj.SetCenter(newball);
-  /////////////////////////////
+  Particle.Velocity(newvelocity);
+  Particle.Center(newball);
+
+  ////////////
 
   // draw only if we are at a display time
   if(NTimeSteps % TimeStepsPerDisplay == 0)
@@ -364,10 +363,10 @@ void Simulate(){
 
   // set up time for next timestep if in continuous mode
   glutIdleFunc(NULL);
-  if(Obj.IsStep())
-    Obj.SetStopped(true);
+  if(Particle.Step())
+    Particle.Stopped(true);
   else{
-    Obj.SetStopped(false);
+    Particle.Stopped(false);
     glutTimerFunc(TimerDelay, TimerCallback, 0);
   }
   
@@ -377,7 +376,6 @@ void Simulate(){
 //  Run a single time step in the simulation
 //
 void TimerCallback(int){
-
   Simulate();
 }
 
@@ -454,23 +452,20 @@ void handleButton(int button, int state, int x, int y){
     AdjustMouse(x, y);	/* adjust mouse coords to current window size */
 
     if(state == GLUT_UP){
-      if(Obj.IsStarted()){
-        Obj.SetStart(false);
-        Obj.SetStopped(false);
-        Obj.SetCenter(Cube.GetMax().x, Cube.GetMax().y, 0.0);
-        if(Throw)
-	  Obj.SetVelocity(Obj.GetInitialVelocity());
-        else
-	  Obj.SetVelocity(0, 0, 0);
+      if(Particle.Start()){
+        Particle.Start(false);
+        Particle.Stopped(false);
+        Particle.Center(Particle.InitialCenter());
+	    Particle.Velocity(Particle.InitialVelocity());
         DrawScene(0);
         glutIdleFunc(Simulate);   
       }
-      else if(Obj.IsStopped()){
-        Obj.SetStopped(false);
+      else if(Particle.Stopped()){
+        Particle.Stopped(false);
         glutIdleFunc(Simulate);    
       }
       else{
-        Obj.SetStopped(true);
+        Particle.Stopped(true);
         glutIdleFunc(NULL);    
       }
     }

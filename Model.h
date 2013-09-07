@@ -46,7 +46,7 @@ public:
   void BuildCuboid(float width = 1.0, float height = 1.0, float depth = 1.0, double x = 0, double y = 0, double z = 0);
   
   // Make a plane
-  void BuildPlane(Vector3d p0, Vector3d, p1, Vector3d p2, Vector3d p3);  // COUNTER CLOCKWISE STARTING FROM BOTTOM LEFT POINT
+  void BuildPlane(float length = 1.0, float width = 1.0, float depth = 1.0, double x = 0, double y = 0, double z = 0);  
   
   // Make a cylinder model
   void BuildCylinder(float radius = 0.5, float height = 1.0);

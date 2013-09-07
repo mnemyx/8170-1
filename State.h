@@ -29,6 +29,7 @@ class State{
     Vector3d Acceleration;	// object's acceleration
     
     Vector3d Center;		// for particles...really. i should consider changing these...
+	Vector3d C0;
     double Mass;			// for particles...really. i should consider changing these...
     float Radius;			// for particles...really. i should consider changing these...
     
@@ -36,9 +37,7 @@ class State{
     int Stopped;			// is the object stopped
     int Step;				// is...stepping?
     int Resting;			// is the object resting...
-	int Throw;				// do I need need? is the object thrown
     int Trace;				// i'll probably keep this - trace the object's path
-    int HaveWind;			// uhhhh i dont know - do we have wind?
     
     double CoeffofRestitution;		// the object's coefficient of restitution
     double CoeffofFriction;			// the object's coefficient of friction
@@ -65,12 +64,15 @@ class State{
     void SetVZ(float z);
     void SetVelocity(float x, float y, float z);
     void SetInitialVelocity(Vector3d v0);
+	void SetInitialVelocity(float x, float y, float z);
     void SetAcceleration(Vector3d a);
     void SetCenter(Vector3d c);
     void SetCenter(float x, float y, float z);
     void SetCX(float x);
     void SetCY(float y);
     void SetCZ(float z);
+	void SetInitialCenter(Vector3d c0);
+	void SetInitialCenter(float x, float y, float z);
     void SetMass(double m);
     void SetRadius(float r);
     void SetStart(int start);
@@ -88,6 +90,7 @@ class State{
     // Getters
     Vector3d GetVelocity();
     Vector3d GetInitialVelocity();
+	Vector3d GetInitialCenter();
     Vector3d GetAcceleration();
     Vector3d GetCenter();
     double GetMass();
@@ -101,7 +104,6 @@ class State{
 	Vector3d GetG();
 	double GetViscosity();
 	Vector3d GetWind();
-	int HaveWind();
     float GetEPS();
     int Collided(int i = 0);
 	Vector3d GetCollidedN();

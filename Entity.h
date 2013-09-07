@@ -25,14 +25,22 @@ class Entity : class Model {		// entity is a model that has a state...
     
 	// Setters
 	void Rest(int type);
+	void Stopped(int type);
+	void Start(int type);
+	void Step(int type);
 	void Velocity(Vector3d newv);
+	void Center(Vector3d newc);	
 	
 	// Getters
+	Vector3d InitialCenter();
+	Vector3d InitialVelocity();
 	Vector3d Center();
 	Vector3d Velocity();
 	double Radius();
 	int Rest();
 	int Stopped();
+	int Start();
+	int Step();
 	Vector3d PlaneNormal();
 	Vector3d PlaneVertex(int indx = 0);
 

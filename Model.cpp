@@ -249,6 +249,7 @@ void Model::BuildCuboid(float width, float height, float depth, double x, double
 // Make a plane
 // Added 9/2013 - Proj 1 - GBG
 //
+/******************
 void Model::BuildPlane(Vector3d p0, Vector3d, p1, Vector3d p2, Vector3d p3){
   int v[4];
   Vector3d vector;
@@ -268,7 +269,33 @@ void Model::BuildPlane(Vector3d p0, Vector3d, p1, Vector3d p2, Vector3d p3){
   for(i = 0; i < 6; i += 3)
     AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
 }
+******************/
 
+void Model::BuildPlane(float l, float h, float d, double x, double y, double z) {
+  int v[4];
+  Vector3d vector;
+  Vector3d center(x,y,z);
+  int i;
+  int isign, jsign;
+  int vlist[6] = {0, 1, 2,     0, 2, 3};   // 2 triangles
+  
+  // delete any old data that may have been built previously
+  Clean();
+  
+  // construct the 8 vertices for the cubeoid.
+  i = 0;
+	for(jsign = -1; jsign <= 1; jsign += 2)
+	  for(isign = -1; isign <= 1; isign += 2){
+		vector.set(isign * width / 2, jsign * height / 2, d);
+		vector = vector + center;
+
+		v[i++] = AddVertex(vector);
+	  }
+	
+  // construct the 12 triangles that make the 6 faces
+  for(i = 0; i < 36; i += 3)
+    AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
+}
 
 //
 // Make a cylinder model
