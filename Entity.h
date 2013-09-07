@@ -15,7 +15,7 @@
 #define MAXSTEPS	10000
 #define SPDEPTH		3
 
-class Entity : class Model {		// entity is a model that has a state...
+class Entity : public Model {		// entity is a model that has a state...
   private:
     State EntState;		// the entity's associated state variables
 	

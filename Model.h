@@ -29,8 +29,6 @@ private:
   int ntriangles;		    		// count of the number of triangles
   Vector3d overtices[MAXVERTICES];  // original set of vertices for the isohedron
   int onvertices;					// count of the number of original verices for the isohedron
-  
-  State ModState;					// state of the model...?
 
   void Clean();			    		// bookkeeping, remove all vertices and triangles
   

@@ -29,7 +29,7 @@ ${PROJECT}:	${PROJECT}.o $(OFILES)
 ${PROJECT}.o: ${PROJECT}.${C} $(HFILES)
 	${CC} $(CFLAGS) -c ${PROJECT}.${C}
 
-State.o: Entity.${C} Entity.${H}
+Entity.o: Entity.${C} Entity.${H}
 	${CC} ${CFLAGS} -c ${INCFLAGS} Entity.${C}
 	
 State.o: State.${C} State.${H}
