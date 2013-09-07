@@ -18,7 +18,7 @@
 class Entity : class Model {		// entity is a model that has a state...
   private:
     State EntState;		// the entity's associated state variables
-    
+	
   public:
     // Constructor
     Entity();

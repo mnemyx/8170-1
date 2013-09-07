@@ -27,7 +27,6 @@ Entity::Entity(){
 //
 // Functions
 //
-
 // calculate f to determine if the ball collided with the plane
 float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius) {
 	float mf = -1;
@@ -47,7 +46,7 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	return mf;
 }
 
-void RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius, double timeStep) {
+void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius, double timeStep) {
 	// t is the distance from the center of the ball to the intersection on the plane
 	// t < 0 then it's behind the starting point 
 	// t == 0 then it's parallel and never hits
@@ -76,5 +75,6 @@ void RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius, double 
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
 	EntState->SetResting(Abs(timeStep * vN) < EntState->GetEPS() && Abs(mt - bRadius) < EntState->GetEPS());
+	EntState->SetCollidedN(vN);
 }
 
