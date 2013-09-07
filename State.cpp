@@ -110,6 +110,7 @@ double State::GetCoeffF() { return CoeffofFriction; }
 float State::GetEPS() { return EPS; }
 Vector3d State::GetCollidedN() { return CollidedN; }
 int State::Collided(int indx) { return Collision[indx]; }
+Vector3d State::GetOldCenter(int indx) { return OldCenter[indx]; }
 double State::GetT() { return T; }
 
 //

@@ -68,7 +68,8 @@ int Entity::Start() { return EntState.IsStarted(); }
 int Entity::Stopped() { return EntState.IsStopped(); } 
 int Entity::Step() { return EntState.IsStep(); }
 int Entity::Trace() { return EntState.IsTrace(); }
-
+int Entity::GetCollision(int indx) { return EntState.Collided(indx); }	// called by planes
+Vector3d Entity::OldCenter(int indx) { return EntState.GetOldCenter(indx); }	// called by planes
 
 //
 // Functions

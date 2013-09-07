@@ -295,8 +295,6 @@ void Model::BuildPlane(float l, float h, int orientation, double x, double y, do
 		}
 		
 		vector = vector + center;
-		vector.print();
-		cout<<endl;
 		v[i++] = AddVertex(vector);
 	  }
 	

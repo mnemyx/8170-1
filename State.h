@@ -112,6 +112,7 @@ class State{
     float GetEPS();
     int Collided(int i = 0);
 	Vector3d GetCollidedN();
+	Vector3d GetOldCenter(int indx = 0);
 	double GetT();
    
    // Functions  ||  Rule of thumb: if the calculations relies *mostly* on state variables, place in state.  If it relies 2 entities; then...should probably NOT put it here.

@@ -57,7 +57,7 @@ using namespace std;
 
 #define NEAR		10	// distance of near clipping plane
 #define FAR		1000	// distance of far clipping plane
-#define DEPTH		-100	// initial z coord. of center of cube
+#define DEPTH		-500	// initial z coord. of center of cube
 
 #define ORTHO		0	// projection system codes
 #define PERSPECTIVE	1
@@ -244,14 +244,31 @@ void DrawNonMovingObj(int wireframe) {
   }
 }
 
+
 //
 //  Draw the ball, its traces and the floor if needed
 //
 void DrawScene(int collision){
   
-  int i;
+  int i,j;
+  Model p;
 
   glClear(GL_COLOR_BUFFER_BIT);
+  
+  if(Particle.Trace()){
+    for(i = 0; i < NSteps && i < MAXSTEPS; i++){
+	  for (j = 0; j < 6; j++) {
+		  if(Cube[j].GetCollision(i)) {
+			glColor3f(RGBRED);
+			p.BuildSphere(Particle.Radius(), 3, Cube[j].OldCenter(i).x, Cube[j].OldCenter(i).y, Cube[j].OldCenter(i).z);
+			p.Draw(true);
+		  } else {
+			glColor3f(RGBYELLOW);
+			DrawMovingObj(true);
+		  }
+	  }
+    }
+  }
 
   if(collision)
     glColor3f(RGBRED);
@@ -313,7 +330,8 @@ void Simulate(){
   
   i = 0;
   // while loop should wrap around here, to determine if we're still under the time stamp.
-  while ( tn < Time + TimeStep) {
+  //while ( tn < Time + TimeStep) {
+	for (i = 0; i < 6; i++ ){  
 	  // if ball not in resting contact, check for collision in the timestep
 	  if (!Cube[i].Rest() && 
 		  Cube[i].VelOnPlane(Particle.Velocity()) &&
@@ -339,12 +357,13 @@ void Simulate(){
 			  newball = Particle.CalcCenter(TimeStep, f, false);
 			  
 			  // advance the temp timestep/i
-			  if ( i < 6 ) i++;
-			  else i = 0;
+			  //if ( i < 6 ) i++;
+			  //else i = 0;
 			  
 			  tn = Time + TimeStep * f;
 		}
-  }
+	}
+  //}
     
   // advance the real timestep and set the velocity and position to their new values
   Time += TimeStep;

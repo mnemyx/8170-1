@@ -48,6 +48,8 @@ class Entity : public Model {		// entity is a model that has a state...
 	int Trace();
 	Vector3d PlaneNormal();
 	Vector3d PlaneVertex(int indx = 0);
+	int GetCollision(int indx = 0);
+	Vector3d OldCenter(int indx = 0);
 
 	// Functions
 	/* called by nonmoving objects */
