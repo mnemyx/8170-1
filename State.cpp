@@ -151,7 +151,6 @@ void State::ScaleVelocity(Vector3d pnormal) {
 	Vector3d unorm;
 	
 	unorm.set(pnormal.normalize());
-	cout << "v * unorm: " << Velocity * unorm << endl;
 	
 	if (Velocity * unorm == 0) vn = Velocity;
 	else vn = (Velocity * unorm) * unorm;
@@ -159,12 +158,9 @@ void State::ScaleVelocity(Vector3d pnormal) {
 	if (Velocity * unorm == 0) vt.set(0,0,0);
 	else vn = (Velocity * unorm) * unorm;
 	
-	cout << "vn b4 coeff: "; vn.print(); cout << endl;
-	cout << "vt b4 coeff: "; vt.print(); cout << endl;
 	vn = (-1 * CoeffofRestitution) * vn;
 	vt = (1 - CoeffofFriction) * vt;
-		cout << "vn after coeff: "; vn.print(); cout << endl;
-	cout << "vt after coeff: "; vt.print(); cout << endl;
+	
 	Velocity = vn + vt;
 }
 

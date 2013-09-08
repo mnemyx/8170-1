@@ -41,10 +41,9 @@ using namespace std;
 #define MAXSTEPS	10000
 
 #define MenuContinuous	1
-#define MenuTrace	2
-#define MenuReset	3
-#define MenuClean	4
-#define MenuQuit	5
+#define MenuReset	2
+#define MenuClean	3
+#define MenuQuit	4
 
 #define NOAIR		0
 #define LIGHT		1
@@ -251,28 +250,12 @@ void DrawScene(int collision, int cubeIndx){
 
   glClear(GL_COLOR_BUFFER_BIT);
   
-  if(Particle.Trace()){
-    for(i = 0; i < NSteps && i < MAXSTEPS; i++){
-	  for (j = 0; j < 6; j++) {
-		  if(Cube[j].GetCollision(i)) {
-			glColor3f(RGBRED);
-			p.BuildSphere(Particle.Radius(), 3, Cube[j].OldCenter(i).x, Cube[j].OldCenter(i).y, Cube[j].OldCenter(i).z);
-			p.Draw(true);
-		  } else {
-			glColor3f(RGBYELLOW);
-			DrawMovingObj(true);
-		  }
-	  }
-    }
-  }
-
-  if(collision)
-    glColor3f(RGBRED);
-  else
-    glColor3f(RGBYELLOW);
-  
+  glColor3f(RGBORANGE);
   DrawMovingObj(false);
+  
+  if(collision) glColor3f(RGBRED);
   DrawNonMovingObj(true);
+  
   glutSwapBuffers();
 
   if(NSteps < MAXSTEPS){
@@ -308,7 +291,7 @@ void Simulate(){
   }
 
   // get the new acceleration
-  cout << "particle at start accel: "; Particle.Acceleration().print(); cout << endl;
+  //out << "particle at start accel: "; Particle.Acceleration().print(); out << endl;
   Particle.Accel();
 
   // if ball in resting contact, and its acceleration is zero or down in the direction of the plane...
@@ -332,8 +315,7 @@ void Simulate(){
   
   i = 0;
   // while loop should wrap around here, to determine if we're still under the time stamp.
-  //while ( tn < Time + TimeStep) {
-  
+  //while (tn < TimeStep) {
 	for (i = 0; i < 6; i++ ){  
 		f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 			  cout << "f: " << f << endl << "I: " << i << endl;
@@ -364,7 +346,7 @@ void Simulate(){
 			  
 			  // finish intergrating over the remainder of the time step...
 			  Particle.Accel();
-			  cout << "particle end of ts accel: "; Particle.Acceleration().print(); cout << endl;
+			  //out << "particle end of ts accel: "; Particle.Acceleration().print(); out << endl;
 			  newvelocity = Particle.CalcVelocity(TimeStep, f, false);
 			  newball = Particle.CalcCenter(TimeStep, f, false);
 			  
@@ -372,10 +354,9 @@ void Simulate(){
 			  Particle.Center(newball);
 			  cout << "particle end of ts velocity: "; Particle.Velocity().print(); cout << endl;
 			  cout << "particle end of ts center: "; Particle.Center().print(); cout << endl;
-				
-			  tn = Time + TimeStep * f;
 		}
 	}
+	//tn += TimeStep * f;
   //}
     
   // advance the real timestep and set the velocity and position to their new values
@@ -722,18 +703,6 @@ void HandleMenu(int index){
       glutChangeToMenuEntry(index, "Continuous", index);
     }  
     break;  
-    
-  case MenuTrace:
-    if(Particle.Trace()){
-      Particle.Trace(false);
-      glutChangeToMenuEntry(index, "Trace", index);
-    }
-    else{
-      Particle.Trace(true);
-      glutChangeToMenuEntry(index, "No Trace", index);
-    }  
-    
-    break;
 
   case MenuReset:
     RestartBall();
@@ -759,7 +728,6 @@ void MakeMenu(){
   int id = glutCreateMenu(HandleMenu);
 
   glutAddMenuEntry("Continuous", MenuContinuous);
-  glutAddMenuEntry("No Trace", MenuTrace);
   glutAddMenuEntry("Reset", MenuReset);
   glutAddMenuEntry("Clean", MenuClean);
   glutAddMenuEntry("Quit", MenuQuit);
@@ -850,7 +818,7 @@ void handleKey(unsigned char key, int x, int y){
    Main program to set up display
 */
 int main(int argc, char* argv[]){
-
+  
   glutInit(&argc, argv);
 
   InitSimulation(argc, argv);

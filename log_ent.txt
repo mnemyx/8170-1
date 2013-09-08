@@ -1,0 +1,2092 @@
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: -50
+t: 50
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: -50
+t: 50
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -25
+t: 25
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 95
+t: -95
+timeSTep * vN: 
+mt - bRadius: 85
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: -50
+t: 50
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: -50
+t: 50
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 25.355
+t: 25.355
+timeSTep * vN: 
+mt - bRadius: 15.355
+0FOR THE LOVE OF GOD 
+t: -96.3489
+t: -96.3489
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: -50
+t: 50
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: -50
+t: 50
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 12.6275
+t: 12.6275
+timeSTep * vN: 
+mt - bRadius: 2.62748
+1FOR THE LOVE OF GOD 
+t: -48.2244
+t: -48.2244
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: -40
+t: 40
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: -40
+t: 40
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -15.1814
+t: 15.1814
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 104.819
+t: -104.819
+timeSTep * vN: 
+mt - bRadius: 94.8186
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: -40
+t: 40
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: -40
+t: 40
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 15.397
+t: 15.397
+timeSTep * vN: 
+mt - bRadius: 5.39696
+0FOR THE LOVE OF GOD 
+t: -106.307
+t: -106.307
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: -40
+t: 40
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: -40
+t: 40
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 7.64848
+t: 7.64848
+timeSTep * vN: 
+mt - bRadius: -2.35152
+1FOR THE LOVE OF GOD 
+t: -53.2034
+t: -53.2034
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -5.3628
+t: 5.3628
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 114.637
+t: -114.637
+timeSTep * vN: 
+mt - bRadius: 104.637
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 5.43895
+t: 5.43895
+timeSTep * vN: 
+mt - bRadius: -4.56105
+0FOR THE LOVE OF GOD 
+t: -116.265
+t: -116.265
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 2.66947
+t: 2.66947
+timeSTep * vN: 
+mt - bRadius: -7.33053
+0FOR THE LOVE OF GOD 
+t: -58.1825
+t: -58.1825
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 1.71298
+t: 1.71298
+timeSTep * vN: 
+mt - bRadius: -8.28702
+0FOR THE LOVE OF GOD 
+t: -38.855
+t: -38.855
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 1.20974
+t: 1.20974
+timeSTep * vN: 
+mt - bRadius: -8.79026
+0FOR THE LOVE OF GOD 
+t: -29.2162
+t: -29.2162
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 0.887789
+t: 0.887789
+timeSTep * vN: 
+mt - bRadius: -9.11221
+0FOR THE LOVE OF GOD 
+t: -23.453
+t: -23.453
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 0.656491
+t: 0.656491
+timeSTep * vN: 
+mt - bRadius: -9.34351
+0FOR THE LOVE OF GOD 
+t: -19.6275
+t: -19.6275
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 0.476992
+t: 0.476992
+timeSTep * vN: 
+mt - bRadius: -9.52301
+0FOR THE LOVE OF GOD 
+t: -16.9093
+t: -16.9093
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 0.329868
+t: 0.329868
+timeSTep * vN: 
+mt - bRadius: -9.67013
+0FOR THE LOVE OF GOD 
+t: -14.8831
+t: -14.8831
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 0.204327
+t: 0.204327
+timeSTep * vN: 
+mt - bRadius: -9.79567
+0FOR THE LOVE OF GOD 
+t: -13.3183
+t: -13.3183
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 0.0938945
+t: 0.0938945
+timeSTep * vN: 
+mt - bRadius: -9.90611
+0FOR THE LOVE OF GOD 
+t: -12.0765
+t: -12.0765
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -0.00614837
+t: -0.00614837
+timeSTep * vN: 
+mt - bRadius: -10.0061
+0FOR THE LOVE OF GOD 
+t: 13.9987
+t: 13.9987
+timeSTep * vN: 
+mt - bRadius: 3.99873
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -0.0921736
+t: -0.0921736
+timeSTep * vN: 
+mt - bRadius: -10.0922
+0FOR THE LOVE OF GOD 
+t: -15.1868
+t: -15.1868
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -0.289588
+t: -0.289588
+timeSTep * vN: 
+mt - bRadius: -10.2896
+0FOR THE LOVE OF GOD 
+t: 31.8131
+t: 31.8131
+timeSTep * vN: 
+mt - bRadius: 21.8131
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -0.529172
+t: -0.529172
+timeSTep * vN: 
+mt - bRadius: -10.5292
+0FOR THE LOVE OF GOD 
+t: 43.0755
+t: 43.0755
+timeSTep * vN: 
+mt - bRadius: 33.0755
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -0.980454
+t: -0.980454
+timeSTep * vN: 
+mt - bRadius: -10.9805
+0FOR THE LOVE OF GOD 
+t: 66.9697
+t: 66.9697
+timeSTep * vN: 
+mt - bRadius: 56.9697
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -2.44626
+t: -2.44626
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 151.4
+t: 151.4
+timeSTep * vN: 
+mt - bRadius: 141.4
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -30
+t: 30
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 9.64122
+t: 9.64122
+timeSTep * vN: 
+mt - bRadius: -0.358784
+1FOR THE LOVE OF GOD 
+t: -572.885
+t: -572.885
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: -20
+t: 20
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: -20
+t: 20
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -9.92609
+t: 9.92609
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 110.074
+t: -110.074
+timeSTep * vN: 
+mt - bRadius: 100.074
+0FOR THE LOVE OF GOD 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: -20
+t: 20
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: -20
+t: 20
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 10.067
+t: 10.067
+timeSTep * vN: 
+mt - bRadius: 0.067029
+1FOR THE LOVE OF GOD 
+t: -111.637
+t: -111.637
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: -10
+t: 10
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: -10
+t: 10
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -10.0661
+t: 10.0661
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 109.934
+t: -109.934
+timeSTep * vN: 
+mt - bRadius: 99.9339
+0FOR THE LOVE OF GOD 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: -10
+t: 10
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: -10
+t: 10
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 10.209
+t: 10.209
+timeSTep * vN: 
+mt - bRadius: 0.209017
+1FOR THE LOVE OF GOD 
+t: -111.495
+t: -111.495
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: 0
+t: 0
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: 0
+t: 0
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: -10.2061
+t: 10.2061
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 109.794
+t: -109.794
+timeSTep * vN: 
+mt - bRadius: 99.7939
+0FOR THE LOVE OF GOD 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: 0
+t: 0
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: 0
+t: 0
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 10.351
+t: 10.351
+timeSTep * vN: 
+mt - bRadius: 0.351005
+1FOR THE LOVE OF GOD 
+t: -111.353
+t: -111.353
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 130
+t: -130
+timeSTep * vN: 
+mt - bRadius: 120
+0FOR THE LOVE OF GOD 
+t: 10
+t: -10
+timeSTep * vN: 
+mt - bRadius: 0
+1FOR THE LOVE OF GOD 
+t: 130
+t: -130
+timeSTep * vN: 
+mt - bRadius: 120
+0FOR THE LOVE OF GOD 
+t: 10
+t: -10
+timeSTep * vN: 
+mt - bRadius: 0
+1FOR THE LOVE OF GOD 
+t: -10.3461
+t: 10.3461
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 109.654
+t: -109.654
+timeSTep * vN: 
+mt - bRadius: 99.6539
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: 0
+acceln: 
+bAccel * CollidedN: 0
+acceln: 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 30
+t: -30
+timeSTep * vN: 
+mt - bRadius: 20
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 30
+t: -30
+timeSTep * vN: 
+mt - bRadius: 20
+0FOR THE LOVE OF GOD 
+t: 30.777
+t: 30.777
+timeSTep * vN: 
+mt - bRadius: 20.777
+0FOR THE LOVE OF GOD 
+t: -90.9269
+t: -90.9269
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 30
+t: -30
+timeSTep * vN: 
+mt - bRadius: 20
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 30
+t: -30
+timeSTep * vN: 
+mt - bRadius: 20
+0FOR THE LOVE OF GOD 
+t: 15.3385
+t: 15.3385
+timeSTep * vN: 
+mt - bRadius: 5.33848
+0FOR THE LOVE OF GOD 
+t: -45.5134
+t: -45.5134
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 30
+t: -30
+timeSTep * vN: 
+mt - bRadius: 20
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 30
+t: -30
+timeSTep * vN: 
+mt - bRadius: 20
+0FOR THE LOVE OF GOD 
+t: 10.159
+t: 10.159
+timeSTep * vN: 
+mt - bRadius: 0.15899
+1FOR THE LOVE OF GOD 
+t: -30.409
+t: -30.409
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: 40
+t: -40
+timeSTep * vN: 
+mt - bRadius: 30
+0FOR THE LOVE OF GOD 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: 40
+t: -40
+timeSTep * vN: 
+mt - bRadius: 30
+0FOR THE LOVE OF GOD 
+t: -10.4703
+t: 10.4703
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 109.53
+t: -109.53
+timeSTep * vN: 
+mt - bRadius: 99.5297
+0FOR THE LOVE OF GOD 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: 40
+t: -40
+timeSTep * vN: 
+mt - bRadius: 30
+0FOR THE LOVE OF GOD 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: 40
+t: -40
+timeSTep * vN: 
+mt - bRadius: 30
+0FOR THE LOVE OF GOD 
+t: 10.619
+t: 10.619
+timeSTep * vN: 
+mt - bRadius: 0.618957
+1FOR THE LOVE OF GOD 
+t: -111.085
+t: -111.085
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: 50
+t: -50
+timeSTep * vN: 
+mt - bRadius: 40
+0FOR THE LOVE OF GOD 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: 50
+t: -50
+timeSTep * vN: 
+mt - bRadius: 40
+0FOR THE LOVE OF GOD 
+t: -10.6103
+t: 10.6103
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 109.39
+t: -109.39
+timeSTep * vN: 
+mt - bRadius: 99.3897
+0FOR THE LOVE OF GOD 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: 50
+t: -50
+timeSTep * vN: 
+mt - bRadius: 40
+0FOR THE LOVE OF GOD 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: 50
+t: -50
+timeSTep * vN: 
+mt - bRadius: 40
+0FOR THE LOVE OF GOD 
+t: 10.7609
+t: 10.7609
+timeSTep * vN: 
+mt - bRadius: 0.760944
+1FOR THE LOVE OF GOD 
+t: -110.943
+t: -110.943
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: 60
+t: -60
+timeSTep * vN: 
+mt - bRadius: 50
+0FOR THE LOVE OF GOD 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: 60
+t: -60
+timeSTep * vN: 
+mt - bRadius: 50
+0FOR THE LOVE OF GOD 
+t: -10.7503
+t: 10.7503
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 109.25
+t: -109.25
+timeSTep * vN: 
+mt - bRadius: 99.2497
+0FOR THE LOVE OF GOD 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: 60
+t: -60
+timeSTep * vN: 
+mt - bRadius: 50
+0FOR THE LOVE OF GOD 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: 60
+t: -60
+timeSTep * vN: 
+mt - bRadius: 50
+0FOR THE LOVE OF GOD 
+t: 10.9029
+t: 10.9029
+timeSTep * vN: 
+mt - bRadius: 0.902932
+1FOR THE LOVE OF GOD 
+t: -110.801
+t: -110.801
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: -10.8903
+t: 10.8903
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 109.11
+t: -109.11
+timeSTep * vN: 
+mt - bRadius: 99.1097
+0FOR THE LOVE OF GOD 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: 70
+t: -70
+timeSTep * vN: 
+mt - bRadius: 60
+0FOR THE LOVE OF GOD 
+t: 11.0449
+t: 11.0449
+timeSTep * vN: 
+mt - bRadius: 1.04492
+1FOR THE LOVE OF GOD 
+t: -110.659
+t: -110.659
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: -11.0303
+t: 11.0303
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 108.97
+t: -108.97
+timeSTep * vN: 
+mt - bRadius: 98.9697
+0FOR THE LOVE OF GOD 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: 80
+t: -80
+timeSTep * vN: 
+mt - bRadius: 70
+0FOR THE LOVE OF GOD 
+t: 11.1869
+t: 11.1869
+timeSTep * vN: 
+mt - bRadius: 1.18691
+1FOR THE LOVE OF GOD 
+t: -110.517
+t: -110.517
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 210
+t: -210
+timeSTep * vN: 
+mt - bRadius: 200
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: 210
+t: -210
+timeSTep * vN: 
+mt - bRadius: 200
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: -11.1703
+t: 11.1703
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 108.83
+t: -108.83
+timeSTep * vN: 
+mt - bRadius: 98.8297
+0FOR THE LOVE OF GOD 
+t: 210
+t: -210
+timeSTep * vN: 
+mt - bRadius: 200
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: 210
+t: -210
+timeSTep * vN: 
+mt - bRadius: 200
+0FOR THE LOVE OF GOD 
+t: 90
+t: -90
+timeSTep * vN: 
+mt - bRadius: 80
+0FOR THE LOVE OF GOD 
+t: 11.3289
+t: 11.3289
+timeSTep * vN: 
+mt - bRadius: 1.3289
+1FOR THE LOVE OF GOD 
+t: -110.375
+t: -110.375
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 220
+t: -220
+timeSTep * vN: 
+mt - bRadius: 210
+0FOR THE LOVE OF GOD 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: 220
+t: -220
+timeSTep * vN: 
+mt - bRadius: 210
+0FOR THE LOVE OF GOD 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: -11.3103
+t: 11.3103
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 108.69
+t: -108.69
+timeSTep * vN: 
+mt - bRadius: 98.6897
+0FOR THE LOVE OF GOD 
+t: 220
+t: -220
+timeSTep * vN: 
+mt - bRadius: 210
+0FOR THE LOVE OF GOD 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: 220
+t: -220
+timeSTep * vN: 
+mt - bRadius: 210
+0FOR THE LOVE OF GOD 
+t: 100
+t: -100
+timeSTep * vN: 
+mt - bRadius: 90
+0FOR THE LOVE OF GOD 
+t: 11.4709
+t: 11.4709
+timeSTep * vN: 
+mt - bRadius: 1.47088
+1FOR THE LOVE OF GOD 
+t: -110.233
+t: -110.233
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 230
+t: -230
+timeSTep * vN: 
+mt - bRadius: 220
+0FOR THE LOVE OF GOD 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: 230
+t: -230
+timeSTep * vN: 
+mt - bRadius: 220
+0FOR THE LOVE OF GOD 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: -11.4503
+t: 11.4503
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 108.55
+t: -108.55
+timeSTep * vN: 
+mt - bRadius: 98.5497
+0FOR THE LOVE OF GOD 
+t: 230
+t: -230
+timeSTep * vN: 
+mt - bRadius: 220
+0FOR THE LOVE OF GOD 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: 230
+t: -230
+timeSTep * vN: 
+mt - bRadius: 220
+0FOR THE LOVE OF GOD 
+t: 110
+t: -110
+timeSTep * vN: 
+mt - bRadius: 100
+0FOR THE LOVE OF GOD 
+t: 11.6129
+t: 11.6129
+timeSTep * vN: 
+mt - bRadius: 1.61287
+1FOR THE LOVE OF GOD 
+t: -110.091
+t: -110.091
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 240
+t: -240
+timeSTep * vN: 
+mt - bRadius: 230
+0FOR THE LOVE OF GOD 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: 240
+t: -240
+timeSTep * vN: 
+mt - bRadius: 230
+0FOR THE LOVE OF GOD 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: -11.5903
+t: 11.5903
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 108.41
+t: -108.41
+timeSTep * vN: 
+mt - bRadius: 98.4097
+0FOR THE LOVE OF GOD 
+t: 240
+t: -240
+timeSTep * vN: 
+mt - bRadius: 230
+0FOR THE LOVE OF GOD 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: 240
+t: -240
+timeSTep * vN: 
+mt - bRadius: 230
+0FOR THE LOVE OF GOD 
+t: 120
+t: -120
+timeSTep * vN: 
+mt - bRadius: 110
+0FOR THE LOVE OF GOD 
+t: 11.7549
+t: 11.7549
+timeSTep * vN: 
+mt - bRadius: 1.75486
+1FOR THE LOVE OF GOD 
+t: -109.949
+t: -109.949
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 250
+t: -250
+timeSTep * vN: 
+mt - bRadius: 240
+0FOR THE LOVE OF GOD 
+t: 130
+t: -130
+timeSTep * vN: 
+mt - bRadius: 120
+0FOR THE LOVE OF GOD 
+t: 250
+t: -250
+timeSTep * vN: 
+mt - bRadius: 240
+0FOR THE LOVE OF GOD 
+t: 130
+t: -130
+timeSTep * vN: 
+mt - bRadius: 120
+0FOR THE LOVE OF GOD 
+t: -11.7303
+t: 11.7303
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 108.27
+t: -108.27
+timeSTep * vN: 
+mt - bRadius: 98.2697
+0FOR THE LOVE OF GOD 
+t: 250
+t: -250
+timeSTep * vN: 
+mt - bRadius: 240
+0FOR THE LOVE OF GOD 
+t: 130
+t: -130
+timeSTep * vN: 
+mt - bRadius: 120
+0FOR THE LOVE OF GOD 
+t: 250
+t: -250
+timeSTep * vN: 
+mt - bRadius: 240
+0FOR THE LOVE OF GOD 
+t: 130
+t: -130
+timeSTep * vN: 
+mt - bRadius: 120
+0FOR THE LOVE OF GOD 
+t: 11.8968
+t: 11.8968
+timeSTep * vN: 
+mt - bRadius: 1.89685
+1FOR THE LOVE OF GOD 
+t: -109.807
+t: -109.807
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 260
+t: -260
+timeSTep * vN: 
+mt - bRadius: 250
+0FOR THE LOVE OF GOD 
+t: 140
+t: -140
+timeSTep * vN: 
+mt - bRadius: 130
+0FOR THE LOVE OF GOD 
+t: 260
+t: -260
+timeSTep * vN: 
+mt - bRadius: 250
+0FOR THE LOVE OF GOD 
+t: 140
+t: -140
+timeSTep * vN: 
+mt - bRadius: 130
+0FOR THE LOVE OF GOD 
+t: -11.8703
+t: 11.8703
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 108.13
+t: -108.13
+timeSTep * vN: 
+mt - bRadius: 98.1297
+0FOR THE LOVE OF GOD 
+t: 260
+t: -260
+timeSTep * vN: 
+mt - bRadius: 250
+0FOR THE LOVE OF GOD 
+t: 140
+t: -140
+timeSTep * vN: 
+mt - bRadius: 130
+0FOR THE LOVE OF GOD 
+t: 260
+t: -260
+timeSTep * vN: 
+mt - bRadius: 250
+0FOR THE LOVE OF GOD 
+t: 140
+t: -140
+timeSTep * vN: 
+mt - bRadius: 130
+0FOR THE LOVE OF GOD 
+t: 12.0388
+t: 12.0388
+timeSTep * vN: 
+mt - bRadius: 2.03883
+1FOR THE LOVE OF GOD 
+t: -109.665
+t: -109.665
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 270
+t: -270
+timeSTep * vN: 
+mt - bRadius: 260
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 270
+t: -270
+timeSTep * vN: 
+mt - bRadius: 260
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: -12.0103
+t: 12.0103
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 107.99
+t: -107.99
+timeSTep * vN: 
+mt - bRadius: 97.9897
+0FOR THE LOVE OF GOD 
+t: 270
+t: -270
+timeSTep * vN: 
+mt - bRadius: 260
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 270
+t: -270
+timeSTep * vN: 
+mt - bRadius: 260
+0FOR THE LOVE OF GOD 
+t: 150
+t: -150
+timeSTep * vN: 
+mt - bRadius: 140
+0FOR THE LOVE OF GOD 
+t: 12.1808
+t: 12.1808
+timeSTep * vN: 
+mt - bRadius: 2.18082
+1FOR THE LOVE OF GOD 
+t: -109.523
+t: -109.523
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 280
+t: -280
+timeSTep * vN: 
+mt - bRadius: 270
+0FOR THE LOVE OF GOD 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: 280
+t: -280
+timeSTep * vN: 
+mt - bRadius: 270
+0FOR THE LOVE OF GOD 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: -12.1503
+t: 12.1503
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 107.85
+t: -107.85
+timeSTep * vN: 
+mt - bRadius: 97.8497
+0FOR THE LOVE OF GOD 
+t: 280
+t: -280
+timeSTep * vN: 
+mt - bRadius: 270
+0FOR THE LOVE OF GOD 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: 280
+t: -280
+timeSTep * vN: 
+mt - bRadius: 270
+0FOR THE LOVE OF GOD 
+t: 160
+t: -160
+timeSTep * vN: 
+mt - bRadius: 150
+0FOR THE LOVE OF GOD 
+t: 12.3228
+t: 12.3228
+timeSTep * vN: 
+mt - bRadius: 2.32281
+1FOR THE LOVE OF GOD 
+t: -109.381
+t: -109.381
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 290
+t: -290
+timeSTep * vN: 
+mt - bRadius: 280
+0FOR THE LOVE OF GOD 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: 290
+t: -290
+timeSTep * vN: 
+mt - bRadius: 280
+0FOR THE LOVE OF GOD 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: -12.2903
+t: 12.2903
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 107.71
+t: -107.71
+timeSTep * vN: 
+mt - bRadius: 97.7097
+0FOR THE LOVE OF GOD 
+t: 290
+t: -290
+timeSTep * vN: 
+mt - bRadius: 280
+0FOR THE LOVE OF GOD 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: 290
+t: -290
+timeSTep * vN: 
+mt - bRadius: 280
+0FOR THE LOVE OF GOD 
+t: 170
+t: -170
+timeSTep * vN: 
+mt - bRadius: 160
+0FOR THE LOVE OF GOD 
+t: 12.4648
+t: 12.4648
+timeSTep * vN: 
+mt - bRadius: 2.4648
+1FOR THE LOVE OF GOD 
+t: -109.239
+t: -109.239
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 300
+t: -300
+timeSTep * vN: 
+mt - bRadius: 290
+0FOR THE LOVE OF GOD 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: 300
+t: -300
+timeSTep * vN: 
+mt - bRadius: 290
+0FOR THE LOVE OF GOD 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: -12.4303
+t: 12.4303
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 107.57
+t: -107.57
+timeSTep * vN: 
+mt - bRadius: 97.5697
+0FOR THE LOVE OF GOD 
+t: 300
+t: -300
+timeSTep * vN: 
+mt - bRadius: 290
+0FOR THE LOVE OF GOD 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: 300
+t: -300
+timeSTep * vN: 
+mt - bRadius: 290
+0FOR THE LOVE OF GOD 
+t: 180
+t: -180
+timeSTep * vN: 
+mt - bRadius: 170
+0FOR THE LOVE OF GOD 
+t: 12.6068
+t: 12.6068
+timeSTep * vN: 
+mt - bRadius: 2.60679
+1FOR THE LOVE OF GOD 
+t: -109.097
+t: -109.097
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 310
+t: -310
+timeSTep * vN: 
+mt - bRadius: 300
+0FOR THE LOVE OF GOD 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: 310
+t: -310
+timeSTep * vN: 
+mt - bRadius: 300
+0FOR THE LOVE OF GOD 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: -12.5703
+t: 12.5703
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 107.43
+t: -107.43
+timeSTep * vN: 
+mt - bRadius: 97.4297
+0FOR THE LOVE OF GOD 
+t: 310
+t: -310
+timeSTep * vN: 
+mt - bRadius: 300
+0FOR THE LOVE OF GOD 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: 310
+t: -310
+timeSTep * vN: 
+mt - bRadius: 300
+0FOR THE LOVE OF GOD 
+t: 190
+t: -190
+timeSTep * vN: 
+mt - bRadius: 180
+0FOR THE LOVE OF GOD 
+t: 12.7488
+t: 12.7488
+timeSTep * vN: 
+mt - bRadius: 2.74877
+1FOR THE LOVE OF GOD 
+t: -108.955
+t: -108.955
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 
+t: 320
+t: -320
+timeSTep * vN: 
+mt - bRadius: 310
+0FOR THE LOVE OF GOD 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: 320
+t: -320
+timeSTep * vN: 
+mt - bRadius: 310
+0FOR THE LOVE OF GOD 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: -12.7103
+t: 12.7103
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+t: 107.29
+t: -107.29
+timeSTep * vN: 
+mt - bRadius: 97.2897
+0FOR THE LOVE OF GOD 
+t: 320
+t: -320
+timeSTep * vN: 
+mt - bRadius: 310
+0FOR THE LOVE OF GOD 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: 320
+t: -320
+timeSTep * vN: 
+mt - bRadius: 310
+0FOR THE LOVE OF GOD 
+t: 200
+t: -200
+timeSTep * vN: 
+mt - bRadius: 190
+0FOR THE LOVE OF GOD 
+t: 12.8908
+t: 12.8908
+timeSTep * vN: 
+mt - bRadius: 2.89076
+1FOR THE LOVE OF GOD 
+t: -108.813
+t: -108.813
+timeSTep * vN: 
+mt - bRadius: -10
+0FOR THE LOVE OF GOD 
+bAccel * CollidedN: -9.86
+acceln: 

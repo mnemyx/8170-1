@@ -1,0 +1,1177 @@
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 253.55
+I: 4
+f: -963.489
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 153.97
+I: 4
+f: -1063.07
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 54.3895
+I: 4
+f: -1162.65
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 26.6947
+I: 4
+f: -581.825
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 17.1298
+I: 4
+f: -388.55
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 12.0974
+I: 4
+f: -292.162
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 8.87789
+I: 4
+f: -234.53
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 6.56491
+I: 4
+f: -196.275
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 4.76992
+I: 4
+f: -169.093
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 3.29868
+I: 4
+f: -148.831
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 2.04327
+I: 4
+f: -133.183
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: 0.938945
+I: 4
+Im not resting and I uh, collided
+vel @ collision: 
+pos @ collision: 
+particle not scaled velocity: 
+particle scaled velocity: 
+particle center: 
+particle end of ts accel: 
+particle end of ts velocity: 
+particle end of ts center: 
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: -0.0614837
+I: 4
+Im not resting and I uh, collided
+vel @ collision: 
+pos @ collision: 
+particle not scaled velocity: 
+particle scaled velocity: 
+particle center: 
+particle end of ts accel: 
+particle end of ts velocity: 
+particle end of ts center: 
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: -0.921736
+I: 4
+Im not resting and I uh, collided
+vel @ collision: 
+pos @ collision: 
+particle not scaled velocity: 
+particle scaled velocity: 
+particle center: 
+particle end of ts accel: 
+particle end of ts velocity: 
+particle end of ts center: 
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: -2.89588
+I: 4
+f: 318.131
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: -5.29172
+I: 4
+f: 430.755
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: -9.80454
+I: 4
+f: 669.697
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: -24.4626
+I: 4
+f: 1514
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: inf
+I: 1
+f: -inf
+I: 2
+f: inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -nan
+I: 1
+f: -inf
+I: 2
+f: -nan
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -nan
+I: 1
+f: -inf
+I: 2
+f: -nan
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: 307.77
+I: 4
+f: -909.269
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: 153.385
+I: 4
+f: -455.134
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5
+particle at start accel: 
+
+
+IM RESTING @#$#@$
+
+I NEED TO REST JESUS
+projected vel: 
+projected pos: 
+f: -inf
+I: 0
+f: -inf
+I: 1
+f: -inf
+I: 2
+f: -inf
+I: 3
+f: inf
+I: 4
+f: -inf
+I: 5

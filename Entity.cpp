@@ -80,13 +80,25 @@ float Entity::FudgeFactor() { return EntState.GetEPS(); }
 float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius) {
 	float mf;
 	float f;
+	float p;
 	int i;
-	Vector3d bCentMod(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
-	Vector3d bNewCentMod(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
+	Vector3d bCentMod;
+	Vector3d bNewCentMod;
 	
 	for(i = 0; i < ntriangles; i++) {
-		f = ((bCentMod - vertices[1]) * normals[i] / ((bCentMod - bNewCentMod) * normals[i]));
+		// need to decide where are sphere is located in terms of the plane | point-plane equation
+		// so we know to add or subtract the radius from the center
+		p = (normals[i] * bCenter) - (vertices[1] * normals[i]);
+		if(p < 0) { //we're behind the plane we're testing
+			bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
+			bNewCentMod.set(bNewCenter.x + bRadius, bNewCenter.y + bRadius, bNewCenter.z + bRadius);
+		} else { // we're in front
+			bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
+			bNewCentMod.set(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
+		}
 		
+  		f = ((bCentMod - vertices[1]) * normals[i] / ((bCentMod - bNewCentMod) * normals[i]));
+
 		if ( i == 0 ) mf = f; 
 		else if ( f < mf && f >= 0 - FudgeFactor() && f < 1 + FudgeFactor()) mf = f; 
 	}
@@ -103,16 +115,26 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	//  Resting = Abs(timestep * Velocity.y) < EPS.y && Abs(Center.y - (Radius + miny)) < EPS.y;
 	float mt = 0;
 	float t;
+	float p;
 	int i;
 	Vector3d vN;
-	Vector3d bCentMod(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
+	Vector3d bCentMod;
 	
 	for (i = 0; i < ntriangles; i++) {
-		if (normals[i] * bVelocity == 0)
+		p = (normals[i] * bCenter) - (vertices[1] * normals[i]);
+		
+		if(p < 0) { //we're behind the plane we're testing
+			bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
+		} else { // we're in front
+			bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
+		}
+		
+		if (normals[i] * bVelocity == 0) {
 			t = (normals[i] * (vertices[1] - bCentMod));
-		else 
+		} else {
 			t = (normals[i] * (vertices[1] - bCentMod)) / (normals[i] * bVelocity);
-			
+		}
+	
 		cout << "t: " << t << endl;
 		if (t > 0 - FudgeFactor()) {
 			if ( i == 0 ) {

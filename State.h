@@ -21,6 +21,8 @@
 
 #define MAXSTEPS	10000
 
+
+  
 class State{
   private:
     

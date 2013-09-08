@@ -1,0 +1,15 @@
+v * unorm: -10.7858
+vn b4 coeff: 
+vt b4 coeff: 
+vn after coeff: 
+vt after coeff: 
+v * unorm: 8.62906
+vn b4 coeff: 
+vt b4 coeff: 
+vn after coeff: 
+vt after coeff: 
+v * unorm: -7.04104
+vn b4 coeff: 
+vt b4 coeff: 
+vn after coeff: 
+vt after coeff: 
