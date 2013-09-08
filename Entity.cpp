@@ -30,7 +30,7 @@ void Entity::Step(int step) { EntState.SetStep(step); }
 void Entity::Trace(int trace) { EntState.SetTrace(trace); }
 void Entity::Center(Vector3d newc) { EntState.SetCenter(newc); }	
 void Entity::Velocity(Vector3d newv) { EntState.SetVelocity(newv); }
-void Entity::InitState(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, double eps, double viscosity, Vector3d wind, Vector3d gravity) {
+void Entity::InitState(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, float eps, double viscosity, Vector3d wind, Vector3d gravity) {
 	BuildSphere(radius, 3, cen.x, cen.y, cen.z);
 	EntState.SetInitialVelocity(vel);
 	EntState.SetCenter(cen);
@@ -44,7 +44,7 @@ void Entity::InitState(Vector3d vel, Vector3d cen, double mass, double radius, d
 	EntState.SetWind(wind);
 	EntState.SetGravity(gravity);
 }
-void Entity::InitState(Vector3d plane, Vector3d cen, double eps) {
+void Entity::InitState(Vector3d plane, Vector3d cen, float eps) {
 	BuildPlane(plane.x, plane.y, plane.z, cen.x, cen.y, cen.z);
 	EntState.SetEPS(eps);
 	EntState.SetCenter(cen);
@@ -70,25 +70,25 @@ int Entity::Step() { return EntState.IsStep(); }
 int Entity::Trace() { return EntState.IsTrace(); }
 int Entity::GetCollision(int indx) { return EntState.Collided(indx); }	// called by planes
 Vector3d Entity::OldCenter(int indx) { return EntState.GetOldCenter(indx); }	// called by planes
+float Entity::FudgeFactor() { return EntState.GetEPS(); }
 
 //
 // Functions
 //
 // calculate f to determine if the ball collided with the plane
 // called by plane...
-double Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius) {
-	float mf = -1;
+float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius) {
+	float mf;
 	float f;
 	int i;
 	Vector3d bCentMod(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
+	Vector3d bNewCentMod(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
 	
 	for(i = 0; i < ntriangles; i++) {
-		f = ((bCentMod - vertices[0]) * normals[i]) / ((bCenter - bNewCenter) * normals[i]);
+		f = ((bCentMod - vertices[1]) * normals[i] / ((bCentMod - bNewCentMod) * normals[i]));
 		
-		if( f <= 0 && f < 1 ) {
-			if ( i == 0 ) mf = f; 
-			else if ( f < mf ) mf = f; 
-		}
+		if ( i == 0 ) mf = f; 
+		else if ( f < mf && f >= 0 - FudgeFactor() && f < 1 + FudgeFactor()) mf = f; 
 	}
 	
 	return mf;
@@ -105,32 +105,49 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	float t;
 	int i;
 	Vector3d vN;
+	Vector3d bCentMod(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
 	
 	for (i = 0; i < ntriangles; i++) {
-		t = (normals[i] * (vertices[0] - bCenter)) / (normals[i] * bVelocity);
-		
-		if (t > 0) {
+		if (normals[i] * bVelocity == 0)
+			t = (normals[i] * (vertices[1] - bCentMod));
+		else 
+			t = (normals[i] * (vertices[1] - bCentMod)) / (normals[i] * bVelocity);
+			
+		cout << "t: " << t << endl;
+		if (t > 0 - FudgeFactor()) {
 			if ( i == 0 ) {
 				mt = t;
 				vN = bVelocity * normals[i];
+				EntState.SetCollidedN(normals[i]);
 			}
 			else if ( t < mt ) { 
 				mt = t;
 				vN = bVelocity * normals[i];
+				EntState.SetCollidedN(normals[i]);
 			}
 		}
 	}
 	
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
-	EntState.SetResting(((Abs(timeStep * vN.x) < EntState.GetEPS()) && (Abs(timeStep * vN.y) < EntState.GetEPS()) && (Abs(timeStep * vN.z) < EntState.GetEPS())) && Abs(mt - bRadius) < EntState.GetEPS());
-	EntState.SetCollidedN(vN);
+	cout << "timeSTep * vN: "; (timeStep * vN).print(); cout << endl;
+	cout << "mt - bRadius: " << mt - bRadius << endl;
+	EntState.SetResting(((Abs(timeStep * vN.x) < EntState.GetEPS()) && (Abs(timeStep * vN.y) < EntState.GetEPS()) && (Abs(timeStep * vN.z) < EntState.GetEPS())) && Abs(mt - bRadius) < 3);
+	// note to self: change fudge factor for radius.
+	cout << EntState.IsResting() << "FOR THE LOVE OF GOD " << endl;
+	//EntState.SetCollidedN(vN);
 	EntState.SetT(mt);
 }
 
 // need to figure out magnitude...of acceleration in direction of the normal
 // called by plane...
 int Entity::AccelOnPlane(Vector3d bAccel) {
+	cout << "bAccel * CollidedN: " << bAccel * EntState.GetCollidedN() << endl;
+	Vector3d acceln;
+	
+	acceln = (bAccel * EntState.GetCollidedN()) * EntState.GetCollidedN();
+
+	cout << "acceln: "; acceln.print(); cout << endl;
 	if ((bAccel * EntState.GetCollidedN()) < EntState.GetEPS()) return true;
 	else return false;
 }

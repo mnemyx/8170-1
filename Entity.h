@@ -31,8 +31,8 @@ class Entity : public Model {		// entity is a model that has a state...
 	void Trace(int type);
 	void Velocity(Vector3d newv);
 	void Center(Vector3d newc);	
-	void InitState(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, double eps, double viscosity, Vector3d wind, Vector3d gravity);
-	void InitState(Vector3d plane, Vector3d cen, double eps);
+	void InitState(Vector3d vel, Vector3d cen, double mass, double radius, double coeffr, double coefff, float eps, double viscosity, Vector3d wind, Vector3d gravity);
+	void InitState(Vector3d plane, Vector3d cen, float eps);
 	
 	// Getters
 	Vector3d InitialCenter();
@@ -50,10 +50,11 @@ class Entity : public Model {		// entity is a model that has a state...
 	Vector3d PlaneVertex(int indx = 0);
 	int GetCollision(int indx = 0);
 	Vector3d OldCenter(int indx = 0);
+	float FudgeFactor();
 
 	// Functions
 	/* called by nonmoving objects */
-	double PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius);
+	float PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius);
 	void RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius, double timeStep);
 	int AccelOnPlane(Vector3d bAccel);
 	int VelOnPlane(Vector3d bVelocity);

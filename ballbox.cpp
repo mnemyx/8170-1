@@ -244,7 +244,7 @@ void DrawNonMovingObj(int wireframe) {
 //
 //  Draw the ball, its traces and the floor if needed
 //
-void DrawScene(int collision){
+void DrawScene(int collision, int cubeIndx){
   
   int i,j;
   Model p;
@@ -276,8 +276,8 @@ void DrawScene(int collision){
   glutSwapBuffers();
 
   if(NSteps < MAXSTEPS){
-	Particle.AddOCenter(NSteps);
-	Particle.AddOCollision(collision, NSteps);
+	Cube[cubeIndx].AddOCenter(NSteps);
+	Cube[cubeIndx].AddOCollision(collision, NSteps);
     NSteps++;
   }
   else{
@@ -308,12 +308,15 @@ void Simulate(){
   }
 
   // get the new acceleration
+  cout << "particle at start accel: "; Particle.Acceleration().print(); cout << endl;
   Particle.Accel();
 
   // if ball in resting contact, and its acceleration is zero or down in the direction of the plane...
   // then cancel the velocity in the direction of the normal and...uhm...set the ball down on the plane...?
   for (i = 0; i < 6; i++) {
+	  if(Cube[i].Rest()) cout << endl << endl << "IM RESTING @#$#@$" << endl << endl;
 	  if(Cube[i].Rest() && Cube[i].AccelOnPlane(Particle.Acceleration())) {
+		  cout << "I NEED TO REST JESUS" << endl;
 		  Particle.AdjustAVC(Cube[i].PlaneNormal(), Cube[i].PlaneVertex());
 	  } 
 	  else Cube[i].Rest(false);
@@ -323,6 +326,9 @@ void Simulate(){
   // evil Euler integration to get velocity and position at next timestep
   newvelocity = Particle.CalcVelocity(TimeStep); 
   newball = Particle.CalcCenter(TimeStep);
+  cout << "projected vel: ";
+	newvelocity.print(); cout << endl;
+  cout << "projected pos: "; newball.print(); cout << endl;
   
   i = 0;
   // while loop should wrap around here, to determine if we're still under the time stamp.
@@ -330,38 +336,43 @@ void Simulate(){
   
 	for (i = 0; i < 6; i++ ){  
 		f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
-			  cout << "f: " << f << endl;
+			  cout << "f: " << f << endl << "I: " << i << endl;
+			  
 	  // if ball not in resting contact, check for collision in the timestep
-	  if (!Cube[i].Rest() && f >= 0 && f < 1
-		  //Cube[i].VelOnPlane(Particle.Velocity()) && Cube[i].CenOnPlane(Particle.Radius())
-		  ) {
+	  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
 			  cout << "Im not resting and I uh, collided" << endl;
 			  // have collision. get fraction of timestep at this collision will occur.
 			  
 			  // compute the velocity & position of the ball at the collision time
 			  newvelocity = Particle.CalcVelocity(TimeStep, f, true);
 			  newball = Particle.CalcCenter(TimeStep, f, true);
-			  cout << "vel collision: ";
+			  cout << "vel @ collision: ";
 				newvelocity.print(); cout << endl;
-			  cout << "pos collision: "; newball.print(); cout << endl;
+			  cout << "pos @ collision: "; newball.print(); cout << endl;
 			  
 			  // reflect the velocity from the floor & scale the vertical component...
 			  Particle.Velocity(newvelocity);
+			  cout << "particle not scaled velocity: "; Particle.Velocity().print(); cout << endl;
 			  Particle.ScaleVel(Cube[i].PlaneNormal());  // stores this into Particle->Velocity
 			  Particle.Center(newball);
 			  
+			  cout << "particle scaled velocity: "; Particle.Velocity().print(); cout << endl;
+			  cout << "particle center: "; Particle.Center().print(); cout << endl;
+
 			  // draw the scene because we collided (change so that plane lights up instead)
-			  DrawScene(1);
+			  DrawScene(1, i);
 			  
 			  // finish intergrating over the remainder of the time step...
 			  Particle.Accel();
+			  cout << "particle end of ts accel: "; Particle.Acceleration().print(); cout << endl;
 			  newvelocity = Particle.CalcVelocity(TimeStep, f, false);
 			  newball = Particle.CalcCenter(TimeStep, f, false);
 			  
-			  // advance the temp timestep/i
-			  //if ( i < 6 ) i++;
-			  //else i = 0;
-			  
+			  Particle.Velocity(newvelocity);
+			  Particle.Center(newball);
+			  cout << "particle end of ts velocity: "; Particle.Velocity().print(); cout << endl;
+			  cout << "particle end of ts center: "; Particle.Center().print(); cout << endl;
+				
 			  tn = Time + TimeStep * f;
 		}
 	}
@@ -377,7 +388,7 @@ void Simulate(){
 
   // draw only if we are at a display time
   if(NTimeSteps % TimeStepsPerDisplay == 0)
-    DrawScene(0);
+    DrawScene(0,0);
 
   // set up time for next timestep if in continuous mode
   glutIdleFunc(NULL);
@@ -475,7 +486,7 @@ void handleButton(int button, int state, int x, int y){
         Particle.Stopped(false);
         Particle.Center(Particle.InitialCenter());
 	    Particle.Velocity(Particle.InitialVelocity());
-        DrawScene(0);
+        DrawScene(0,0);
         glutIdleFunc(Simulate);   
       }
       else if(Particle.Stopped()){
@@ -535,7 +546,7 @@ void drawDisplay(){
   glRotatef(ThetaY, 0, 1, 0);       // rotate model about x axis
   glRotatef(ThetaX, 1, 0, 0);       // rotate model about y axis  
     
-  DrawScene(0);
+  DrawScene(0, 0);
   
   glutSwapBuffers();
 }
@@ -567,8 +578,8 @@ void LoadParameters(char *filename){
 
  if(fscanf(paramfile, "%lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf %lf",
 	&(bvelocity.x), &(bvelocity.y), &(bvelocity.z), &(bcenter.x), &(bcenter.y), &(bcenter.z), 
-	&bmass, &bradius, &coeffr, &coefff, &beps, &viscosity, 
-	&(wind.x), &(wind.y), &(wind.z), &(gravity.x), &(gravity.y), &(gravity.z),
+	&bmass, &bradius, &coeffr, &coefff, &beps,
+	&(wind.x), &(wind.y), &(wind.z), &(gravity.x), &(gravity.y), &(gravity.z), &viscosity, 
 	&(plane1.x), &(plane1.y), &(plane1.z), &(plcen1.x), &(plcen1.y), &(plcen1.z), &peps1, 
 	&(plane2.x), &(plane2.y), &(plane2.z), &(plcen2.x), &(plcen2.y), &(plcen2.z), &peps2, 
 	&(plane3.x), &(plane3.y), &(plane3.z), &(plcen3.x), &(plcen3.y), &(plcen3.z), &peps3, 
@@ -691,7 +702,7 @@ void RestartBall(){
   Particle.Center(Particle.InitialCenter());
   Particle.Velocity(Particle.InitialVelocity());
     
-  DrawScene(0);
+  DrawScene(0, 0);
 }
 
 /*

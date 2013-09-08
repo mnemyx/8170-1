@@ -32,7 +32,7 @@ State::State() {
 	Stopped = true;
 	Step = true;
 	Resting = false;
-	Trace = false;
+	Trace = true;
 	
 	CoeffofRestitution = 0;
 	CoeffofFriction = 0;
@@ -148,12 +148,23 @@ Vector3d State::CalcNewVelocity(double timestep, double f, int atCollision) {
 // use for particles
 void State::ScaleVelocity(Vector3d pnormal) {
 	Vector3d vn, vt;
+	Vector3d unorm;
 	
-	vn = (Velocity * pnormal) * pnormal;
-	vt = Velocity - (Velocity * pnormal) * pnormal;
-	vn = -CoeffofRestitution * vn;
+	unorm.set(pnormal.normalize());
+	cout << "v * unorm: " << Velocity * unorm << endl;
+	
+	if (Velocity * unorm == 0) vn = Velocity;
+	else vn = (Velocity * unorm) * unorm;
+	
+	if (Velocity * unorm == 0) vt.set(0,0,0);
+	else vn = (Velocity * unorm) * unorm;
+	
+	cout << "vn b4 coeff: "; vn.print(); cout << endl;
+	cout << "vt b4 coeff: "; vt.print(); cout << endl;
+	vn = (-1 * CoeffofRestitution) * vn;
 	vt = (1 - CoeffofFriction) * vt;
-	
+		cout << "vn after coeff: "; vn.print(); cout << endl;
+	cout << "vt after coeff: "; vt.print(); cout << endl;
 	Velocity = vn + vt;
 }
 
