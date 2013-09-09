@@ -165,13 +165,15 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 // need to figure out magnitude...of acceleration in direction of the normal
 // called by plane...
 int Entity::AccelOnPlane(Vector3d bAccel) {
-	cout << "bAccel * CollidedN: " << bAccel * EntState.GetCollidedN() << endl;
-	Vector3d acceln;
+	double acceln;
+	double gdirection;
 	
-	acceln = (bAccel * EntState.GetCollidedN()) * EntState.GetCollidedN();
-
-	cout << "acceln: "; acceln.print(); cout << endl;
-	if ((bAccel * EntState.GetCollidedN()) < EntState.GetEPS()) return true;
+	acceln = bAccel * EntState.GetCollidedN();
+	gdirection = EntState.GetG() * EntState.GetG().normalize();
+	
+	acceln = acceln - gdirection;
+	
+	if (acceln < EntState.GetEPS()) return true;
 	else return false;
 }
 
