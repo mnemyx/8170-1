@@ -141,7 +141,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	}
 
 	if (avgN * bVelocity == 0) {
-		t = (bCentMod - vertices[1]).normsqr();
+		t = - avgN * (bCentMod - vertices[1]);
 	} else {
 		t = - (avgN * (bCentMod - vertices[1])) / (avgN * bVelocity);
 	}
