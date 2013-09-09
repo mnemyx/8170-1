@@ -84,26 +84,30 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	int i;
 	Vector3d bCentMod;
 	Vector3d bNewCentMod;
+	Vector3d avgN;
 	
-	for(i = 0; i < ntriangles; i++) {
-		// need to decide where are sphere is located in terms of the plane | point-plane equation
-		// so we know to add or subtract the radius from the center
-		p = normals[i] * (bCenter - vertices[1]);
-		
-		if(p < 0) { //we're behind the plane we're testing
-			bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
-			bNewCentMod.set(bNewCenter.x + bRadius, bNewCenter.y + bRadius, bNewCenter.z + bRadius);
-		} else { // we're in front
-			bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
-			bNewCentMod.set(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
-		}
-		
-  		f = ((bCentMod - vertices[1]) * normals[i] / ((bCentMod - bNewCentMod) * normals[i]));
-
-		if ( i == 0 ) mf = f; 
-		else if ( f < mf && f >= 0 - FudgeFactor() && f < 1 + FudgeFactor()) mf = f; 
+	for (i = 0; i < ntriangles; i++) {
+		avgN = avgN + normals[i];
 	}
 	
+	avgN = avgN / 2;
+	avgN.normalize();
+	
+	p = avgN * (bCenter - vertices[1]);
+		
+	if(p < 0) { //we're behind the plane we're testing
+		bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
+		bNewCentMod.set(bNewCenter.x + bRadius, bNewCenter.y + bRadius, bNewCenter.z + bRadius);
+	} else { // we're in front
+		bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
+		bNewCentMod.set(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
+	}
+	
+	f = ((bCentMod - vertices[1]) * avgN / ((bCentMod - bNewCentMod) * avgN));
+
+	if ( i == 0 ) mf = f; 
+	else if ( f < mf && f >= 0 - FudgeFactor() && f < 1 + FudgeFactor()) mf = f; 
+
 	return mf;
 }
 
