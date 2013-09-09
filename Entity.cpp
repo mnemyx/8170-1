@@ -121,34 +121,43 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	Vector3d vN;
 	Vector3d bCentMod;
 	
+	// average normal?
+	Vector3d avgN;
+	
 	for (i = 0; i < ntriangles; i++) {
-		p = normals[i] * (bCenter - vertices[1]);
-		
-		if(p < 0) { //we're behind the plane we're testing
-			bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
-		} else { // we're in front
-			bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
-		}
-		
-		if (normals[i] * bVelocity == 0) {
-			t = (bCentMod - vertices[1]).normsqr();
-		} else {
-			t = - (normals[i] * (bCentMod - vertices[1])) / (normals[i] * bVelocity);
-		}
+		avgN = avgN + normals[i];
+	}
 	
-		cout << "t: " << t << endl;
+	avgN = avgN / 2;
+	avgN.normalize();
+	
+	
+	p = avgN * (bCenter - vertices[1]);
+		
+	cout << "P IN RESTINGINPLANE() :::::::::::::::::::::::::::: " << p << endl;
+	if(p < 0) { //we're behind the plane we're testing
+		bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
+	} else { // we're in front
+		bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
+	}
 
-		if ( i == 0 ) {
-			mt = t;
-			vN = bVelocity * normals[i];
-			EntState.SetCollidedN(normals[i]);
-		}
-		else if ( t < mt ) { 
-			mt = t;
-			vN = bVelocity * normals[i];
-			EntState.SetCollidedN(normals[i]);
-		}
-	
+	if (avgN * bVelocity == 0) {
+		t = (bCentMod - vertices[1]).normsqr();
+	} else {
+		t = - (avgN * (bCentMod - vertices[1])) / (avgN * bVelocity);
+	}
+
+	cout << "t: " << t << endl;
+
+	if ( i == 0 ) {
+		mt = t;
+		vN = bVelocity * avgN;
+		EntState.SetCollidedN(avgN);
+	}
+	else if ( t < mt ) { 
+		mt = t;
+		vN = bVelocity * avgN;
+		EntState.SetCollidedN(avgN);
 	}
 	
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's

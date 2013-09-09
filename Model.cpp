@@ -276,7 +276,7 @@ void Model::BuildPlane(float l, float h, int orientation, double x, double y, do
   Vector3d center(x,y,z);
   int i;
   int isign, jsign;
-  int vlist[6] = {0, 1, 2,     1, 2, 3};   // 2 triangles
+  int vlist[6] = {0, 2, 1,     1, 2, 3};   // 2 triangles
   
   // delete any old data that may have been built previously
   Clean();
