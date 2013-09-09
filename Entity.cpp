@@ -130,9 +130,9 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 		}
 		
 		if (normals[i] * bVelocity == 0) {
-			t = (vertices[1] - bCentMod).normsqr();
+			t = (vertices[1] - bCenter).normsqr();
 		} else {
-			t = (normals[i] * (vertices[1] - bCentMod)) / (normals[i] * bVelocity);
+			t = - (normals[i] * (vertices[1] - bCenter)) / (normals[i] * bVelocity);
 		}
 	
 		cout << "t: " << t << endl;
