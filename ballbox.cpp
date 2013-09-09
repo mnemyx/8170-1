@@ -319,24 +319,24 @@ void Simulate(){
   int hadCollision = 0;
   int cubeCollisions[6] = {0, 0, 0, 0, 0, 0};
   // while loop should wrap around here, to determine if we're still under the time stamp.
-  while (checkCollision) { 
+  //while (checkCollision) { 
 	for (i = 0; i < 6; i++ ) {  
 	  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 	  
-	  if (cubeCollisions[i]) { cubeCollisions[i] = 0; }
+	  if (cubeCollisions[i]) { cubeCollisions[i] = 0;  cout << " I'm skipping i: " << i << endl; }
 	  else {
 		  cout << " F from PlabeBallColl(): " << f << endl;
 		  // if ball not in resting contact, check for collision in the timestep
 		  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
-				  hadCollision = 1;
+				  //hadCollision = 1;
 				  cubeCollisions[i] = 1;
 				  
 				  cout << "Im not resting and I uh, collided @ -------> " << i << endl;
 				  // have collision. get fraction of timestep at this collision will occur.
 				  
 				  // compute the velocity & position of the ball at the collision time
-				  newvelocity = Particle.CalcVelocity(tn, f);
-				  newball = Particle.CalcCenter(tn, f);
+				  newvelocity = Particle.CalcVelocity(TimeStep, f);
+				  newball = Particle.CalcCenter(TimeStep, f);
 				  cout << "vel @ collision: ";
 					newvelocity.print(); cout << endl;
 				  cout << "pos @ collision: "; newball.print(); cout << endl;
@@ -356,12 +356,12 @@ void Simulate(){
 				  // finish intergrating over the remainder of the time step...
 				  Particle.Accel();
 				  //out << "particle end of ts accel: "; Particle.Acceleration().print(); out << endl;
-				  newvelocity = Particle.CalcVelocity(tn, 1 - (tn * f));
-				  newball = Particle.CalcCenter(tn, 1 - (tn * f));
+				  newvelocity = Particle.CalcVelocity(tn, 1 - (TimeStep * f));
+				  newball = Particle.CalcCenter(tn, 1 - (TimeStep * f));
 				  
-				  tn -= tn * f;
-				  //i = 7;
-				  cout << "TN: _____________________________________ " << tn << endl;
+				  //tn -= tn * f;
+				  i = 0;
+				  //cout << "TN: _____________________________________ " << tn << endl;
 				  Particle.Velocity(newvelocity);
 				  Particle.Center(newball);
 				  	//cout << "****** particle end ts IN LOOP velocity: "; Particle.Velocity().print(); cout << endl;
@@ -372,12 +372,12 @@ void Simulate(){
 		
 	}
 	
-	if(hadCollision) {
+	/** if(hadCollision) {
 		hadCollision = 0;
-		if(tn > 0) checkCollision = 1;
+		if(tn > -0.5) checkCollision = 1;
 		else checkCollision = 0;
 	} else checkCollision = 0;
-  }
+  }***/
   
   
   // advance the real timestep and set the velocity and position to their new values
