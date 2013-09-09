@@ -357,7 +357,7 @@ void Simulate(){
 			  newball = Particle.CalcCenter(tn, 1 - (tn * f));
 			  
 			  tn -= tn * f;
-			  i = 7;
+			  //i = 7;
 			  cout << "TN: _____________________________________ " << tn << endl;
 
 		}
