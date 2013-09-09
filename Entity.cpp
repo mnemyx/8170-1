@@ -92,7 +92,7 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	avgN = avgN / 2;
 	avgN.normalize();
 	
-	p = avgN * (bCenter - vertices[1]);
+	p = avgN * (vertices[1]-bCenter);
 		
 	if(p < 0) { //we're behind the plane we're testing
 		bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
@@ -102,7 +102,7 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 		bNewCentMod.set(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
 	}
 	
-	f = ((bCentMod - vertices[1]) * avgN / ((bCentMod - bNewCentMod) * avgN));
+	f = ((vertices[1] - bCentMod) * avgN / ((bNewCentMod - bCentMod) * avgN));
 
 	return f;
 }
@@ -132,8 +132,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	
 	
 	p = avgN * (bCenter - vertices[1]);
-		
-	cout << "P IN RESTINGINPLANE() :::::::::::::::::::::::::::: " << p << endl;
+	
 	if(p < 0) { //we're behind the plane we're testing
 		bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
 	} else { // we're in front
@@ -146,19 +145,12 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 		t = - (avgN * (bCentMod - vertices[1])) / (avgN * bVelocity);
 	}
 
-	cout << "t: " << t << endl;
 	vN = bVelocity * avgN;
 	EntState.SetCollidedN(avgN);
-
 	
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
-	cout << "timeSTep: " << timeStep << " * vN: "; (timeStep * vN).print(); cout << endl;
-	cout << "t: " << t  << endl;
 	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(t) < FudgeFactor());
-	// note to self: change fudge factor for radius.
-	cout << EntState.IsResting() << " is resting()" << endl;
-	//EntState.SetCollidedN(vN);
 	EntState.SetT(t);
 }
 

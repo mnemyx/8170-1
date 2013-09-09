@@ -287,7 +287,6 @@ void Simulate(){
   }
   // set the ball's resting...for all the planes...
   for (i = 0; i < 6; i++) {
-	  cout << "I FOR RESTINGONPLANE(): ------------ " << i << endl;
 	  Cube[i].RestingOnPlane(Particle.Center(), Particle.Velocity(), Particle.Radius(), TimeStep);
   }
 
@@ -363,8 +362,8 @@ void Simulate(){
 				  tn -= tn * f;
 				  //i = 7;
 				  cout << "TN: _____________________________________ " << tn << endl;
-				  //Particle.Velocity(newvelocity);
-				  //Particle.Center(newball);
+				  Particle.Velocity(newvelocity);
+				  Particle.Center(newball);
 				  	//cout << "****** particle end ts IN LOOP velocity: "; Particle.Velocity().print(); cout << endl;
 			  //cout << "****** particle end ts IN LOOP center: "; Particle.Center().print(); cout << endl;
 		  }
