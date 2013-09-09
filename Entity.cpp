@@ -121,7 +121,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	Vector3d bCentMod;
 	
 	for (i = 0; i < ntriangles; i++) {
-		p = (normals[i] * bCenter) - (vertices[1] * normals[i]);
+		p = normals[i] * (bCenter - vertices[1]);
 		
 		if(p < 0) { //we're behind the plane we're testing
 			bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
@@ -132,22 +132,22 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 		if (normals[i] * bVelocity == 0) {
 			t = (vertices[1] - bCenter).normsqr();
 		} else {
-			t = - (normals[i] * (vertices[1] - bCenter)) / (normals[i] * bVelocity);
+			t = - (normals[i] * (bCenter - vertices[1])) / (normals[i] * bVelocity);
 		}
 	
 		cout << "t: " << t << endl;
-		if (t > 0 - FudgeFactor()) {
-			if ( i == 0 ) {
-				mt = t;
-				vN = bVelocity * normals[i];
-				EntState.SetCollidedN(normals[i]);
-			}
-			else if ( t < mt ) { 
-				mt = t;
-				vN = bVelocity * normals[i];
-				EntState.SetCollidedN(normals[i]);
-			}
+
+		if ( i == 0 ) {
+			mt = t;
+			vN = bVelocity * normals[i];
+			EntState.SetCollidedN(normals[i]);
 		}
+		else if ( t < mt ) { 
+			mt = t;
+			vN = bVelocity * normals[i];
+			EntState.SetCollidedN(normals[i]);
+		}
+	
 	}
 	
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
