@@ -152,11 +152,11 @@ void State::ScaleVelocity(Vector3d pnormal) {
 	
 	unorm.set(pnormal.normalize());
 	
-	if (Velocity * unorm == 0) vn = Velocity;
+	if (Velocity * unorm == 0) vn.set(0,0,0);
 	else vn = (Velocity * unorm) * unorm;
 	
-	if (Velocity * unorm == 0) vt.set(0,0,0);
-	else vn = (Velocity * unorm) * unorm;
+	if (Velocity * unorm == 0) vt = Velocity;
+	else vt = Velocity - (Velocity * unorm) * unorm;
 	
 	vn = -CoeffofRestitution * vn;
 	vt = (1 - CoeffofFriction) * vt;
@@ -190,7 +190,7 @@ void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
 	// bCenter	= vertex - t * (vN * bvel) / vn 
 	// then subtract from the acceleration...
 
-	Vector3d vn, an, nc;
+	Vector3d vn, an;
 	Vector3d intersect;
 	float p;
 	
@@ -215,7 +215,6 @@ void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
 		
     Velocity = Velocity - vn;
 	Acceleration = Acceleration - an;
-	//Center = nc;
 	Center = intersect;
 	
 	cout << "VELOCITY IN ADJUST ACC VEL POST: "; Velocity.print(); cout << endl;

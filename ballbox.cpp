@@ -300,7 +300,7 @@ void Simulate(){
   // Clear resting contact if acceleration is up.
   for (i = 0; i < 6; i++) {
 	  if(Cube[i].Rest() && Cube[i].AccelOnPlane(Particle.Acceleration())) {
-		  cout << i << " -------------------------- I NEED TO REST JESUS" << endl;
+		  cout << i << " -------------------------- I NEED TO REST KTHX" << endl;
 		  Particle.AdjustAVC(Cube[i].PlaneNormal(), Cube[i].PlaneVertex());
 	  } 
 	  else Cube[i].Rest(false);
@@ -310,9 +310,9 @@ void Simulate(){
   // evil Euler integration to get velocity and position at next timestep
   newvelocity = Particle.CalcVelocity(TimeStep); 
   newball = Particle.CalcCenter(TimeStep);
-  //cout << "projected vel: ";
-	newvelocity.print(); cout << endl;
-  //cout << "projected pos: "; newball.print(); cout << endl;
+  cout << "vel @ expected end ts: ";
+				newvelocity.print(); cout << endl;
+			  cout << "pos @ expected end ts: "; newball.print(); cout << endl;
   
   i = 0;
   tn = TimeStep;
@@ -358,10 +358,9 @@ void Simulate(){
 			  
 			  tn -= tn * f;
 			  i = 0;
-			 // Particle.Velocity(newvelocity);
-			  //Particle.Center(newball);
-			  //cout << "particle end of ts velocity: "; Particle.Velocity().print(); cout << endl;
-			  //cout << "particle end of ts center: "; Particle.Center().print(); cout << endl;
+			  
+			  Particle.Velocity(newvelocity);
+			  Particle.Center(newball);
 		}
 		
 	}

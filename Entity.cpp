@@ -130,9 +130,9 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 		}
 		
 		if (normals[i] * bVelocity == 0) {
-			t = (normals[i] * (vertices[1] - bCentMod)) / (-normals[i].norm());
+			t = (vertices[1] - bCenter).normsqr();
 		} else {
-			t = (normals[i] * (vertices[1] - bCentMod)) / (normals[i] * bVelocity);
+			t = (normals[i] * (vertices[1] - bCenter)) / (normals[i] * bVelocity);
 		}
 	
 		cout << "t: " << t << endl;
@@ -152,8 +152,8 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
-	cout << "timeSTep * vN: "; (timeStep * vN).print(); cout << endl;
-	cout << "mt - bRadius: " << mt - bRadius << endl;
+	cout << "timeSTep: " << timeStep << " * vN: "; (timeStep * vN).print(); cout << endl;
+	cout << "mt: " << mt  << endl;
 	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(mt) < FudgeFactor());
 	// note to self: change fudge factor for radius.
 	cout << EntState.IsResting() << "FOR THE LOVE OF GOD " << endl;
