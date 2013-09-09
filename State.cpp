@@ -205,13 +205,13 @@ void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
 	// find where we intersect and find  if we're on the plane...
 	//once we have the point of intersection, decide where the ball is & adjust the intersection to account for the radius
 	
-	p = (pnormal * Center) - (pvertex * pnormal);
+	//p = (pnormal * Center) - (pvertex * pnormal);
 	
-	if(p < 0) { // we're behind
+	//if(p < 0) { // we're behind
 		intersect = Center + Velocity * T ;
-	} else {
-		intersect = Center - Velocity * T ;
-	}
+	//} else {
+		//intersect = Center - Velocity * T ;
+	//}
 		
     Velocity = Velocity - vn;
 	Acceleration = Acceleration - an;
