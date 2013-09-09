@@ -318,47 +318,56 @@ void Simulate(){
   tn = TimeStep;
   int checkCollision = 1;
   int hadCollision = 0;
-
+  int cubeCollisions[6] = {0, 0, 0, 0, 0, 0};
   // while loop should wrap around here, to determine if we're still under the time stamp.
   while (checkCollision) { 
 	for (i = 0; i < 6; i++ ) {  
 	  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
-		
-	  // if ball not in resting contact, check for collision in the timestep
-	  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
-		      hadCollision = 1;
-			  
-			  cout << "Im not resting and I uh, collided @ -------> " << i << endl;
-			  // have collision. get fraction of timestep at this collision will occur.
-			  
-			  // compute the velocity & position of the ball at the collision time
-			  newvelocity = Particle.CalcVelocity(tn, f);
-			  newball = Particle.CalcCenter(tn, f);
-			  cout << "vel @ collision: ";
-				newvelocity.print(); cout << endl;
-			  cout << "pos @ collision: "; newball.print(); cout << endl;
-			  
-			  // reflect the velocity from the floor & scale the vertical component...
-			  Particle.Velocity(newvelocity);
-			  cout << "particle not scaled velocity: "; Particle.Velocity().print(); cout << endl;
-			  Particle.ScaleVel(Cube[i].PlaneNormal());  // stores this into Particle->Velocity
-			  Particle.Center(newball);
-			  
-			  cout << "particle scaled velocity: "; Particle.Velocity().print(); cout << endl;
-			  cout << "particle center: "; Particle.Center().print(); cout << endl;
+	  
+	  if (cubeCollisions[i]) { cubeCollisions[i] = 0; }
+	  else {
+		  cout << " F from PlabeBallColl(): " << f << endl;
+		  // if ball not in resting contact, check for collision in the timestep
+		  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
+				  hadCollision = 1;
+				  cubeCollisions[i] = 1;
+				  
+				  cout << "Im not resting and I uh, collided @ -------> " << i << endl;
+				  // have collision. get fraction of timestep at this collision will occur.
+				  
+				  // compute the velocity & position of the ball at the collision time
+				  newvelocity = Particle.CalcVelocity(tn, f);
+				  newball = Particle.CalcCenter(tn, f);
+				  cout << "vel @ collision: ";
+					newvelocity.print(); cout << endl;
+				  cout << "pos @ collision: "; newball.print(); cout << endl;
+				  
+				  // reflect the velocity from the floor & scale the vertical component...
+				  Particle.Velocity(newvelocity);
+				  cout << "particle not scaled velocity: "; Particle.Velocity().print(); cout << endl;
+				  Particle.ScaleVel(Cube[i].PlaneNormal());  // stores this into Particle->Velocity
+				  Particle.Center(newball);
+				  
+				  cout << "particle scaled velocity: "; Particle.Velocity().print(); cout << endl;
+				  cout << "particle center: "; Particle.Center().print(); cout << endl;
 
-			  // draw the scene because we collided (change so that plane lights up instead)
-			  DrawScene(1, i);
-			  
-			  // finish intergrating over the remainder of the time step...
-			  Particle.Accel();
-			  //out << "particle end of ts accel: "; Particle.Acceleration().print(); out << endl;
-			  newvelocity = Particle.CalcVelocity(tn, 1 - (tn * f));
-			  newball = Particle.CalcCenter(tn, 1 - (tn * f));
-			  
-			  tn -= tn * f;
-			  //i = 7;
-			  cout << "TN: _____________________________________ " << tn << endl;
+				  // draw the scene because we collided (change so that plane lights up instead)
+				  DrawScene(1, i);
+				  
+				  // finish intergrating over the remainder of the time step...
+				  Particle.Accel();
+				  //out << "particle end of ts accel: "; Particle.Acceleration().print(); out << endl;
+				  newvelocity = Particle.CalcVelocity(tn, 1 - (tn * f));
+				  newball = Particle.CalcCenter(tn, 1 - (tn * f));
+				  
+				  tn -= tn * f;
+				  i = 7;
+				  cout << "TN: _____________________________________ " << tn << endl;
+				  Particle.Velocity(newvelocity);
+				  Particle.Center(newball);
+				  	cout << "****** particle end ts IN LOOP velocity: "; Particle.Velocity().print(); cout << endl;
+			  cout << "****** particle end ts IN LOOP center: "; Particle.Center().print(); cout << endl;
+		  }
 
 		}
 		
