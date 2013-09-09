@@ -328,7 +328,7 @@ void Simulate(){
 	  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
 		      hadCollision = 1;
 			  
-			  cout << "Im not resting and I uh, collided" << endl;
+			  cout << "Im not resting and I uh, collided @ -------> " << i << endl;
 			  // have collision. get fraction of timestep at this collision will occur.
 			  
 			  // compute the velocity & position of the ball at the collision time
@@ -357,10 +357,9 @@ void Simulate(){
 			  newball = Particle.CalcCenter(tn, 1 - (tn * f));
 			  
 			  tn -= tn * f;
-			  i = 0;
-			  
-			  Particle.Velocity(newvelocity);
-			  Particle.Center(newball);
+			  i = 7;
+			  cout << "TN: _____________________________________ " << tn << endl;
+
 		}
 		
 	}

@@ -156,7 +156,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	cout << "mt: " << mt  << endl;
 	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(mt) < FudgeFactor());
 	// note to self: change fudge factor for radius.
-	cout << EntState.IsResting() << "FOR THE LOVE OF GOD " << endl;
+	cout << EntState.IsResting() << " is resting()" << endl;
 	//EntState.SetCollidedN(vN);
 	EntState.SetT(mt);
 }
