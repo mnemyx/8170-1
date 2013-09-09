@@ -120,10 +120,10 @@ class State{
    // Functions  ||  Rule of thumb: if the calculations relies *mostly* on state variables, place in state.  If it relies 2 entities; then...should probably NOT put it here.
    void CalcAcceleration();
    Vector3d CalcNewVelocity(double timestep);
-   Vector3d CalcNewVelocity(double timestep, double timefraction, int atCollision);
+   Vector3d CalcNewVelocity(double timestep, double timefraction);
    void ScaleVelocity(Vector3d pnormal);
    Vector3d CalcNewPosition(double timestep);
-   Vector3d CalcNewPosition(double timestep, double timefraction, int atCollision);
+   Vector3d CalcNewPosition(double timestep, double timefraction);
    void AdjustAccVelPos(Vector3d prnormal, Vector3d pvertex);
 };
 

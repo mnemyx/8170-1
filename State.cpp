@@ -122,7 +122,7 @@ void State::CalcAcceleration() {
 	Acceleration = G;
 	
 	Acceleration = Acceleration + Viscosity * (Wind - Velocity) / Mass;
-	
+	cout << "Acceleration in calculation"; Acceleration.print(); cout << endl;
 	// no wind: Acceleration = Acceleration - Viscosity * Velocity / Mass
 }
 
@@ -135,13 +135,13 @@ Vector3d State::CalcNewVelocity(double timestep) {
 
 // Find New Velocity w/ time fraction
 // use for particles
-Vector3d State::CalcNewVelocity(double timestep, double f, int atCollision) {
+Vector3d State::CalcNewVelocity(double timestep, double f) {
 	// if at: newvelocity = Velocity + f * TimeStep * acceleration;
 	// else: newvelocity = Velocity + (1 - f) * TimeStep * acceleration;
-	if (atCollision) 
+	//if (atCollision) 
 		return Velocity + f * timestep * Acceleration;
-	else
-		return Velocity + (1 - f) * timestep * Acceleration;
+	//else
+		//return Velocity + (1 - f) * timestep * Acceleration;
 }
 
 // Scale the velocity w/ coefficients of friction & restition - DO STORE IT.
@@ -158,7 +158,7 @@ void State::ScaleVelocity(Vector3d pnormal) {
 	if (Velocity * unorm == 0) vt.set(0,0,0);
 	else vn = (Velocity * unorm) * unorm;
 	
-	vn = (-1 * CoeffofRestitution) * vn;
+	vn = -CoeffofRestitution * vn;
 	vt = (1 - CoeffofFriction) * vt;
 	
 	Velocity = vn + vt;
@@ -173,13 +173,13 @@ Vector3d State::CalcNewPosition(double timestep) {
 
 // Find New Position w/ time fraction
 // use for particles
-Vector3d State::CalcNewPosition(double timestep, double f, int atCollision) {
+Vector3d State::CalcNewPosition(double timestep, double f) {
 	// if at: newball = Ball + f * TimeStep * Velocity;
 	// else: newball = newball + (1 - f) * TimeStep * Velocity;
-	if (atCollision) 
+	//if (atCollision) 
 		return Center + f * timestep * Velocity;
-	else
-		return Center + (1 - f) * timestep * Velocity;
+	//else
+		//return Center + (1 - f) * timestep * Velocity;
 }
 
 // Adjust the acceleration, velocity, and position of the particle
@@ -191,16 +191,35 @@ void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
 	// then subtract from the acceleration...
 
 	Vector3d vn, an, nc;
-	Vector3d subr(Radius, Radius, Radius);
+	Vector3d intersect;
+	float p;
 	
 	vn = (Velocity * pnormal) * pnormal;
 	an = (Acceleration * pnormal) * pnormal;
+	//nc = (Center * pnormal) * pnormal;
 	// wrong: nc = (Radius * (pnormal * Velocity) / pnormal) - pvertex;
 	// since I have t, aka the distance to the collision point from center - the radius, make that point
 	// a point on the sphere and then subtract the radius from it to get the center...
-	nc = (Center + Radius * vn) - subr;  // im not sure if this will work; or if i'm supposed to be using Velocity and not the adjusted velocity
+	//nc = (Center + Radius * vn) - subr;  // im not sure if this will work; or if i'm supposed to be using Velocity and not the adjusted velocity
 	
+	// find where we intersect and find  if we're on the plane...
+	//once we have the point of intersection, decide where the ball is & adjust the intersection to account for the radius
+	
+	p = (pnormal * Center) - (pvertex * pnormal);
+	
+	if(p < 0) { // we're behind
+		intersect = Center + Velocity * T ;
+	} else {
+		intersect = Center - Velocity * T ;
+	}
+		
     Velocity = Velocity - vn;
 	Acceleration = Acceleration - an;
-	Center = nc;
+	//Center = nc;
+	Center = intersect;
+	
+	cout << "VELOCITY IN ADJUST ACC VEL POST: "; Velocity.print(); cout << endl;
+	cout << "ACCELERATION IN ADJUST ACC VEL POST: "; Acceleration.print(); cout << endl;
+	cout << "CENTER IN ADJUST ACC VEL POST: "; Center.print(); cout << endl;
 }
+

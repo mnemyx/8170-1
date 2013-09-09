@@ -130,7 +130,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 		}
 		
 		if (normals[i] * bVelocity == 0) {
-			t = (normals[i] * (vertices[1] - bCentMod));
+			t = (normals[i] * (vertices[1] - bCentMod)) / (-normals[i].norm());
 		} else {
 			t = (normals[i] * (vertices[1] - bCentMod)) / (normals[i] * bVelocity);
 		}
@@ -154,7 +154,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	// below the threshold?  ...Added above.
 	cout << "timeSTep * vN: "; (timeStep * vN).print(); cout << endl;
 	cout << "mt - bRadius: " << mt - bRadius << endl;
-	EntState.SetResting(((Abs(timeStep * vN.x) < EntState.GetEPS()) && (Abs(timeStep * vN.y) < EntState.GetEPS()) && (Abs(timeStep * vN.z) < EntState.GetEPS())) && Abs(mt - bRadius) < 3);
+	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(mt) < FudgeFactor());
 	// note to self: change fudge factor for radius.
 	cout << EntState.IsResting() << "FOR THE LOVE OF GOD " << endl;
 	//EntState.SetCollidedN(vN);
@@ -214,8 +214,8 @@ void Entity::AdjustAVC(Vector3d pnormal, Vector3d pvertex) {
 }
 
 // called by particle
-Vector3d Entity::CalcVelocity(double timestep, double f, int atCollision) { return EntState.CalcNewVelocity(timestep, f, atCollision); }
+Vector3d Entity::CalcVelocity(double timestep, double f) { return EntState.CalcNewVelocity(timestep, f); }
 Vector3d Entity::CalcVelocity(double timestep) { return EntState.CalcNewVelocity(timestep); }
-Vector3d Entity::CalcCenter(double timestep, double f, int atCollision) { return EntState.CalcNewPosition(timestep, f, atCollision); }
+Vector3d Entity::CalcCenter(double timestep, double f) { return EntState.CalcNewPosition(timestep, f); }
 Vector3d Entity::CalcCenter(double timestep) { return EntState.CalcNewPosition(timestep); }
 void Entity::ScaleVel(Vector3d pnormal) { EntState.ScaleVelocity(pnormal); }

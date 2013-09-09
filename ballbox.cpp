@@ -282,11 +282,12 @@ void Simulate(){
   double f;
   
   // don't do anything if our moving object isn't, well, moving.
-  if(Particle.Stopped())
+  if(Particle.Stopped()) { cout << "I STOPPED!!" << endl;
     return;
-
+  }
   // set the ball's resting...for all the planes...
   for (i = 0; i < 6; i++) {
+	  cout << "I FOR RESTINGONPLANE(): ------------ " << i << endl;
 	  Cube[i].RestingOnPlane(Particle.Center(), Particle.Velocity(), Particle.Radius(), TimeStep);
   }
 
@@ -296,10 +297,10 @@ void Simulate(){
 
   // if ball in resting contact, and its acceleration is zero or down in the direction of the plane...
   // then cancel the velocity in the direction of the normal and...uhm...set the ball down on the plane...?
+  // Clear resting contact if acceleration is up.
   for (i = 0; i < 6; i++) {
-	  if(Cube[i].Rest()) cout << endl << endl << "IM RESTING @#$#@$" << endl << endl;
 	  if(Cube[i].Rest() && Cube[i].AccelOnPlane(Particle.Acceleration())) {
-		  cout << "I NEED TO REST JESUS" << endl;
+		  cout << i << " -------------------------- I NEED TO REST JESUS" << endl;
 		  Particle.AdjustAVC(Cube[i].PlaneNormal(), Cube[i].PlaneVertex());
 	  } 
 	  else Cube[i].Rest(false);
@@ -309,25 +310,30 @@ void Simulate(){
   // evil Euler integration to get velocity and position at next timestep
   newvelocity = Particle.CalcVelocity(TimeStep); 
   newball = Particle.CalcCenter(TimeStep);
-  cout << "projected vel: ";
+  //cout << "projected vel: ";
 	newvelocity.print(); cout << endl;
-  cout << "projected pos: "; newball.print(); cout << endl;
+  //cout << "projected pos: "; newball.print(); cout << endl;
   
   i = 0;
+  tn = TimeStep;
+  int checkCollision = 1;
+  int hadCollision = 0;
+
   // while loop should wrap around here, to determine if we're still under the time stamp.
-  //while (tn < TimeStep) {
-	for (i = 0; i < 6; i++ ){  
-		f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
-			  cout << "f: " << f << endl << "I: " << i << endl;
-			  
+  while (checkCollision) { 
+	for (i = 0; i < 6; i++ ) {  
+	  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
+		
 	  // if ball not in resting contact, check for collision in the timestep
 	  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
+		      hadCollision = 1;
+			  
 			  cout << "Im not resting and I uh, collided" << endl;
 			  // have collision. get fraction of timestep at this collision will occur.
 			  
 			  // compute the velocity & position of the ball at the collision time
-			  newvelocity = Particle.CalcVelocity(TimeStep, f, true);
-			  newball = Particle.CalcCenter(TimeStep, f, true);
+			  newvelocity = Particle.CalcVelocity(tn, f);
+			  newball = Particle.CalcCenter(tn, f);
 			  cout << "vel @ collision: ";
 				newvelocity.print(); cout << endl;
 			  cout << "pos @ collision: "; newball.print(); cout << endl;
@@ -347,24 +353,34 @@ void Simulate(){
 			  // finish intergrating over the remainder of the time step...
 			  Particle.Accel();
 			  //out << "particle end of ts accel: "; Particle.Acceleration().print(); out << endl;
-			  newvelocity = Particle.CalcVelocity(TimeStep, f, false);
-			  newball = Particle.CalcCenter(TimeStep, f, false);
+			  newvelocity = Particle.CalcVelocity(tn, 1 - (tn * f));
+			  newball = Particle.CalcCenter(tn, 1 - (tn * f));
 			  
-			  Particle.Velocity(newvelocity);
-			  Particle.Center(newball);
-			  cout << "particle end of ts velocity: "; Particle.Velocity().print(); cout << endl;
-			  cout << "particle end of ts center: "; Particle.Center().print(); cout << endl;
+			  tn -= tn * f;
+			  i = 0;
+			 // Particle.Velocity(newvelocity);
+			  //Particle.Center(newball);
+			  //cout << "particle end of ts velocity: "; Particle.Velocity().print(); cout << endl;
+			  //cout << "particle end of ts center: "; Particle.Center().print(); cout << endl;
 		}
+		
 	}
-	//tn += TimeStep * f;
-  //}
-    
+	
+	if(hadCollision) {
+		hadCollision = 0;
+		if(tn > 0) checkCollision = 1;
+		else checkCollision = 0;
+	} else checkCollision = 0;
+  }
+  
+  
   // advance the real timestep and set the velocity and position to their new values
   Time += TimeStep;
   NTimeSteps++;
   Particle.Velocity(newvelocity);
   Particle.Center(newball);
-
+				cout << "****** particle end ts  velocity: "; Particle.Velocity().print(); cout << endl;
+			  cout << "****** particle end ts center: "; Particle.Center().print(); cout << endl;
   ////////////
 
   // draw only if we are at a display time

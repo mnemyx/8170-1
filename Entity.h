@@ -67,9 +67,9 @@ class Entity : public Model {		// entity is a model that has a state...
 	void UpdateModel();
 	void Accel();
 	void AdjustAVC(Vector3d pnormal, Vector3d pvertex);
-	Vector3d CalcVelocity(double timestep, double f, int atCollision);
+	Vector3d CalcVelocity(double timestep, double f);
 	Vector3d CalcVelocity(double timestep);
-	Vector3d CalcCenter(double timestep, double f, int atCollision);
+	Vector3d CalcCenter(double timestep, double f);
 	Vector3d CalcCenter(double timestep);
 	void ScaleVel(Vector3d pnormal);
 };
