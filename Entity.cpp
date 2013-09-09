@@ -98,7 +98,7 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	
 	p = (bVelocity.normalize() * vertices[1]) - (bVelocity.normalize() * avgN);
 	
-		cout << " P!!!! " << p << endl;
+		//cout << " P!!!! " << p << endl;
 	if(p < 0) { //we're behind the plane we're testing
 		bCentMod.set(((bCenter * avgN) + bRadius) * avgN);
 		bNewCentMod.set(((bNewCenter * avgN) + bRadius) * avgN);
@@ -110,10 +110,7 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 		//bNewCentMod.set(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
 	}
 
-	f = ((bCenter - vertices[1]) * avgN / ((bCenter - bNewCentMod) * avgN));
-	
-
-	
+	f = ((bCentMod - vertices[1]) * avgN / ((bCentMod - bNewCentMod) * avgN));
 	
 	return f;
 }
@@ -128,7 +125,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	float t;
 	float p;
 	int i;
-	Vector3d vN;
+	double vN;
 	Vector3d bCentMod;
 	
 	// average normal?
@@ -141,13 +138,12 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	avgN = avgN / 2;
 	avgN.normalize();
 	
-	
 	p = (bVelocity.normalize() * vertices[1]) - (bVelocity.normalize() * avgN);
 	
 	if(p < 0) { //we're behind the plane we're testing
 		bCentMod.set(((bCenter * avgN) + bRadius) * avgN);
 	} else { // we're in front
-		bCentMod.set(((bCenter * avgN) + bRadius) * avgN);
+		bCentMod.set(((bCenter * avgN) - bRadius) * avgN);
 	}
 
 	if (avgN * bVelocity == 0) {
@@ -155,14 +151,15 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	} else {
 		t = - (avgN * (bCentMod - vertices[1])) / (avgN * bVelocity);
 	}
-
+	
 	vN = bVelocity * avgN;
 	EntState.SetCollidedN(avgN);
 	
+	cout << vN << endl;
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
-	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(t) < FudgeFactor());
-	cout << "am I resting???? -------- " << EntState.IsResting() << endl;
+	// kind of fudging it...
+	EntState.SetResting(Abs(vN) < 0.5  && Abs(t) < 0.5);
 	EntState.SetT(t);
 }
 
