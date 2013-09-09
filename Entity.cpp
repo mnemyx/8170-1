@@ -88,7 +88,8 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	for(i = 0; i < ntriangles; i++) {
 		// need to decide where are sphere is located in terms of the plane | point-plane equation
 		// so we know to add or subtract the radius from the center
-		p = (normals[i] * bCenter) - (vertices[1] * normals[i]);
+		p = normals[i] * (bCenter - vertices[1]);
+		
 		if(p < 0) { //we're behind the plane we're testing
 			bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
 			bNewCentMod.set(bNewCenter.x + bRadius, bNewCenter.y + bRadius, bNewCenter.z + bRadius);
@@ -130,9 +131,9 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 		}
 		
 		if (normals[i] * bVelocity == 0) {
-			t = (vertices[1] - bCenter).normsqr();
+			t = (bCentMod - vertices[1]).normsqr();
 		} else {
-			t = - (normals[i] * (bCenter - vertices[1])) / (normals[i] * bVelocity);
+			t = - (normals[i] * (bCentMod - vertices[1])) / (normals[i] * bVelocity);
 		}
 	
 		cout << "t: " << t << endl;

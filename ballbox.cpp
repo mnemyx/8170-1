@@ -361,12 +361,12 @@ void Simulate(){
 				  newball = Particle.CalcCenter(tn, 1 - (tn * f));
 				  
 				  tn -= tn * f;
-				  i = 7;
+				  //i = 7;
 				  cout << "TN: _____________________________________ " << tn << endl;
-				  Particle.Velocity(newvelocity);
-				  Particle.Center(newball);
-				  	cout << "****** particle end ts IN LOOP velocity: "; Particle.Velocity().print(); cout << endl;
-			  cout << "****** particle end ts IN LOOP center: "; Particle.Center().print(); cout << endl;
+				  //Particle.Velocity(newvelocity);
+				  //Particle.Center(newball);
+				  	//cout << "****** particle end ts IN LOOP velocity: "; Particle.Velocity().print(); cout << endl;
+			  //cout << "****** particle end ts IN LOOP center: "; Particle.Center().print(); cout << endl;
 		  }
 
 		}
