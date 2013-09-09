@@ -142,12 +142,12 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	avgN.normalize();
 	
 	
-	p = avgN * (bCenter - vertices[1]);
+	p = (bVelocity.normalize() * vertices[1]) - (bVelocity.normalize() * avgN);
 	
 	if(p < 0) { //we're behind the plane we're testing
-		bCentMod.set(bCenter.x + bRadius, bCenter.y + bRadius, bCenter.z + bRadius);
+		bCentMod.set(((bCenter * avgN) + bRadius) * avgN);
 	} else { // we're in front
-		bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
+		bCentMod.set(((bCenter * avgN) + bRadius) * avgN);
 	}
 
 	if (avgN * bVelocity == 0) {
@@ -162,6 +162,7 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
 	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(t) < FudgeFactor());
+	cout << "am I resting???? -------- " << EntState.IsResting() << endl;
 	EntState.SetT(t);
 }
 
