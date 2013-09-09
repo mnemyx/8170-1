@@ -78,7 +78,6 @@ float Entity::FudgeFactor() { return EntState.GetEPS(); }
 // calculate f to determine if the ball collided with the plane
 // called by plane...
 float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewCenter, float bRadius) {
-	float mf;
 	float f;
 	float p;
 	int i;
@@ -105,10 +104,7 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	
 	f = ((bCentMod - vertices[1]) * avgN / ((bCentMod - bNewCentMod) * avgN));
 
-	if ( i == 0 ) mf = f; 
-	else if ( f < mf && f >= 0 - FudgeFactor() && f < 1 + FudgeFactor()) mf = f; 
-
-	return mf;
+	return f;
 }
 
 // called by plane...
@@ -118,7 +114,6 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	// t == 0 then it's parallel and never hits
 	// t= (Xn dot (PointOnPLANE - Raystart)) / (Xn dot Raydirection)-- NeHe Collision Detection
 	//  Resting = Abs(timestep * Velocity.y) < EPS.y && Abs(Center.y - (Radius + miny)) < EPS.y;
-	float mt = 0;
 	float t;
 	float p;
 	int i;
@@ -152,8 +147,6 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	}
 
 	cout << "t: " << t << endl;
-
-	mt = t;
 	vN = bVelocity * avgN;
 	EntState.SetCollidedN(avgN);
 
@@ -161,12 +154,12 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
 	cout << "timeSTep: " << timeStep << " * vN: "; (timeStep * vN).print(); cout << endl;
-	cout << "mt: " << mt  << endl;
-	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(mt) < FudgeFactor());
+	cout << "t: " << t  << endl;
+	EntState.SetResting(((Abs(timeStep * vN.x) < FudgeFactor()) && (Abs(timeStep * vN.y) < FudgeFactor()) && (Abs(timeStep * vN.z) < FudgeFactor())) && Abs(t) < FudgeFactor());
 	// note to self: change fudge factor for radius.
 	cout << EntState.IsResting() << " is resting()" << endl;
 	//EntState.SetCollidedN(vN);
-	EntState.SetT(mt);
+	EntState.SetT(t);
 }
 
 // need to figure out magnitude...of acceleration in direction of the normal
