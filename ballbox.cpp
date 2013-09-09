@@ -235,6 +235,15 @@ void DrawMovingObj(int wireframe) {
 void DrawNonMovingObj(int wireframe) {
   int i;
   for ( i = 0; i < 6; i++ ) {
+	  switch(i) {
+	  case 0: glColor3f(RGBVIOLET); break;
+	  case 1: glColor3f(RGBBLUE); break;
+	  case 2:glColor3f(RGBWHITE); break;
+	  case 3:glColor3f(RGBGREEN); break;
+	  case 4:glColor3f(RGBYELLOW); break;
+	  case 5:glColor3f(RGBRED); break;
+	}
+	  
 	  Cube[i].Draw(wireframe);
   }
 }
@@ -323,13 +332,13 @@ void Simulate(){
 	for (i = 0; i < 6; i++ ) {  
 	  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 	  
-	  if (cubeCollisions[i]) { cubeCollisions[i] = 0;  cout << " I'm skipping i: " << i << endl; }
-	  else {
+	 // if (cubeCollisions[i]) { cubeCollisions[i] = 0;  cout << " I'm skipping i: " << i << endl; }
+	  //else {
 		  cout << " F from PlabeBallColl(): " << f << endl;
 		  // if ball not in resting contact, check for collision in the timestep
 		  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
 				  //hadCollision = 1;
-				  cubeCollisions[i] = 1;
+				  //cubeCollisions[i] = 1;
 				  
 				  cout << "Im not resting and I uh, collided @ -------> " << i << endl;
 				  // have collision. get fraction of timestep at this collision will occur.
@@ -360,7 +369,7 @@ void Simulate(){
 				  newball = Particle.CalcCenter(tn, 1 - (TimeStep * f));
 				  
 				  //tn -= tn * f;
-				  i = 0;
+				  //i = 0;
 				  //cout << "TN: _____________________________________ " << tn << endl;
 				  Particle.Velocity(newvelocity);
 				  Particle.Center(newball);
@@ -370,7 +379,7 @@ void Simulate(){
 
 		}
 		
-	}
+	//}
 	
 	/** if(hadCollision) {
 		hadCollision = 0;

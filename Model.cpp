@@ -287,14 +287,25 @@ void Model::BuildPlane(float l, float h, int orientation, double x, double y, do
 	  for(isign = -1; isign <= 1; isign += 2){
 		switch(orientation) {
 			case(FRONTBACK):
-				vector.set(isign * l / 2, jsign * h / 2, 0); break;
+			    if( z < 0 )
+					vector.set(jsign * l / 2, isign * h / 2, 0);
+				else
+					vector.set(isign * l / 2, jsign * h / 2, 0); break;
 			case(SIDES): 
-				vector.set(0, isign * l / 2, jsign * h / 2); break;
+				if( x < 0 )
+					vector.set(0, jsign * l / 2, isign * h / 2);
+				else
+					vector.set(0, isign * l / 2, jsign * h / 2); break;
 			case(TOPBOTTOM):
-				vector.set(isign * l / 2, 0, jsign * h / 2); break;
+				if ( y > 0 )
+					vector.set(jsign * l / 2, 0, isign * h / 2); 
+				else
+					vector.set(isign * l / 2, 0, jsign * h / 2); break;
 		}
 		
 		vector = vector + center;
+		
+		// normals are wrong...how to fix it?
 		v[i++] = AddVertex(vector);
 	  }
 	
