@@ -122,26 +122,19 @@ void State::CalcAcceleration() {
 	Acceleration = G;
 	
 	Acceleration = Acceleration + Viscosity * (Wind - Velocity) / Mass;
-	cout << "Acceleration in calculation"; Acceleration.print(); cout << endl;
 	// no wind: Acceleration = Acceleration - Viscosity * Velocity / Mass
 }
 
 // Find New Velocity -- but don't store it!
 // use for particles
 Vector3d State::CalcNewVelocity(double timestep) {
-	//   newvelocity = Velocity + TimeStep * acceleration;
 	return Velocity + timestep * Acceleration;
 }
 
 // Find New Velocity w/ time fraction
 // use for particles
 Vector3d State::CalcNewVelocity(double timestep, double f) {
-	// if at: newvelocity = Velocity + f * TimeStep * acceleration;
-	// else: newvelocity = Velocity + (1 - f) * TimeStep * acceleration;
-	//if (atCollision) 
 		return Velocity + f * timestep * Acceleration;
-	//else
-		//return Velocity + (1 - f) * timestep * Acceleration;
 }
 
 // Scale the velocity w/ coefficients of friction & restition - DO STORE IT.
@@ -167,19 +160,13 @@ void State::ScaleVelocity(Vector3d pnormal) {
 // Find New Position -- but don't store it either!
 // use for particles
 Vector3d State::CalcNewPosition(double timestep) {
-	//   newball = Ball + f * TimeStep * Velocity;
 	return Center + timestep * Velocity;
 }
 
 // Find New Position w/ time fraction
 // use for particles
 Vector3d State::CalcNewPosition(double timestep, double f) {
-	// if at: newball = Ball + f * TimeStep * Velocity;
-	// else: newball = newball + (1 - f) * TimeStep * Velocity;
-	//if (atCollision) 
 		return Center + f * timestep * Velocity;
-	//else
-		//return Center + (1 - f) * timestep * Velocity;
 }
 
 // Adjust the acceleration, velocity, and position of the particle
@@ -196,11 +183,6 @@ void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
 	
 	vn = (Velocity * pnormal) * pnormal;
 	an = (Acceleration * pnormal) * pnormal;
-	//nc = (Center * pnormal) * pnormal;
-	// wrong: nc = (Radius * (pnormal * Velocity) / pnormal) - pvertex;
-	// since I have t, aka the distance to the collision point from center - the radius, make that point
-	// a point on the sphere and then subtract the radius from it to get the center...
-	//nc = (Center + Radius * vn) - subr;  // im not sure if this will work; or if i'm supposed to be using Velocity and not the adjusted velocity
 	
 	// find where we intersect and find  if we're on the plane...
 	//once we have the point of intersection, decide where the ball is & adjust the intersection to account for the radius
@@ -214,9 +196,5 @@ void State::AdjustAccVelPos(Vector3d pnormal, Vector3d pvertex) {
     Velocity = Velocity - vn;
 	Acceleration = Acceleration - an;
 	Center = intersect;
-	
-	cout << "VELOCITY IN ADJUST ACC VEL POST: "; Velocity.print(); cout << endl;
-	cout << "ACCELERATION IN ADJUST ACC VEL POST: "; Acceleration.print(); cout << endl;
-	cout << "CENTER IN ADJUST ACC VEL POST: "; Center.print(); cout << endl;
 }
 

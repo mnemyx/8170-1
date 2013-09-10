@@ -92,22 +92,16 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	avgN = avgN / 2;
 	avgN.normalize();
 	
-
-	
 	//planeNorma - Center - plaN * pV
 	
 	p = (bVelocity.normalize() * vertices[1]) - (bVelocity.normalize() * avgN);
 	
-		//cout << " P!!!! " << p << endl;
 	if(p < 0) { //we're behind the plane we're testing
 		bCentMod.set(((bCenter * avgN) + bRadius) * avgN);
 		bNewCentMod.set(((bNewCenter * avgN) + bRadius) * avgN);
-		//bNewCentMod.set(bNewCenter.x + bRadius, bNewCenter.y + bRadius, bNewCenter.z + bRadius);
 	} else { // we're in front
 		bCentMod.set(((bCenter * avgN) - bRadius) * avgN);
 		bNewCentMod.set(((bNewCenter * avgN) - bRadius) * avgN);
-		//bCentMod.set(bCenter.x - bRadius, bCenter.y - bRadius, bCenter.z - bRadius);
-		//bNewCentMod.set(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
 	}
 
 	f = ((bCenter - vertices[1]) * avgN / ((bCenter - bNewCentMod) * avgN));

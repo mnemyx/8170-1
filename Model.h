@@ -50,12 +50,6 @@ public:
   // Make a plane
   void BuildPlane(float length = 1.0, float width = 1.0, int orientation = 1, double x = 0, double y = 0, double z = 0);  
   
-  // Make a cylinder model
-  void BuildCylinder(float radius = 0.5, float height = 1.0);
-  
-  // Make a cone model
-  void BuildCone(float radius = 0.5, float height = 1.0);
-  
   // draw the current model in wireframe or shaded
   void Draw(int wireframe = 1);
   

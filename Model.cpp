@@ -314,97 +314,14 @@ void Model::BuildPlane(float l, float h, int orientation, double x, double y, do
     AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
 }
 
-//
-// Make a cylinder model
-//
-void Model::BuildCylinder(float radius, float height){
-  const int NUMFACETS = 16;
-
-  int v[NUMFACETS * 2 + 2];
-  Vector3d vector;
-  int ksign;
-  int i, j;
-  float theta;
-  
-  Clean();
-
-  // construct the vertices for the 2 bases of the cylinder
-  i = 0;
-  for(ksign = -1; ksign <= 1; ksign += 2)
-    for(theta = 0; theta < 360; theta += 360.0 / NUMFACETS){
-      vector.set(radius * cos(DegToRad(theta)), 
-		 radius * sin(DegToRad(theta)),
-		 ksign * height / 2);
-      v[i++] = AddVertex(vector);
-    }
-  // construct the two vertices at the centers of the bases
-  vector.set(0, 0, -height / 2);
-  v[i++] = AddVertex(vector);
-  vector.set(0, 0, height / 2);  
-  v[i++] = AddVertex(vector);
-			 
-  // construct the triangles that make the 2 bases
-  for(i = 0; i < NUMFACETS; i++){
-    j = (i + 1) % NUMFACETS;
-    AddTriangle(v[j], v[i], v[2 * NUMFACETS]);
-    AddTriangle(v[i + NUMFACETS], v[j + NUMFACETS], v[2 * NUMFACETS + 1]);
-  }
-  
-  // construct the triangles that make the sides
-  for(i = 0; i < NUMFACETS; i++){
-    j = (i + 1) % NUMFACETS;
-    AddTriangle(v[i], v[j], v[j + NUMFACETS]);
-    AddTriangle(v[i], v[j + NUMFACETS], v[i + NUMFACETS]);
-  }
-}
-
-//
-// Make a cone model
-//
-void Model::BuildCone(float radius, float height){
-  const int NUMFACETS = 16;
-
-  int v[NUMFACETS + 2];
-  Vector3d vector;
-  int i, j;
-  float theta;
-  
-  Clean();
-
-  // construct the vertices for the base of the cone
-  i = 0;
-  for(theta = 0; theta < 360; theta += 360.0 / NUMFACETS){
-    vector.set(radius * cos(DegToRad(theta)), 
-	       radius * sin(DegToRad(theta)),
-	       -height / 2);
-    v[i++] = AddVertex(vector);
-  }
-		 
-  // construct the vertex at the center of the base and at the apex of the cone
-  vector.set(0, 0, -height / 2);
-  v[i++] = AddVertex(vector);
-  vector.set(0, 0, height / 2);
-  v[i++] = AddVertex(vector);
-			 
-  // construct the triangles that make the base
-  for(i = 0; i < NUMFACETS; i++){
-    j = (i + 1) % NUMFACETS;
-    AddTriangle(v[j], v[i], v[NUMFACETS]);
-  }
-  
-  // construct the triangles that make the sides
-  for(i = 0; i < NUMFACETS; i++){
-    j = (i + 1) % NUMFACETS;
-    AddTriangle(v[i], v[j], v[NUMFACETS + 1]);
-  }
-}
 
 //
 // Draw the current model in wireframe or shaded
 //
 void Model::Draw(int wireframe){
   int itri, ivertex;
-  int op = (wireframe? GL_LINE_LOOP: GL_POLYGON);
+  int op = (wireframe? GL_LINE_LOOP: GL_TRIANGLES);
+  //int op = GL_TRIANGLES;
   
   for(itri = 0; itri < ntriangles; itri++){
     glBegin(op);

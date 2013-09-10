@@ -25,7 +25,7 @@ using namespace std;
 
 #define RGBBLACK	0, 0, 0
 #define RGBRED		1, 0, 0
-#define RGBORANGE	1, 0.5, 0
+#define RGBORANGE	1, 0.5, 0, .5
 #define RGBYELLOW	1, 1, 0
 #define RGBGREEN	0, 1, 0
 #define RGBBLUE		0.5, 0.5, 1
@@ -225,6 +225,7 @@ void GetShading(int wireframe) {
 // Draw the moving objects
 //
 void DrawMovingObj(int wireframe) {
+  GetShading(0);
   Particle.UpdateModel();
   Particle.Draw(wireframe);
 }
@@ -235,8 +236,10 @@ void DrawMovingObj(int wireframe) {
 void DrawNonMovingObj(int wireframe) {
   int i;
   for ( i = 0; i < 6; i++ ) {
-
-	  Cube[i].Draw(wireframe);
+	  
+	  glEnable(GL_BLEND);
+	  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	  Cube[i].Draw(false);
   }
 }
 
@@ -251,7 +254,7 @@ void DrawScene(int collision, int cubeIndx){
 
   glClear(GL_COLOR_BUFFER_BIT);
   
-  glColor3f(RGBORANGE);
+  glColor4f(RGBORANGE);
   DrawMovingObj(false);
   
   if(collision) glColor3f(RGBRED);
@@ -283,9 +286,10 @@ void Simulate(){
   double f;
   
   // don't do anything if our moving object isn't, well, moving.
-  if(Particle.Stopped()) { cout << "I STOPPED!!" << endl;
+  if(Particle.Stopped()) { 
     return;
   }
+  
   // set the ball's resting...for all the planes...
   for (i = 0; i < 6; i++) {
 	  Cube[i].RestingOnPlane(Particle.Center(), Particle.Velocity(), Particle.Radius(), TimeStep);
@@ -300,7 +304,6 @@ void Simulate(){
   // Clear resting contact if acceleration is up.
   for (i = 0; i < 6; i++) {
 	  if(Cube[i].Rest() && Cube[i].AccelOnPlane(Particle.Acceleration())) {
-		  cout << i << " -------------------------- I NEED TO REST KTHX" << endl;
 		  Particle.AdjustAVC(Cube[i].PlaneNormal(), Cube[i].PlaneVertex());
 	  } 
 	  else Cube[i].Rest(false);
@@ -310,85 +313,41 @@ void Simulate(){
   // evil Euler integration to get velocity and position at next timestep
   newvelocity = Particle.CalcVelocity(TimeStep); 
   newball = Particle.CalcCenter(TimeStep);
-  cout << "vel @ expected end ts: ";
-				newvelocity.print(); cout << endl;
-			  cout << "pos @ expected end ts: "; newball.print(); cout << endl;
   
-  i = 0;
-  tn = TimeStep;
-  int checkCollision = 1;
-  int hadCollision = 0;
-  int cubeCollisions[6] = {0, 0, 0, 0, 0, 0};
-  // while loop should wrap around here, to determine if we're still under the time stamp.
-  //while (checkCollision) { 
-	for (i = 0; i < 6; i++ ) {  
+
+  for (i = 0; i < 6; i++ ) {  
 	  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 	  
-	 // if (cubeCollisions[i]) { cubeCollisions[i] = 0;  cout << " I'm skipping i: " << i << endl; }
-	  //else {
-		  cout << " F from PlabeBallColl(): " << f << endl;
-		  // if ball not in resting contact, check for collision in the timestep
-		  if (!Cube[i].Rest() && f >= 0  && f < 1 ) {
-				  //hadCollision = 1;
-				  //cubeCollisions[i] = 1;
-				  
-				  cout << "Im not resting and I uh, collided @ -------> " << i << endl;
-				  // have collision. get fraction of timestep at this collision will occur.
-				  
-				  // compute the velocity & position of the ball at the collision time
-				  newvelocity = Particle.CalcVelocity(TimeStep, f);
-				  newball = Particle.CalcCenter(TimeStep, f);
-				  cout << "vel @ collision: ";
-					newvelocity.print(); cout << endl;
-				  cout << "pos @ collision: "; newball.print(); cout << endl;
-				  
-				  // reflect the velocity from the floor & scale the vertical component...
-				  Particle.Velocity(newvelocity);
-				  cout << "particle not scaled velocity: "; Particle.Velocity().print(); cout << endl;
-				  Particle.ScaleVel(Cube[i].PlaneNormal());  // stores this into Particle->Velocity
-				  Particle.Center(newball);
-				  
-				  cout << "particle scaled velocity: "; Particle.Velocity().print(); cout << endl;
-				  cout << "particle center: "; Particle.Center().print(); cout << endl;
+	  // if ball not in resting contact, check for collision in the timestep
+	  if (!Cube[i].Rest() && f >= 0  && f < 1 ) {
 
-				  // draw the scene because we collided (change so that plane lights up instead)
-				  DrawScene(1, i);
-				  
-				  // finish intergrating over the remainder of the time step...
-				  Particle.Accel();
-				  //out << "particle end of ts accel: "; Particle.Acceleration().print(); out << endl;
-				  newvelocity = Particle.CalcVelocity(tn, 1 - (TimeStep * f));
-				  newball = Particle.CalcCenter(tn, 1 - (TimeStep * f));
-				  
-				  //tn -= tn * f;
-				  //i = 0;
-				  //cout << "TN: _____________________________________ " << tn << endl;
-				  //Particle.Velocity(newvelocity);
-				  //Particle.Center(newball);
-				  	//cout << "****** particle end ts IN LOOP velocity: "; Particle.Velocity().print(); cout << endl;
-			  //cout << "****** particle end ts IN LOOP center: "; Particle.Center().print(); cout << endl;
-		  }
+		  // compute the velocity & position of the ball at the collision time
+		  newvelocity = Particle.CalcVelocity(TimeStep, f);
+		  newball = Particle.CalcCenter(TimeStep, f);
+		  
+		  // reflect the velocity from the floor & scale the vertical component...
+		  Particle.Velocity(newvelocity);
+		  Particle.ScaleVel(Cube[i].PlaneNormal());  // stores this into Particle->Velocity
+		  Particle.Center(newball);
 
-		}
-		
-	//}
-	
-	/** if(hadCollision) {
-		hadCollision = 0;
-		if(tn > -0.5) checkCollision = 1;
-		else checkCollision = 0;
-	} else checkCollision = 0;
-  }***/
-  
+		  // draw the scene because we collided (change so that plane lights up instead)
+		  DrawScene(1, i);
+		  
+		  // finish intergrating over the remainder of the time step...
+		  Particle.Accel();
+		  newvelocity = Particle.CalcVelocity(tn, 1 - (TimeStep * f));
+		  newball = Particle.CalcCenter(tn, 1 - (TimeStep * f));
+	  }
+
+	}
   
   // advance the real timestep and set the velocity and position to their new values
   Time += TimeStep;
   NTimeSteps++;
   Particle.Velocity(newvelocity);
   Particle.Center(newball);
-				cout << "****** particle end ts  velocity: "; Particle.Velocity().print(); cout << endl;
-			  cout << "****** particle end ts center: "; Particle.Center().print(); cout << endl;
-  ////////////
+
+  ///////////////////////////////////////////////////////////////////////
 
   // draw only if we are at a display time
   if(NTimeSteps % TimeStepsPerDisplay == 0)
@@ -621,7 +580,7 @@ void InitCamera() {
   ShadeMode = AMBIENT;
   SmoothShading = false;
   MenuAttached = false;
-  Wireframe = true;
+  Wireframe = false;
   
   Pan = 0;
   Tilt = 0;
@@ -676,7 +635,7 @@ void doReshape(int w, int h){
 void InitSimulation(int argc, char* argv[]){
 
   if(argc != 2){
-    fprintf(stderr, "usage: bounce paramfile\n");
+    fprintf(stderr, "usage: ballbox paramfile\n");
     exit(1);
   }
   
@@ -861,9 +820,6 @@ int main(int argc, char* argv[]){
 
   /* Set up to clear screen to black */
   glClearColor(RGBBLACK, 0);
-
-  /* Set shading to flat shading */
-  glShadeModel(GL_FLAT);
 
 
   glutMainLoop();
