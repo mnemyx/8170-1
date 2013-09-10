@@ -110,7 +110,7 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 		//bNewCentMod.set(bNewCenter.x - bRadius, bNewCenter.y - bRadius, bNewCenter.z - bRadius);
 	}
 
-	f = ((bCentMod - vertices[1]) * avgN / ((bCentMod - bNewCentMod) * avgN));
+	f = ((bCenter - vertices[1]) * avgN / ((bCenter - bNewCentMod) * avgN));
 	
 	return f;
 }
@@ -155,7 +155,6 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	vN = bVelocity * avgN;
 	EntState.SetCollidedN(avgN);
 	
-	cout << vN << endl;
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
 	// kind of fudging it...

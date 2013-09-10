@@ -235,15 +235,7 @@ void DrawMovingObj(int wireframe) {
 void DrawNonMovingObj(int wireframe) {
   int i;
   for ( i = 0; i < 6; i++ ) {
-	  switch(i) {
-	  case 0: glColor3f(RGBVIOLET); break;
-	  case 1: glColor3f(RGBBLUE); break;
-	  case 2:glColor3f(RGBWHITE); break;
-	  case 3:glColor3f(RGBGREEN); break;
-	  case 4:glColor3f(RGBYELLOW); break;
-	  case 5:glColor3f(RGBRED); break;
-	}
-	  
+
 	  Cube[i].Draw(wireframe);
   }
 }
@@ -336,7 +328,7 @@ void Simulate(){
 	  //else {
 		  cout << " F from PlabeBallColl(): " << f << endl;
 		  // if ball not in resting contact, check for collision in the timestep
-		  if (!Cube[i].Rest() && f >= 0 - Cube[i].FudgeFactor()  && f < 1 + Cube[i].FudgeFactor() ) {
+		  if (!Cube[i].Rest() && f >= 0  && f < 1 ) {
 				  //hadCollision = 1;
 				  //cubeCollisions[i] = 1;
 				  
@@ -371,8 +363,8 @@ void Simulate(){
 				  //tn -= tn * f;
 				  //i = 0;
 				  //cout << "TN: _____________________________________ " << tn << endl;
-				  Particle.Velocity(newvelocity);
-				  Particle.Center(newball);
+				  //Particle.Velocity(newvelocity);
+				  //Particle.Center(newball);
 				  	//cout << "****** particle end ts IN LOOP velocity: "; Particle.Velocity().print(); cout << endl;
 			  //cout << "****** particle end ts IN LOOP center: "; Particle.Center().print(); cout << endl;
 		  }
