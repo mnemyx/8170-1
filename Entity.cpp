@@ -117,12 +117,8 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	// t= (Xn dot (PointOnPLANE - Raystart)) / (Xn dot Raydirection)-- NeHe Collision Detection
 	//  Resting = Abs(timestep * Velocity.y) < EPS.y && Abs(Center.y - (Radius + miny)) < EPS.y;
 	float t;
-	float p;
 	int i;
 	double vN;
-	Vector3d bCentMod;
-	
-	// average normal?
 	Vector3d avgN;
 	
 	for (i = 0; i < ntriangles; i++) {
@@ -131,30 +127,17 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	
 	avgN = avgN / 2;
 	avgN.normalize();
-	
-	p = (bVelocity.normalize() * vertices[1]) - (bVelocity.normalize() * avgN);
-	
-	if(p < 0) { //we're behind the plane we're testing
-		bCentMod.set(((bCenter * avgN) + bRadius) * avgN);
-	} else { // we're in front
-		bCentMod.set(((bCenter * avgN) - bRadius) * avgN);
-	}
 
-	if (avgN * bVelocity == 0) {
-		t = - avgN * (bCenter - vertices[1]);
-	} else {
-		t = - (avgN * (bCenter - vertices[1])) / (avgN * bVelocity);
-	}
+	t = avgN * (bCenter - vertices[1]); 
+	// account for radius
+	t = t - bRadius;
 	
 	vN = bVelocity * avgN;
 	EntState.SetCollidedN(avgN);
-	
-	cout << "t ---- "<< t << endl;
-	cout << "vN --- " << vN << endl;
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
 	// kind of fudging it...
-	EntState.SetResting(Abs(vN) < 0.5  && Abs(t) < 0.5);
+	EntState.SetResting(Abs(vN) < EntState.GetEPS() && Abs(t) < EntState.GetEPS());
 	EntState.SetT(t);
 }
 
@@ -162,14 +145,10 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 // called by plane...
 int Entity::AccelOnPlane(Vector3d bAccel) {
 	double acceln;
-	double gdirection;
 	
 	acceln = bAccel * EntState.GetCollidedN();
-	gdirection = EntState.GetG() * EntState.GetG().normalize();
-	
-	//acceln = acceln - gdirection;
-	cout << "Acceln " << acceln;
-	if (acceln < EntState.GetEPS()) return true;
+
+	if (acceln < EntState.GetEPS()) { return true; }
 	else return false;
 }
 

@@ -1,12 +1,12 @@
 0	0	0
-0	-40	0
-50
+0	40	0
+10
 7
-0.8
+0.5
 0.3
 0.1
 0		0			0
-0		-9.86		0
+0		9.86		0
 0 
 
 120		120		0
@@ -42,7 +42,7 @@ velocity.x	velocity.y	velocity.z
 center.x	center.y	center.z
 mass
 radius
-coefficient of restitution
+coefficient of restitution (I would totally not make this greater than .7....)
 coefficient of friction
 EPS
 wind.x		wind.y		wind.z
