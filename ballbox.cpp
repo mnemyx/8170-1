@@ -26,8 +26,8 @@ using namespace std;
 #define RGBBLACK	0, 0, 0
 #define RGBRED		1, 0, 0, .25
 #define RGBORANGE	1, 0.5, 0, 0.25
-#define RGBYELLOW	1, 1, 0, 0.25
-#define RGBGREEN	0, 1, 0, .0.25
+#define RGBYELLOW	1, 1, 0, 0
+#define RGBGREEN	0, 1, 0, 0.1
 #define RGBBLUE		0.5, 0.5, 1, .25
 #define RGBVIOLET	1, 0, 0.5, 1
 #define RGBWHITE	1, 1, 1, .25
@@ -224,6 +224,7 @@ void GetShading(int wireframe) {
 // Draw the moving objects
 //
 void DrawMovingObj(int wireframe) {
+  glColor4f(RGBVIOLET);
   GetShading(0);
   Particle.UpdateModel();
   Particle.Draw(wireframe);
@@ -234,8 +235,14 @@ void DrawMovingObj(int wireframe) {
 //
 void DrawNonMovingObj(int wireframe) {
   int i;
-  for ( i = 0; i < 6; i++ ) {
+  //GetShading(0);
+   glColor4f(RGBYELLOW);
+	  glEnable(GL_BLEND);
+	  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	  Cube[0].Draw(false);
 	  
+  for ( i = 1; i < 6; i++ ) {
+	  glColor4f(RGBGREEN);
 	  glEnable(GL_BLEND);
 	  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	  Cube[i].Draw(false);
@@ -358,36 +365,6 @@ void Simulate(){
 	  }
   }
 
-/** was the original
- * note: I need to fix where I inputted tn instead of timestep
- * 
-  for (i = 0; i < 6; i++ ) {  
-	  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
-	  
-	  // if ball not in resting contact, check for collision in the timestep
-	  if (!Cube[i].Rest() && f >= 0  && f < 1 ) {
-
-		  // compute the velocity & position of the ball at the collision time
-		  newvelocity = Particle.CalcVelocity(TimeStep, f);
-		  newball = Particle.CalcCenter(TimeStep, f);
-		  
-		  // reflect the velocity from the floor & scale the vertical component...
-		  Particle.Velocity(newvelocity);
-		  Particle.ScaleVel(Cube[i].PlaneNormal());  // stores this into Particle->Velocity
-		  Particle.Center(newball);
-
-		  // draw the scene because we collided (change so that plane lights up instead)
-		  DrawScene(1, i);
-		  
-		  // finish intergrating over the remainder of the time step...
-		  Particle.Accel();
-		  newvelocity = Particle.CalcVelocity(tn, 1 - (TimeStep * f));
-		  newball = Particle.CalcCenter(tn, 1 - (TimeStep * f));
-	  }
-
-	}
-  **/
-  
   // advance the real timestep and set the velocity and position to their new values
   Time += TimeStep;
   NTimeSteps++;
@@ -527,7 +504,7 @@ void handleButton(int button, int state, int x, int y){
 //
 void drawDisplay(){
   // distant light source, parallel rays coming from front upper right
-  const float light_position[] = {1, 1, 1, 0};
+  const float light_position[] = {0, -1, 0, 0};
   
   // clear the window to the background color
   glClear(GL_COLOR_BUFFER_BIT);
