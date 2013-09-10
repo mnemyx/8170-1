@@ -141,14 +141,16 @@ void Entity::RestingOnPlane(Vector3d bCenter, Vector3d bVelocity, float bRadius,
 	}
 
 	if (avgN * bVelocity == 0) {
-		t = - avgN * (bCentMod - vertices[1]);
+		t = - avgN * (bCenter - vertices[1]);
 	} else {
-		t = - (avgN * (bCentMod - vertices[1])) / (avgN * bVelocity);
+		t = - (avgN * (bCenter - vertices[1])) / (avgN * bVelocity);
 	}
 	
 	vN = bVelocity * avgN;
 	EntState.SetCollidedN(avgN);
 	
+	cout << "t ---- "<< t << endl;
+	cout << "vN --- " << vN << endl;
 	// Don't I need to figure out the velocity in the direction of the normal and see if it's
 	// below the threshold?  ...Added above.
 	// kind of fudging it...
@@ -165,8 +167,8 @@ int Entity::AccelOnPlane(Vector3d bAccel) {
 	acceln = bAccel * EntState.GetCollidedN();
 	gdirection = EntState.GetG() * EntState.GetG().normalize();
 	
-	acceln = acceln - gdirection;
-	
+	//acceln = acceln - gdirection;
+	cout << "Acceln " << acceln;
 	if (acceln < EntState.GetEPS()) return true;
 	else return false;
 }

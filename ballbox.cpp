@@ -24,17 +24,17 @@ using namespace std;
 	/* RGB colors */
 
 #define RGBBLACK	0, 0, 0
-#define RGBRED		1, 0, 0
-#define RGBORANGE	1, 0.5, 0, .5
-#define RGBYELLOW	1, 1, 0
-#define RGBGREEN	0, 1, 0
-#define RGBBLUE		0.5, 0.5, 1
-#define RGBVIOLET	1, 0, 0.5
-#define RGBWHITE	1, 1, 1
-#define RGBDIMWHITE	0.8, 0.8, 0.8
-#define RGBDIMRED	0.3, 0, 0
-#define RGBDIMGREEN	0, 0.3, 0
-#define RGBDIMLUE	0, 0, 0.3
+#define RGBRED		1, 0, 0, .25
+#define RGBORANGE	1, 0.5, 0, 0.25
+#define RGBYELLOW	1, 1, 0, 0.25
+#define RGBGREEN	0, 1, 0, .0.25
+#define RGBBLUE		0.5, 0.5, 1, .25
+#define RGBVIOLET	1, 0, 0.5, 1
+#define RGBWHITE	1, 1, 1, .25
+#define RGBDIMWHITE	0.8, 0.8, 0.8, .25
+#define RGBDIMRED	0.3, 0, 0, .25
+#define RGBDIMGREEN	0, 0.3, 0, .25
+#define RGBDIMLUE	0, 0, 0.3, .25
 
 #define EPS		0.1
 
@@ -68,7 +68,6 @@ using namespace std;
 #define DIFFUSE_FRACTION 0.4
 #define SPECULAR_FRACTION 0.4
 
-// colors used for lights, and materials for coordinate axes
 const float DIM_PALEBLUE[] = {0.1, 0.1, 0.3, 1};
 const float BRIGHT_PALEBLUE[] = {0.5, 0.5, 1, 1};
 const float GRAY[] = {0.3, 0.3, 0.3, 1};
@@ -257,7 +256,7 @@ void DrawScene(int collision, int cubeIndx){
   glColor4f(RGBORANGE);
   DrawMovingObj(false);
   
-  if(collision) glColor3f(RGBRED);
+  if(collision) glColor4f(RGBRED);
   DrawNonMovingObj(true);
   
   glutSwapBuffers();
@@ -282,8 +281,10 @@ void Simulate(){
   int i;
   Vector3d acceleration;
   Vector3d newvelocity, newball;
-  double tn = 0;
-  double f;
+  double tn = TimeStep;
+  double f = 100;
+  int ihit = -1;
+  double fhit, dt;
   
   // don't do anything if our moving object isn't, well, moving.
   if(Particle.Stopped()) { 
@@ -314,7 +315,52 @@ void Simulate(){
   newvelocity = Particle.CalcVelocity(TimeStep); 
   newball = Particle.CalcCenter(TimeStep);
   
+  
+  // rewriting the one from below according to house's notes from 9/10
+  while(tn > 0) {
+	  ihit = -1;
+	  for (i = 0; i < 6; i++) {
+		  fhit = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
+		  
+		  if(fhit >= 0 && fhit < 1 && fhit < f) {
+			  f = fhit;
+			  ihit = i;
+		  }
+	  }
+	  
+	  if(ihit != -1) {
+		  if (!Cube[ihit].Rest()) {
+			  // get the fraction...of the fraction of the time step.
+			  dt = f * tn;
+			  
+			  // compute velocity & position for the ball at collision
+			  newvelocity = Particle.CalcVelocity(tn, dt);
+			  newball = Particle.CalcCenter(tn, dt);
+			  
+			  // reflect it from the plane -- data during collision
+			  Particle.Velocity(newvelocity);
+			  Particle.ScaleVel(Cube[ihit].PlaneNormal());  // stores this into Particle->Velocity
+			  Particle.Center(newball);
 
+			  DrawScene(1, ihit);  // should do something with this in terms of collision; change draw scene function
+			  
+			  dt = (1 - f) * tn;
+			  // finish the integrating
+			  Particle.Accel();
+			  newvelocity = Particle.CalcVelocity(tn, 1 - (dt * f));
+			  newball = Particle.CalcCenter(tn, 1 - (dt * f));
+			  
+			  tn = tn - (tn * f);
+		  }
+		  
+	  } else {
+		  tn = -1;
+	  }
+  }
+
+/** was the original
+ * note: I need to fix where I inputted tn instead of timestep
+ * 
   for (i = 0; i < 6; i++ ) {  
 	  f = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 	  
@@ -340,6 +386,7 @@ void Simulate(){
 	  }
 
 	}
+  **/
   
   // advance the real timestep and set the velocity and position to their new values
   Time += TimeStep;
