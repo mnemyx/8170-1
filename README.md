@@ -53,6 +53,7 @@ MENU COMMANDS
 FILES
 ==================================================================
 	ballbox.cpp (main program)
+	p			(sample parameter file)
 	Entity.cpp, Entity.h
 	Model.cpp, Model.h
 	State.cpp, State.h
@@ -62,6 +63,7 @@ MISC FILES
 ==================================================================
 	README.md
 	Makefile
+	Matrix.cpp, Matrix.h
 	Utility.cpp, Utility.h
 	Vector.cpp, Vector.h
 	
@@ -73,4 +75,4 @@ SAMPLE OUTPUT FILES
 
 TOTAL FILE COUNT
 ==================================================================
-	13
+	16
