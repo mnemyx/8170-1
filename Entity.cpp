@@ -93,7 +93,6 @@ float Entity::PlaneBallColl(Vector3d bCenter, Vector3d bVelocity, Vector3d bNewC
 	avgN.normalize();
 	
 	//planeNorma - Center - plaN * pV
-	
 	p = (bVelocity.normalize() * vertices[1]) - (bVelocity.normalize() * avgN);
 	
 	if(p < 0) { //we're behind the plane we're testing

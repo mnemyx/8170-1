@@ -244,7 +244,7 @@ void Simulate(){
   // rewriting the one from below according to house's notes from 9/10
   while(tn > 0) {
 	  ihit = -1;
-	  for (i = 0; i < 6; i++) {
+	  for (i = 0; i < 6; i++) { 
 		  fhit = Cube[i].PlaneBallColl(Particle.Center(), newvelocity, newball, Particle.Radius());
 		  
 		  if(fhit >= 0 && fhit < 1 && fhit < f) {
