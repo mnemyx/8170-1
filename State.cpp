@@ -30,7 +30,7 @@ State::State() {
 	
 	Start = true;
 	Stopped = true;
-	Step = true;
+	Step = false;
 	Resting = false;
 	Trace = true;
 	

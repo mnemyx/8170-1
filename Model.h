@@ -51,7 +51,8 @@ public:
   void BuildPlane(float length = 1.0, float width = 1.0, int orientation = 1, double x = 0, double y = 0, double z = 0);  
   
   // draw the current model in wireframe or shaded
-  void Draw(int wireframe = 1);
+  void Draw(const float* color);
+  void Draw(const float* frontC, const float* backC);
   
 };
 

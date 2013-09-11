@@ -249,27 +249,6 @@ void Model::BuildCuboid(float width, float height, float depth, double x, double
 // Make a plane
 // Added 9/2013 - Proj 1 - GBG
 //
-/******************
-void Model::BuildPlane(Vector3d p0, Vector3d, p1, Vector3d p2, Vector3d p3){
-  int v[4];
-  Vector3d vector;
-  int i;
-  int vlist[6] = {0, 1, 2,     0, 2, 3};   // 2 triangles
-		   
-  // delete any old data that may have been built previously
-  Clean();
-
-  // construct the 4 vertices 
-  v[0] = AddVertex(p0);
-  v[1] = AddVertex(p1);
-  v[2] = AddVertex(p2);
-  v[3] = AddVertex(p3);
-  
-  // construct the 12 triangles that make the 6 faces
-  for(i = 0; i < 6; i += 3)
-    AddTriangle(v[vlist[i]], v[vlist[i + 1]], v[vlist[i + 2]]);
-}
-******************/
 void Model::BuildPlane(float l, float h, int orientation, double x, double y, double z) {
   int v[4];
   Vector3d vector;
@@ -318,19 +297,57 @@ void Model::BuildPlane(float l, float h, int orientation, double x, double y, do
 //
 // Draw the current model in wireframe or shaded
 //
-void Model::Draw(int wireframe){
+void Model::Draw(const float* color){
   int itri, ivertex;
-  int op = (wireframe? GL_LINE_LOOP: GL_TRIANGLES);
-  //int op = GL_TRIANGLES;
   
+  glColor4f(color[0], color[1], color[2], color[3]); 
   for(itri = 0; itri < ntriangles; itri++){
-    glBegin(op);
-      if(!wireframe)
+    glBegin(GL_TRIANGLES);
+   
 	glNormal3f(normals[itri].x, normals[itri].y, normals[itri].z);
+	
       for(int i = 0; i < 3; i++){
-	ivertex = triangles[itri][i];
-	glVertex3f(vertices[ivertex].x, vertices[ivertex].y, vertices[ivertex].z);
+		ivertex = triangles[itri][i];
+		glVertex3f(vertices[ivertex].x, vertices[ivertex].y, vertices[ivertex].z);
       }
+    glEnd();
+  }
+}
+
+//
+// Draw but specifically for the plane - to make them 2 solid colors.
+//
+void Model::Draw(const float* frontC, const float* backC){
+  int itri, ivertex, i;
+  
+  glColor4f(backC[0], backC[1], backC[2], backC[3]); 
+  //glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  for(itri = 0; itri < ntriangles; itri++){
+
+	glBegin(GL_TRIANGLES);
+	
+	glNormal3f(normals[itri].x, normals[itri].y, normals[itri].z);
+	
+    for(int i = 0; i < 3; i++){
+	  ivertex = triangles[itri][i];
+	  glVertex3f(vertices[ivertex].x, vertices[ivertex].y, vertices[ivertex].z);
+    }
+		
+    glEnd();
+  }
+
+  glColor4f(frontC[0], frontC[1], frontC[2], backC[3]);
+  //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  for(itri = 0; itri < ntriangles; itri++){
+	glBegin(GL_TRIANGLES);
+	
+	glNormal3f(normals[itri].x, normals[itri].y, normals[itri].z);
+		
+    for(int i = 0; i < 3; i++){
+	  ivertex = triangles[itri][i];
+	  glVertex3f(vertices[ivertex].x, vertices[ivertex].y, vertices[ivertex].z);
+    }
+		
     glEnd();
   }
 }
